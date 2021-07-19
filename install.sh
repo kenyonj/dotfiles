@@ -32,9 +32,5 @@ mv nvim.appimage /usr/local/bin/nvim
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 ln -s $(pwd)/tmux.conf $HOME/.tmux.conf
-ln -s $(pwd)/vimrc $HOME/.vimrc
-ln -s $(pwd)/vim $HOME/.vim
-ln -s $(pwd)/emacs $HOME/.emacs
-ln -s $(pwd)/screenrc $HOME/.screenrc
 
 vim -Es -u $HOME/.vimrc -c "PlugInstall | qa"
