@@ -1,18 +1,18 @@
 #!/bin/bash
 
-exec > >(tee -i $HOME/dotfiles_install.log)
-exec 2>&1
-set -x
+#exec > >(tee -i $HOME/dotfiles_install.log)
+#exec 2>&1
+#set -x
 
 # Always want to use ZSH as my default shell (e.g. for SSH)
-if ! grep -q "root.*/bin/zsh" /etc/passwd
-then
-  chsh -s /bin/zsh root
-fi
+#if ! grep -q "root.*/bin/zsh" /etc/passwd
+#then
+#  chsh -s /bin/zsh root
+#fi
 
-apt-get install -y \
-  exa grc ripgrep shellcheck zsh-autosuggestions locate \
-  fuse npm
+#apt-get install -y \
+#  exa grc ripgrep shellcheck zsh-autosuggestions locate \
+#  fuse npm
   
 # install latest stable node
 #npm cache clean -f
