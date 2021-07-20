@@ -33,11 +33,11 @@ ln -s $(pwd)/zshrc $HOME/.zshrc
 ln -s $(pwd)/irbrc $HOME/.irbrc
 ln -s $(pwd)/config/nvim $HOME/.config/nvim
 
-#nvim -Es -u $HOME/.config/nvim/init.vim -c "PlugInstall | qa"
-
 gem install neovim
 npm install -g neovim
 pip3 install --user neovim
 go get -u github.com/arl/gitmux
 
 git config --add user.email kenyonj@gmail.com
+
+nvim -Es -u $HOME/.config/nvim/init.vim -c "PlugInstall | qa"
