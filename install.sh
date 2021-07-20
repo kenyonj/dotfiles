@@ -25,5 +25,7 @@ mv nvim.appimage /usr/local/bin/nvim
 ln -s $(pwd)/tmux.conf $HOME/.tmux.conf
 ln -s $(pwd)/aliases.zsh $HOME/.aliases.zsh
 ln -s $(pwd)/zshrc.sh $HOME/.zshrc.sh
+ln -s $(pwd)/irbrc $HOME/.irbrc
+ln -s $(pwd)/config $HOME/.config
 
 #vim -Es -u $HOME/.vimrc -c "PlugInstall | qa"
