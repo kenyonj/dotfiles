@@ -23,6 +23,7 @@ chmod u+x nvim.appimage
 mv nvim.appimage /usr/local/bin/nvim
 
 ln -s $(pwd)/tmux.conf $HOME/.tmux.conf
+ln -s $(pwd)/tmux.overmind.conf $HOME/.tmux.overmind.conf
 ln -s $(pwd)/aliases.zsh $HOME/.aliases.zsh
 ln -s $(pwd)/zshrc.sh $HOME/.zshrc.sh
 ln -s $(pwd)/irbrc $HOME/.irbrc
