@@ -6,8 +6,9 @@ set -x
 
 chsh -s $(which zsh)
 
-# remove existing zshrc scripts
+# remove existing init scripts
 rm -f $HOME/.zshrc
+rm -f $HOME/.gitconfig
 
 apt-get install -y \
   exa grc ripgrep shellcheck zsh-autosuggestions \
