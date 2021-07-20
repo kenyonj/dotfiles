@@ -22,10 +22,6 @@ wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
 chmod u+x nvim.appimage
 mv nvim.appimage /usr/local/bin/nvim
 
-gem install neovim
-npm install -g neovim
-pip3 install --user neovim
-
 ln -s $(pwd)/zprofile.sh $HOME/.zprofile.sh
 ln -s $(pwd)/tmux.conf $HOME/.tmux.conf
 ln -s $(pwd)/tmux.overmind.conf $HOME/.tmux.overmind.conf
@@ -34,4 +30,8 @@ ln -s $(pwd)/zshrc.sh $HOME/.zshrc.sh
 ln -s $(pwd)/irbrc $HOME/.irbrc
 ln -s $(pwd)/config/nvim $HOME/.config/nvim
 
-nvim -Es -u $HOME/.config/nvim/init.vim -c "PlugInstall | qa"
+#nvim -Es -u $HOME/.config/nvim/init.vim -c "PlugInstall | qa"
+
+gem install neovim
+npm install -g neovim
+pip3 install --user neovim
