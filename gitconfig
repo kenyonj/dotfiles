@@ -1,0 +1,41 @@
+[color]
+  ui = auto
+[pretty]
+  colored = format:%C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an, %cr]%Creset
+[gist]
+  browse = true
+[push]
+  default = current
+[pull]
+  rebase = true
+[fetch]
+  prune = 1
+[rerere]
+  enabled = 1
+[core]
+  mergeoptions = --no-edit
+  commitGraph = true
+[help]
+  autocorrect = 1
+[diff]
+  algorithm = patience
+  compactionheuristic = true
+[diff "xml"]
+  textconv = xmllint --format --recover
+[mergetool]
+  prompt = false
+  keepBackup = false
+  keepTemporaries = false
+[apply]
+  whitespace = fix
+[rebase]
+  autoStash = true
+  autoSquash = true
+[commit]
+  verbose = true
+  gpgsign = true
+[user]
+	name = Justin Kenyon
+	email = kenyonj@gmail.com
+[github]
+  user = kenyonj
