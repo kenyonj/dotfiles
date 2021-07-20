@@ -22,6 +22,7 @@ wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
 chmod u+x nvim.appimage
 mv nvim.appimage /usr/local/bin/nvim
 
+ln -s $(pwd)/zprofile.sh $HOME/.zprofile.sh
 ln -s $(pwd)/tmux.conf $HOME/.tmux.conf
 ln -s $(pwd)/tmux.overmind.conf $HOME/.tmux.overmind.conf
 ln -s $(pwd)/aliases.zsh $HOME/.aliases.zsh
