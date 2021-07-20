@@ -4,7 +4,7 @@
 # run zprofile if this is not a login shell
 [ -n "$LOGIN_ZSH" ] && source ~/.zprofile
 
-source "$HOME/.zsh/aliases.zsh"
+source "$HOME/.aliases.zsh"
 
 # History file
 export HISTFILE=~/.zsh_history
