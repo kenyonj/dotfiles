@@ -5,7 +5,7 @@ set backupcopy=yes              " Keeps original creator code
 set backspace=indent,eol,start  " Adds intuitive backspacing
 set colorcolumn=100,118         " Highlight lines 100 & 118 (GitHub PR code view window width limit is 118)
 set diffopt+=vertical           " Always use vertical diffs
-set fillchars+=vert:‚îÇ           " Use tall pipe in split separators
+set fillchars+=vert:│           " Use tall pipe in split separators
 " set gdefault                  " When on a line, replace all matches in line
 set history=100                 " Keep 100 lines of command line history
 set hlsearch                    " Highlights search
@@ -13,7 +13,7 @@ set ignorecase                  " Ignore case in searches
 set incsearch                   " Searches for text as entered
 set laststatus=2                " Always show statusline
 set list                        " Don't show listchars
-set listchars=tab:¬ª¬∑,trail:¬∑    " Show trailing spaces as dots
+set listchars=tab:»·,trail:·    " Show trailing spaces as dots
 set matchtime=0                 " Fix neovim match lag
 set nobackup                    " No Backup files
 set noerrorbells                " Obvious
