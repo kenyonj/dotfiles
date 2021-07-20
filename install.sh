@@ -34,4 +34,4 @@ ln -s $(pwd)/zshrc.sh $HOME/.zshrc.sh
 ln -s $(pwd)/irbrc $HOME/.irbrc
 ln -s $(pwd)/config/nvim $HOME/.config/nvim
 
-#vim -Es -u $HOME/.vimrc -c "PlugInstall | qa"
+nvim +PlugInstall +qall >/dev/null 2>&1
