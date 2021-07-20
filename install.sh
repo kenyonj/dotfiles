@@ -6,6 +6,9 @@ set -x
 
 chsh -s $(which zsh)
 
+# remove existing zshrc scripts
+rm -f $HOME/.zshrc
+
 apt-get install -y \
   exa grc ripgrep shellcheck zsh-autosuggestions \
   fuse npm fzf fasd ruby-dev
