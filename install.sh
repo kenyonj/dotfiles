@@ -40,4 +40,4 @@ go get -u github.com/arl/gitmux
 
 git config --add user.email kenyonj@gmail.com
 
-nvim -Es -u $HOME/.config/nvim/init.vim -c "PlugInstall | qa"
+nvim +'PlugInstall --sync' +qa
