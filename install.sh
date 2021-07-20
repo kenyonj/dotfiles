@@ -8,7 +8,7 @@ chsh -s $(which zsh)
 
 apt-get install -y \
   exa grc ripgrep shellcheck zsh-autosuggestions \
-  fuse npm fzf
+  fuse npm fzf fasd
   
 # install latest stable node
 npm cache clean -f
