@@ -4,8 +4,7 @@
 # run zprofile if this is not a login shell
 [ -n "$LOGIN_ZSH" ] && source ~/.zprofile
 
-# load shared shell configuration
-source ~/.shrc
+source "$HOME/.zsh/aliases.zsh"
 
 # History file
 export HISTFILE=~/.zsh_history
