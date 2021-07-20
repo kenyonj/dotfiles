@@ -39,3 +39,5 @@ gem install neovim
 npm install -g neovim
 pip3 install --user neovim
 go get -u github.com/arl/gitmux
+
+git config --add user.email kenyonj@gmail.com
