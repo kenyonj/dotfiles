@@ -3,7 +3,7 @@ filetype off
 " setup Plug
 call plug#begin('~/.config/nvim/bundle')
 
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " tpope utilities
 Plug 'tpope/vim-repeat'
