@@ -68,8 +68,8 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline_section_b = ""
 let g:airline_section_z = "%#__accent_bold#%l%#__restore__#:%c"
 
-let g:ale_sign_error="‚ñ≥"
-let g:ale_sign_warning="‚úï"
+let g:ale_sign_error="△"
+let g:ale_sign_warning="✕"
 
 let g:ale_linters = {
 \   'javascript': ['eslint'],
