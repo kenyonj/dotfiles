@@ -35,7 +35,11 @@
   verbose = true
   gpgsign = true
 [user]
-	name = Justin Kenyon
-	email = kenyonj@gmail.com
+  name = Justin Kenyon
+  email = kenyonj@gmail.com
 [github]
   user = kenyonj
+[url "https://github.com/"]
+  insteadOf = git@github.com:
+[credential]
+  helper = cache
