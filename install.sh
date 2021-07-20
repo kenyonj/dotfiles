@@ -25,6 +25,7 @@ wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
 chmod u+x nvim.appimage
 mv nvim.appimage /usr/local/bin/nvim
 
+ln -s $(pwd)/gitconfig $HOME/.gitconfig
 ln -s $(pwd)/zprofile $HOME/.zprofile
 ln -s $(pwd)/tmux.conf $HOME/.tmux.conf
 ln -s $(pwd)/tmux.overmind.conf $HOME/.tmux.overmind.conf
@@ -37,7 +38,5 @@ gem install neovim
 npm install -g neovim
 pip3 install --user neovim
 go get -u github.com/arl/gitmux
-
-git config --add user.email kenyonj@gmail.com
 
 nvim +'PlugInstall --sync' +qa
