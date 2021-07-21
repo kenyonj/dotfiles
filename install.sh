@@ -41,3 +41,9 @@ pip3 install --user neovim
 go get -u github.com/arl/gitmux
 
 nvim +'PlugInstall --sync' +qa
+
+if [[ "$DATA_TO_SEED" != "" ]]; then
+  for opt in "${DATA_TO_SEED[@]}"; do
+    bin/seed $opt
+  done
+fi
