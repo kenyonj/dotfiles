@@ -43,6 +43,8 @@ Plug 'Yggdroot/indentLine'
 " Movement
 Plug 'christoomey/vim-tmux-navigator'
 
+Plug 'ojroques/vim-oscyank'
+
 " Deoplete
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 

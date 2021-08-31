@@ -53,6 +53,7 @@ set shiftwidth=2                " 2 spaces when indented
 
 " Vim and OS share clipboard
 set clipboard=unnamed
+autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg " | endif
 
 filetype indent on              " Filetype specific indent
 filetype plugin on              " Filetype specific plugins
