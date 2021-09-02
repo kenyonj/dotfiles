@@ -42,6 +42,9 @@ go get -u github.com/arl/gitmux
 
 nvim +'PlugInstall --sync' +qa
 
+gh extensions install mislav/gh-branch
+gh extensions install vilmibm/gh-user-status
+
 if [[ "$DATA_TO_SEED" != "" ]]; then
   for opt in "${DATA_TO_SEED[@]}"; do
     bin/seed $opt
