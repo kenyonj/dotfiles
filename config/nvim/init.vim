@@ -14,6 +14,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-rsi'
 Plug 'tpope/vim-rails'
+Plug 'tpope/vim-obsession'
 " Plug 'tpope/vim-endwise'
 
 " Workflow
@@ -59,3 +60,29 @@ source $HOME/.config/nvim/custom_colors/nightfly.vim
 source $HOME/.config/nvim/plugins.vim
 source $HOME/.config/nvim/shortcuts.vim
 source $HOME/.config/nvim/autocommands.vim
+
+" Function to source only if file exists {
+function! SourceIfExists(file)
+  if filereadable(expand(a:file))
+    exe 'source' a:file
+  endif
+endfunction
+" }
+
+call SourceIfExists("~/Session.vim")
+
+" Start session tracking in ~/Session.vim
+augroup ObsessionGroup
+  autocmd!
+  " When opening a file, make sure we record the Vim session with its tabs and splits.
+  " Checking 'modified' avoids recording a session when reading from stdin.
+  " From https://github.com/tpope/vim-obsession/issues/17
+  " Calling Obsession when the session is being recorded would pause the recording,
+  " that's why we check if v:this_session is empty.
+  autocmd VimEnter * nested
+      \ if !&modified && empty(v:this_session) |
+      \   Obsession ~/|
+      \   echo "Recording new session" |
+      \ endif
+augroup END
+
