@@ -61,16 +61,6 @@ source $HOME/.config/nvim/plugins.vim
 source $HOME/.config/nvim/shortcuts.vim
 source $HOME/.config/nvim/autocommands.vim
 
-" Function to source only if file exists {
-function! SourceIfExists(file)
-  if filereadable(expand(a:file))
-    exe 'source' a:file
-  endif
-endfunction
-" }
-
-call SourceIfExists("~/Session.vim")
-
 " Start session tracking in ~/Session.vim
 augroup ObsessionGroup
   autocmd!
