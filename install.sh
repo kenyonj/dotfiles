@@ -44,4 +44,3 @@ nvim +'PlugInstall --sync' +qa
 
 gh extensions install mislav/gh-branch
 gh extensions install vilmibm/gh-user-status
-gh extensions install github/gh-cs
