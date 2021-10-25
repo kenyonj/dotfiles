@@ -22,7 +22,7 @@ ln -s "/workspaces/github/vendor/node/node-$node_version-linux-x64/lib/node_modu
 n stable
 
 # install latest neovim
-wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+wget https://github.com/neovim/neovim/releases/download/v0.5.1/nvim.appimage
 chmod u+x nvim.appimage
 mv nvim.appimage /usr/local/bin/nvim
 
