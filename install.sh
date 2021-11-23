@@ -24,10 +24,7 @@ PACKAGES_NEEDED="\
   libfuse2"
 
 if ! dpkg -s ${PACKAGES_NEEDED} > /dev/null 2>&1; then
-  if [ ! -d "/var/lib/apt/lists" ] || [ "$(ls /var/lib/apt/lists/ | wc -l)" = "0" ]; then
-    sudo apt-get update --fix-missing
-  fi
-
+  sudo apt-get update --fix-missing
   sudo apt-get -y -q install ${PACKAGES_NEEDED} --fix-missing
 fi
   
@@ -35,7 +32,7 @@ fi
 npm cache clean -f
 npm install -g n
 node_version=`node --version`
-ln -s "/workspaces/github/vendor/node/node-$node_version-linux-x64/lib/node_modules/n/bin/n" /usr/local/bin/n
+sudo ln -s "/workspaces/github/vendor/node/node-$node_version-linux-x64/lib/node_modules/n/bin/n" /usr/local/bin/n
 n stable
 
 # install latest neovim
