@@ -9,6 +9,7 @@ rm -f $HOME/.zshrc
 rm -f $HOME/.gitconfig
 
 PACKAGES_NEEDED="\
+  tmux \
   grc \
   ripgrep \
   shellcheck \
