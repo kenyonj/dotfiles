@@ -20,7 +20,7 @@ PACKAGES_NEEDED="\
   ruby-dev \
   silversearcher-ag \
   bat \
-  libfuse2""
+  libfuse2"
 
 if ! dpkg -s ${PACKAGES_NEEDED} > /dev/null 2>&1; then
   if [ ! -d "/var/lib/apt/lists" ] || [ "$(ls /var/lib/apt/lists/ | wc -l)" = "0" ]; then
