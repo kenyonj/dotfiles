@@ -4,15 +4,28 @@ exec > >(tee -i $HOME/dotfiles_install.log)
 exec 2>&1
 set -x
 
-chsh -s $(which zsh)
-
 # remove existing init scripts
 rm -f $HOME/.zshrc
 rm -f $HOME/.gitconfig
 
-apt-get install -y \
-  exa grc ripgrep shellcheck zsh-autosuggestions \
-  fuse npm fzf fasd ruby-dev
+PACKAGES_NEEDED="\
+  grc \
+  ripgrep \
+  shellcheck \
+  zsh-autosuggestions \
+  fuse \
+  npm \
+  fzf \
+  fasd \
+  ruby-dev"
+
+if ! dpkg -s ${PACKAGES_NEEDED} > /dev/null 2>&1; then
+  if [ ! -d "/var/lib/apt/lists" ] || [ "$(ls /var/lib/apt/lists/ | wc -l)" = "0" ]; then
+    sudo apt-get update
+  fi
+
+  sudo apt-get -y -q install ${PACKAGES_NEEDED}
+fi
   
 # install latest stable node
 npm cache clean -f
@@ -22,9 +35,14 @@ ln -s "/workspaces/github/vendor/node/node-$node_version-linux-x64/lib/node_modu
 n stable
 
 # install latest neovim
-wget https://github.com/neovim/neovim/releases/download/v0.5.1/nvim.appimage
-chmod u+x nvim.appimage
-mv nvim.appimage /usr/local/bin/nvim
+sudo modprobe fuse
+sudo groupadd fuse
+sudo usermod -a -G fuse "$(whoami)"
+# wget https://github.com/neovim/neovim/releases/download/v0.5.1/nvim.appimage
+wget https://github.com/github/copilot.vim/releases/download/neovim-nightlies/appimage.zip
+unzip appimage.zip
+sudo chmod u+x nvim.appimage
+sudo mv nvim.appimage /usr/local/bin/nvim
 
 ln -s $(pwd)/gitconfig $HOME/.gitconfig
 ln -s $(pwd)/zprofile $HOME/.zprofile
@@ -44,3 +62,5 @@ nvim +'PlugInstall --sync' +qa
 
 gh extensions install mislav/gh-branch
 gh extensions install vilmibm/gh-user-status
+
+sudo chsh -s "$(which zsh)" "$(whoami)"
