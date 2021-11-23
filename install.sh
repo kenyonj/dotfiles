@@ -53,7 +53,6 @@ ln -snf $(pwd)/zshrc $HOME/.zshrc
 ln -snf $(pwd)/irbrc $HOME/.irbrc
 ln -snf $(pwd)/config/nvim $HOME/.config/nvim
 
-rvm install "ruby-2.6.6"
 sudo gem install neovim
 /usr/local/bin/npm install -g neovim
 pip3 install --user neovim
