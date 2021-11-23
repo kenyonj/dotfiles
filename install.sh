@@ -32,7 +32,7 @@ npm cache clean -f
 npm install -g n
 node_version=`node --version`
 sudo ln -s "/workspaces/github/vendor/node/node-$node_version-linux-x64/lib/node_modules/n/bin/n" /usr/local/bin/n
-n stable
+sudo n stable
 
 # install latest neovim
 sudo modprobe fuse
@@ -44,17 +44,17 @@ unzip appimage.zip
 sudo chmod u+x nvim.appimage
 sudo mv nvim.appimage /usr/local/bin/nvim
 
-ln -s $(pwd)/gitconfig $HOME/.gitconfig
-ln -s $(pwd)/zprofile $HOME/.zprofile
-ln -s $(pwd)/tmux.conf $HOME/.tmux.conf
-ln -s $(pwd)/tmux.overmind.conf $HOME/.tmux.overmind.conf
-ln -s $(pwd)/aliases.zsh $HOME/.aliases.zsh
-ln -s $(pwd)/zshrc $HOME/.zshrc
-ln -s $(pwd)/irbrc $HOME/.irbrc
-ln -s $(pwd)/config/nvim $HOME/.config/nvim
+ln -snf $(pwd)/gitconfig $HOME/.gitconfig
+ln -snf $(pwd)/zprofile $HOME/.zprofile
+ln -snf $(pwd)/tmux.conf $HOME/.tmux.conf
+ln -snf $(pwd)/tmux.overmind.conf $HOME/.tmux.overmind.conf
+ln -snf $(pwd)/aliases.zsh $HOME/.aliases.zsh
+ln -snf $(pwd)/zshrc $HOME/.zshrc
+ln -snf $(pwd)/irbrc $HOME/.irbrc
+ln -snf $(pwd)/config/nvim $HOME/.config/nvim
 
 rvm install "ruby-2.6.6"
-gem install neovim
+sudo gem install neovim
 /usr/local/bin/npm install -g neovim
 pip3 install --user neovim
 go get -u github.com/arl/gitmux
