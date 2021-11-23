@@ -24,7 +24,7 @@ PACKAGES_NEEDED="\
 
 if ! dpkg -s ${PACKAGES_NEEDED} > /dev/null 2>&1; then
   if [ ! -d "/var/lib/apt/lists" ] || [ "$(ls /var/lib/apt/lists/ | wc -l)" = "0" ]; then
-    sudo apt-get update
+    sudo apt-get update --fix-missing
   fi
 
   sudo apt-get -y -q install ${PACKAGES_NEEDED}
