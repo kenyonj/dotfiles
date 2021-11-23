@@ -11,7 +11,6 @@ rm -f $HOME/.gitconfig
 PACKAGES_NEEDED="\
   tmux \
   grc \
-  ripgrep \
   shellcheck \
   zsh-autosuggestions \
   fuse \
@@ -54,6 +53,7 @@ ln -s $(pwd)/zshrc $HOME/.zshrc
 ln -s $(pwd)/irbrc $HOME/.irbrc
 ln -s $(pwd)/config/nvim $HOME/.config/nvim
 
+rvm install "ruby-2.6.6"
 gem install neovim
 /usr/local/bin/npm install -g neovim
 pip3 install --user neovim
