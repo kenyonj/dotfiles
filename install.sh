@@ -17,7 +17,10 @@ PACKAGES_NEEDED="\
   npm \
   fzf \
   fasd \
-  ruby-dev"
+  ruby-dev \
+  silversearcher-ag \
+  bat \
+  libfuse2""
 
 if ! dpkg -s ${PACKAGES_NEEDED} > /dev/null 2>&1; then
   if [ ! -d "/var/lib/apt/lists" ] || [ "$(ls /var/lib/apt/lists/ | wc -l)" = "0" ]; then
