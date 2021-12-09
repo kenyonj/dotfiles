@@ -42,6 +42,7 @@ opt.expandtab = true
 opt.shiftwidth = 4
 opt.tabstop = 4
 opt.smartindent = true
+opt.wrap = false
 
 cmd [[au BufEnter * set fo-=c fo-=r fo-=o]]
 cmd [[autocmd FileType text,markdown,html,xhtml,javascript setlocal cc=0]]
@@ -55,6 +56,7 @@ cmd [[
   autocmd TermOpen * setlocal listchars= nonumber norelativenumber nocursorline
   autocmd TermOpen * startinsert
   autocmd BufLeave term://* stopinsert
+  autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg " | endif
 ]]
 
 local disabled_built_ins = {
@@ -83,3 +85,4 @@ for _, plugin in pairs(disabled_built_ins) do
 end
 
 opt.shortmess:append "sI"
+
