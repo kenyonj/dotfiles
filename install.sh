@@ -15,6 +15,7 @@ PACKAGES_NEEDED="\
   zsh-autosuggestions \
   fuse \
   npm \
+  rubocop \
   fzf \
   fasd \
   ruby-dev \
