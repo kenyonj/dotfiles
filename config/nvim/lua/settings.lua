@@ -64,7 +64,7 @@ exec([[
 
 opt.termguicolors = true
 opt.background = "dark"
-cmd [[colorscheme gruvbox]]
+cmd "colorscheme gruvbox"
 
 cmd [[
   au BufWritePre * :%s/\s\+$//e
