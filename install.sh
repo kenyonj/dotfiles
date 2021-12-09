@@ -59,6 +59,8 @@ pip3 install --user neovim
 go get -u github.com/arl/gitmux
 sudo gem install solargraph
 
+/usr/local/bin/nvim -c PackerSync -c 'sleep 5' -c qa --headless
+
 gh extensions install mislav/gh-branch
 gh extensions install vilmibm/gh-user-status
 
