@@ -54,15 +54,13 @@ ln -snf $(pwd)/irbrc $HOME/.irbrc
 ln -snf $(pwd)/config/nvim $HOME/.config/nvim
 
 sudo gem install neovim
-/usr/local/bin/npm install -g neovim
+/usr/local/bin/npm install -g neovim bash-language-server pyright vscode-langservers-extracted tsserver
 pip3 install --user neovim
 go get -u github.com/arl/gitmux
 sudo gem install solargraph
 
 git clone --depth 1 https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
-nvim -c 'PackerSync' -c 'quitall'
 
 gh extensions install mislav/gh-branch
 gh extensions install vilmibm/gh-user-status
