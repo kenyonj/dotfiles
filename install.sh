@@ -54,7 +54,7 @@ ln -snf $(pwd)/irbrc $HOME/.irbrc
 ln -snf $(pwd)/config/nvim $HOME/.config/nvim
 
 sudo gem install neovim
-/usr/local/bin/npm install -g neovim bash-language-server pyright vscode-langservers-extracted tsserver
+/usr/local/bin/npm install -g neovim bash-language-server pyright vscode-langservers-extracted tsserver typescript-language-server
 pip3 install --user neovim
 go get -u github.com/arl/gitmux
 sudo gem install solargraph
