@@ -41,13 +41,6 @@ return packer.startup(function()
   use { "junegunn/fzf", run = "./install --bin" }
 
   use {
-    "windwp/nvim-autopairs",
-    config = function()
-      require("nvim-autopairs").setup()
-    end
-  }
-
-  use {
     "ibhagwan/fzf-lua",
     requires = {
       "vijaymarupudi/nvim-fzf",
