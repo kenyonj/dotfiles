@@ -1,6 +1,7 @@
+require("plugins.packer")
+
 require("settings")
 require("keymaps")
-require("plugins.packer")
 require("plugins.nvim-tree")
 require("plugins.indent-blankline")
 require("plugins.vista")
