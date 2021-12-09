@@ -22,6 +22,7 @@ map("n", "<C-l>", ":TmuxNavigateRight<CR>", default_opts)
 map("n", "<C-\\>", ":TmuxNavigatePrevious<CR>", default_opts)
 
 map("n", "<c-P>", "<cmd>lua require('fzf-lua').files()<CR>", default_opts)
+map("n", "<leader>a", "<cmd>lua require('fzf-lua').grep_project()<CR>", default_opts)
 
 map("n", "<leader>rn", ":TestNearest<CR>", default_opts)
 map("n", "<leader>rc", ":TestFile<CR>", default_opts)
