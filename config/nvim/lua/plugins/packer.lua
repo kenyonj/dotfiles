@@ -73,6 +73,7 @@ return packer.startup(function()
   use "christoomey/vim-tmux-navigator"
   use "janko-m/vim-test"
   use "tpope/vim-obsession"
+  use "tpope/vim-rails"
 
   use {
     "ibhagwan/fzf-lua",
