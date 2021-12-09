@@ -8,10 +8,6 @@ map("n", "<leader>s", ":w<CR>", default_opts)
 map("i", "<leader>s", "<C-c>:w<CR>", default_opts)
 map("n", "<C-t>", ":Term<CR>", { noremap = true })
 
-map("n", "<C-n>", ":NvimTreeToggle<CR>", default_opts)
-map("n", "<leader>r", ":NvimTreeRefresh<CR>", default_opts)
-map("n", "<leader>n", ":NvimTreeFindFile<CR>", default_opts)
-
 map("n", "<C-m>", ":Vista!!<CR>", default_opts)
 
 cmd "let g:tmux_navigator_no_mappings = 1"
