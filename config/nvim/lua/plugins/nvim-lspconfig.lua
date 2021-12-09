@@ -46,7 +46,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
-local servers = { "bashls", "pyright", "clangd", "html", "tsserver", "solargraph" }
+local servers = { "bashls", "pyright", "clangd", "html", "tsserver" }
 
 local ts_settings = function(client)
   client.resolved_capabilities.document_formatting = false
