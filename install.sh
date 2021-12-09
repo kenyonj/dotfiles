@@ -59,9 +59,6 @@ pip3 install --user neovim
 go get -u github.com/arl/gitmux
 sudo gem install solargraph
 
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-
 gh extensions install mislav/gh-branch
 gh extensions install vilmibm/gh-user-status
 
