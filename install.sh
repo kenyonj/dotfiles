@@ -59,7 +59,10 @@ pip3 install --user neovim
 go get -u github.com/arl/gitmux
 sudo gem install solargraph
 
-nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+git clone --depth 1 https://github.com/wbthomason/packer.nvim\
+ ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+nvim -c 'PackerSync' -c 'quitall'
 
 gh extensions install mislav/gh-branch
 gh extensions install vilmibm/gh-user-status
