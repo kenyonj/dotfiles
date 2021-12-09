@@ -57,8 +57,9 @@ sudo gem install neovim
 /usr/local/bin/npm install -g neovim
 pip3 install --user neovim
 go get -u github.com/arl/gitmux
+sudo gem install solargraph
 
-nvim +'PlugInstall --sync' +qa
+nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 gh extensions install mislav/gh-branch
 gh extensions install vilmibm/gh-user-status
