@@ -22,3 +22,34 @@ map("n", "<C-l>", ":TmuxNavigateRight<CR>", default_opts)
 map("n", "<C-\\>", ":TmuxNavigatePrevious<CR>", default_opts)
 
 map("n", "<c-P>", "<cmd>lua require('fzf-lua').files()<CR>", default_opts)
+
+map("n", "<leader>rn", ":TestNearest<CR>", default_opts)
+map("n", "<leader>rc", ":TestFile<CR>", default_opts)
+map("n", "<leader>ra", ":TestSuite<CR>", default_opts)
+map("n", "<leader>rl", ":TestLast<CR>", default_opts)
+map("n", "<leader>rv", ":TestVisit<CR>", default_opts)
+
+map("n", "<leader>d", ":call pry#insert()<cr>", default_opts)
+
+map("n", "<leader>b", ":call ReverseBackground()<cr>", default_opts)
+cmd [[
+  function! ReverseBackground()
+    if &bg=="light"
+      set bg=dark
+    else
+      set bg=light
+    endif
+  endfunction
+]]
+
+map("n", "<leader>r", ":call ToggleNumber()<cr>", default_opts)
+cmd [[
+  function! ToggleNumber()
+    if &relativenumber
+      set norelativenumber
+      set number
+    else
+      set relativenumber
+    endif
+  endfunction
+]]
