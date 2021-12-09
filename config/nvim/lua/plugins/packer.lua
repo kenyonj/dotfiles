@@ -32,6 +32,7 @@ return packer.startup(function()
   use "nvim-treesitter/nvim-treesitter"
   use "ojroques/vim-oscyank"
   use "tpope/vim-obsession"
+  use "tpope/vim-vinegar"
   use "tpope/vim-rails"
   use "wbthomason/packer.nvim"
 
