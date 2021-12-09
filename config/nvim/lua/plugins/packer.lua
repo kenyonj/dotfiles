@@ -5,7 +5,14 @@ if not present then
   local install_path = fn.stdpath("data").."/site/pack/packer/start/packer.nvim"
 
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({"git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path})
+    fn.system({
+      "git",
+      "clone",
+      "--depth",
+      "1",
+      "https://github.com/wbthomason/packer.nvim",
+      install_path,
+    })
     vim.cmd "packadd packer.nvim"
   end
 
@@ -58,4 +65,21 @@ return packer.startup(function()
         require"alpha".setup(require"alpha.themes.dashboard".opts)
     end
   }
+
+  use "BlakeWilliams/vim-pry"
+  use "BlakeWilliams/vim-tbro"
+  use "mattn/gist-vim"
+  use "ojroques/vim-oscyank"
+  use "christoomey/vim-tmux-navigator"
+  use "janko-m/vim-test"
+  use "tpope/vim-obsession"
+
+  use {
+    "ibhagwan/fzf-lua",
+    requires = {
+      "vijaymarupudi/nvim-fzf",
+      "kyazdani42/nvim-web-devicons",
+    },
+  }
+  use { "junegunn/fzf", run = "./install --bin" }
 end)
