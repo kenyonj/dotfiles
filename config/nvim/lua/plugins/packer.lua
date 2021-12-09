@@ -20,9 +20,24 @@ if not present then
 end
 
 return packer.startup(function()
-  use "wbthomason/packer.nvim"
-  use "kyazdani42/nvim-tree.lua"
+  use "BlakeWilliams/vim-pry"
+  use "BlakeWilliams/vim-tbro"
+  use "christoomey/vim-tmux-navigator"
+  use "janko-m/vim-test"
+  use "kyazdani42/nvim-web-devicons"
+  use "liuchengxu/vista.vim"
   use "lukas-reineke/indent-blankline.nvim"
+  use "mattn/gist-vim"
+  use "neovim/nvim-lspconfig"
+  use "nvim-treesitter/nvim-treesitter"
+  use "ojroques/vim-oscyank"
+  use "tpope/vim-obsession"
+  use "tpope/vim-rails"
+  use "wbthomason/packer.nvim"
+
+  use { "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } }
+  use { "famiu/feline.nvim", requires = { "kyazdani42/nvim-web-devicons" } }
+  use { "junegunn/fzf", run = "./install --bin" }
 
   use {
     "windwp/nvim-autopairs",
@@ -31,11 +46,13 @@ return packer.startup(function()
     end
   }
 
-  use "kyazdani42/nvim-web-devicons"
-  use "liuchengxu/vista.vim"
-  use "nvim-treesitter/nvim-treesitter"
-  use { "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } }
-  use "neovim/nvim-lspconfig"
+  use {
+    "ibhagwan/fzf-lua",
+    requires = {
+      "vijaymarupudi/nvim-fzf",
+      "kyazdani42/nvim-web-devicons",
+    },
+  }
 
   use {
     "hrsh7th/nvim-cmp",
@@ -47,8 +64,6 @@ return packer.startup(function()
       "saadparwaiz1/cmp_luasnip",
     },
   }
-
-  use { "famiu/feline.nvim", requires = { "kyazdani42/nvim-web-devicons" } }
 
   use {
     "lewis6991/gitsigns.nvim",
@@ -65,22 +80,4 @@ return packer.startup(function()
         require"alpha".setup(require"alpha.themes.dashboard".opts)
     end
   }
-
-  use "BlakeWilliams/vim-pry"
-  use "BlakeWilliams/vim-tbro"
-  use "mattn/gist-vim"
-  use "ojroques/vim-oscyank"
-  use "christoomey/vim-tmux-navigator"
-  use "janko-m/vim-test"
-  use "tpope/vim-obsession"
-  use "tpope/vim-rails"
-
-  use {
-    "ibhagwan/fzf-lua",
-    requires = {
-      "vijaymarupudi/nvim-fzf",
-      "kyazdani42/nvim-web-devicons",
-    },
-  }
-  use { "junegunn/fzf", run = "./install --bin" }
 end)

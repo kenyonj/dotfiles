@@ -14,7 +14,7 @@ map("n", "<leader>n", ":NvimTreeFindFile<CR>", default_opts)
 
 map("n", "<C-m>", ":Vista!!<CR>", default_opts)
 
-vim.cmd "let g:tmux_navigator_no_mappings = 1"
+cmd "let g:tmux_navigator_no_mappings = 1"
 map("n", "<C-h>", ":TmuxNavigateLeft<CR>", default_opts)
 map("n", "<C-j>", ":TmuxNavigateDown<CR>", default_opts)
 map("n", "<C-k>", ":TmuxNavigateUp<CR>", default_opts)

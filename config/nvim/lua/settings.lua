@@ -5,23 +5,31 @@ local g = vim.g
 local opt = vim.opt
 
 g.mapleader = " "
-opt.mouse = "a"
+
 opt.clipboard = "unnamedplus"
-opt.swapfile = false
-opt.number = true
-opt.showmatch = true
-opt.foldmethod = "marker"
 opt.colorcolumn = { "100", "118" }
-opt.splitright = true
-opt.splitbelow = true
+opt.completeopt = "menuone,noselect"
+opt.expandtab = true
+opt.foldmethod = "marker"
+opt.hidden = true
+opt.history = 100
 opt.ignorecase = true
-opt.smartcase = true
+opt.lazyredraw = true
 opt.linebreak = true
+opt.mouse = "a"
+opt.number = true
+opt.shiftwidth = 4
+opt.shortmess:append "sI"
+opt.showmatch = true
+opt.smartcase = true
+opt.smartindent = true
+opt.splitbelow = true
+opt.splitright = true
+opt.swapfile = false
+opt.synmaxcol = 240
+opt.tabstop = 4
+opt.wrap = false
 
--- remove whitespace on save
-cmd [[au BufWritePre * :%s/\s\+$//e]]
-
--- highlight on yank
 exec([[
   augroup YankHighlight
     autocmd!
@@ -29,41 +37,23 @@ exec([[
   augroup end
 ]], false)
 
-opt.hidden = true
-opt.history = 100
-opt.lazyredraw = true
-opt.synmaxcol = 240
-
 opt.termguicolors = true
 opt.background = "dark"
 cmd [[colorscheme gruvbox]]
 
-opt.expandtab = true
-opt.shiftwidth = 4
-opt.tabstop = 4
-opt.smartindent = true
-opt.wrap = false
-
-cmd [[au BufEnter * set fo-=c fo-=r fo-=o]]
-cmd [[autocmd FileType text,markdown,html,xhtml,javascript setlocal cc=0]]
-cmd [[autocmd FileType xml,html,xhtml,css,scss,javascript,lua,yaml setlocal shiftwidth=2 tabstop=2]]
-
-opt.completeopt = "menuone,noselect"
-
-cmd [[command Term :botright vsplit term://$SHELL]]
-
 cmd [[
+  au BufWritePre * :%s/\s\+$//e
   autocmd TermOpen * setlocal listchars= nonumber norelativenumber nocursorline
   autocmd TermOpen * startinsert
   autocmd BufLeave term://* stopinsert
   autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg " | endif
+  au BufEnter * set fo-=c fo-=r fo-=o
+  autocmd FileType text,markdown,html,xhtml,javascript setlocal cc=0
+  autocmd FileType xml,html,xhtml,css,scss,javascript,lua,yaml setlocal shiftwidth=2 tabstop=2
+  command Term :botright vsplit term://$SHELL
 ]]
 
 local disabled_built_ins = {
-  "netrw",
-  "netrwPlugin",
-  "netrwSettings",
-  "netrwFileHandlers",
   "gzip",
   "zip",
   "zipPlugin",
@@ -77,12 +67,8 @@ local disabled_built_ins = {
   "logipat",
   "rrhelper",
   "spellfile_plugin",
-  "matchit",
 }
 
 for _, plugin in pairs(disabled_built_ins) do
   g["loaded_" .. plugin] = 1
 end
-
-opt.shortmess:append "sI"
-
