@@ -9,4 +9,4 @@ local sources = {
   null_ls.builtins.formatting.gofmt,
 }
 
-null_ls.config({ sources = sources })
+null_ls.setup({ sources = sources })
