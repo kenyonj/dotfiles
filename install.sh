@@ -54,11 +54,19 @@ ln -snf $(pwd)/zshrc $HOME/.zshrc
 ln -snf $(pwd)/irbrc $HOME/.irbrc
 ln -snf $(pwd)/config/nvim $HOME/.config/nvim
 
-sudo gem install neovim
-/usr/local/bin/npm install -g neovim bash-language-server pyright vscode-langservers-extracted typescript-language-server write-good
+sudo gem install neovim solargraph
 pip3 install --user neovim
 go get -u github.com/arl/gitmux
-sudo gem install solargraph
+
+NPM_PACKAGES_NEEDED="\
+  neovim \
+  bash-language-server \
+  pyright \
+  vscode-langservers-extracted \
+  typescript-language-server \
+  write-good \
+  eslint"
+/usr/local/bin/npm install -g ${NPM_PACKAGES_NEEDED}
 
 /usr/local/bin/nvim -c PackerSync -c 'sleep 5' -c qa --headless
 
