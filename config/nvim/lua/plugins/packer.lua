@@ -35,6 +35,7 @@ return packer.startup(function()
   use "tpope/vim-vinegar"
   use "tpope/vim-rails"
   use "wbthomason/packer.nvim"
+  use "jose-elias-alvarez/nvim-lsp-ts-utils"
 
   use { "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } }
   use { "famiu/feline.nvim", requires = { "kyazdani42/nvim-web-devicons" } }
