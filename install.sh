@@ -54,7 +54,7 @@ ln -snf $(pwd)/zshrc $HOME/.zshrc
 ln -snf $(pwd)/irbrc $HOME/.irbrc
 ln -snf $(pwd)/config/nvim $HOME/.config/nvim
 
-sudo gem install neovim solargraph
+sudo gem install neovim solargraph rubocop
 pip3 install --user neovim
 go get -u github.com/arl/gitmux
 
