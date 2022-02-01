@@ -24,7 +24,6 @@ return packer.startup(function()
   use "BlakeWilliams/vim-tbro"
   use "christoomey/vim-tmux-navigator"
   use "janko-m/vim-test"
-  use "kyazdani42/nvim-web-devicons"
   use "liuchengxu/vista.vim"
   use "lukas-reineke/indent-blankline.nvim"
   use "mattn/gist-vim"
@@ -36,6 +35,13 @@ return packer.startup(function()
   use "tpope/vim-rails"
   use "wbthomason/packer.nvim"
   use "jose-elias-alvarez/nvim-lsp-ts-utils"
+    
+  use {
+    "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("nvim-web-devicons").get_icons()
+    end
+  }
 
   use { "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } }
   use { "famiu/feline.nvim", requires = { "kyazdani42/nvim-web-devicons" } }
@@ -71,15 +77,12 @@ return packer.startup(function()
   use {
     "goolord/alpha-nvim",
     requires = { "kyazdani42/nvim-web-devicons" },
-    config = function ()
-        require"alpha".setup(require"alpha.themes.dashboard".opts)
-    end
   }
 
   use {
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
-        require("null-ls").setup({})
+      require("null-ls").setup({})
     end,
     requires = {
       "nvim-lua/plenary.nvim",
