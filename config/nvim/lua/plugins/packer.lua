@@ -32,48 +32,27 @@ return packer.startup(function()
   use "neovim/nvim-lspconfig"
   use "nvim-treesitter/nvim-treesitter"
   use "ojroques/vim-oscyank"
+  use "tpope/vim-commentary"
   use "tpope/vim-obsession"
   use "tpope/vim-rails"
   use "tpope/vim-vinegar"
   use "wbthomason/packer.nvim"
+  use "L3MON4D3/LuaSnip"
+  use "hrsh7th/cmp-nvim-lsp"
+  use "hrsh7th/cmp-path"
+  use "hrsh7th/cmp-buffer"
+  use "hrsh7th/nvim-cmp"
 
   use { "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } }
   use { "famiu/feline.nvim", requires = { "kyazdani42/nvim-web-devicons" } }
   use { "junegunn/fzf", run = "./install --bin" }
   use { "goolord/alpha-nvim", requires = { "kyazdani42/nvim-web-devicons" } }
-
-  use {
-    "ibhagwan/fzf-lua",
-    requires = {
-      "vijaymarupudi/nvim-fzf",
-      "kyazdani42/nvim-web-devicons",
-    },
-  }
-
-  use {
-    "hrsh7th/nvim-cmp",
-    requires = {
-      "L3MON4D3/LuaSnip",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-buffer",
-      "saadparwaiz1/cmp_luasnip",
-    },
-  }
-
-  use {
-    "lewis6991/gitsigns.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("gitsigns").setup()
-    end
-  }
+  use { "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } }
+  use { "ibhagwan/fzf-lua", requires = { "kyazdani42/nvim-web-devicons" } }
+  use { "github/copilot.vim", run = ":Copilot setup" }
 
   use {
     "jose-elias-alvarez/null-ls.nvim",
-    config = function()
-      require("null-ls").setup({})
-    end,
     requires = {
       "nvim-lua/plenary.nvim",
       "neovim/nvim-lspconfig",

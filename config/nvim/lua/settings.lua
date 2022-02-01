@@ -17,7 +17,6 @@ opt.completeopt:append("menuone")             -- Always show menu
 opt.diffopt:append("vertical")                -- Always use vertical diffs
 opt.errorbells = false                        -- Obvious
 opt.expandtab = true
-opt.expandtab = true                          -- Make spaces not tabs
 opt.fillchars:append("vert:│")                -- Use tall pipe in split separators
 opt.foldmethod = "marker"
 opt.hidden = false                            -- Don't hide unsaved buffers
@@ -138,3 +137,6 @@ local disabled_built_ins = {
 for _, plugin in pairs(disabled_built_ins) do
   g["loaded_" .. plugin] = 1
 end
+
+require("feline").setup()
+require("nvim-web-devicons").get_icons()
