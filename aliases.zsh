@@ -75,3 +75,11 @@ alias gcb!='git branch -d `git branch --merged | grep -v "^*" | grep -v "main" |
 alias tmux="tmux new-session -A -s main"
 
 alias taf!="TEST_ALL_FEATURES=1 fc -e : -1"
+
+# aliases for codespaces
+if [[ -n "$CODESPACES" ]]
+then
+  alias pbcopy="rdm copy"
+  alias open="rdm open"
+  alias xdg-open="rdm open"
+fi

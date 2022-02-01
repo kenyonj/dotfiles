@@ -70,7 +70,15 @@ cmd [[
   autocmd TermOpen * setlocal listchars= nonumber norelativenumber nocursorline
   autocmd TermOpen * startinsert
   autocmd BufLeave term://* stopinsert
-  autocmd TextYankPost * if v:event.operator is 'y' && v:event.regname is '' | OSCYankReg " | endif
+
+  if exists('$CODESPACES')
+    let g:clipboard = {"name": "rdm", "copy": {}, "paste": {}}
+    let g:clipboard.copy["+"] = ["rdm", "copy"]
+    let g:clipboard.paste["+"] = ["rdm", "paste"]
+    let g:clipboard.copy["*"] = ["rdm", "copy"]
+    let g:clipboard.paste["*"] = ["rdm", "paste"]
+  endif
+
   au BufEnter * set fo-=c fo-=r fo-=o
   autocmd FileType text,markdown,html,xhtml,javascript setlocal cc=0
   autocmd FileType xml,html,xhtml,css,scss,javascript,lua,yaml setlocal shiftwidth=2 tabstop=2
