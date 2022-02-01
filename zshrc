@@ -4,6 +4,11 @@
 # run zprofile if this is not a login shell
 [ -n "$LOGIN_ZSH" ] && source ~/.zprofile
 
+if [[ -n "$CODESPACES" ]]
+then
+  gh config set browser "rdm open"
+fi
+
 source "$HOME/.aliases.zsh"
 
 # History file
