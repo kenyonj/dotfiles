@@ -24,6 +24,8 @@ return packer.startup(function()
   use "BlakeWilliams/vim-tbro"
   use "christoomey/vim-tmux-navigator"
   use "janko-m/vim-test"
+  use "jose-elias-alvarez/nvim-lsp-ts-utils"
+  use "kyazdani42/nvim-web-devicons"
   use "liuchengxu/vista.vim"
   use "lukas-reineke/indent-blankline.nvim"
   use "mattn/gist-vim"
@@ -31,21 +33,14 @@ return packer.startup(function()
   use "nvim-treesitter/nvim-treesitter"
   use "ojroques/vim-oscyank"
   use "tpope/vim-obsession"
-  use "tpope/vim-vinegar"
   use "tpope/vim-rails"
+  use "tpope/vim-vinegar"
   use "wbthomason/packer.nvim"
-  use "jose-elias-alvarez/nvim-lsp-ts-utils"
-    
-  use {
-    "kyazdani42/nvim-web-devicons",
-    config = function()
-      require("nvim-web-devicons").get_icons()
-    end
-  }
 
   use { "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } }
   use { "famiu/feline.nvim", requires = { "kyazdani42/nvim-web-devicons" } }
   use { "junegunn/fzf", run = "./install --bin" }
+  use { "goolord/alpha-nvim", requires = { "kyazdani42/nvim-web-devicons" } }
 
   use {
     "ibhagwan/fzf-lua",
@@ -72,11 +67,6 @@ return packer.startup(function()
     config = function()
       require("gitsigns").setup()
     end
-  }
-
-  use {
-    "goolord/alpha-nvim",
-    requires = { "kyazdani42/nvim-web-devicons" },
   }
 
   use {
