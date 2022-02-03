@@ -10,6 +10,7 @@ rm -f $HOME/.gitconfig
 
 PACKAGES_NEEDED="\
   tmux \
+  exuberant-ctags \
   grc \
   shellcheck \
   zsh-autosuggestions \
