@@ -22,7 +22,8 @@ PACKAGES_NEEDED="\
   ruby-dev \
   silversearcher-ag \
   bat \
-  libfuse2"
+  libfuse2 \
+"
 
 if ! dpkg -s ${PACKAGES_NEEDED} > /dev/null 2>&1; then
   sudo apt-get update --fix-missing
@@ -40,7 +41,6 @@ sudo n stable
 sudo modprobe fuse
 sudo groupadd fuse
 sudo usermod -a -G fuse "$(whoami)"
-# wget https://github.com/neovim/neovim/releases/download/v0.5.1/nvim.appimage
 wget https://github.com/github/copilot.vim/releases/download/neovim-nightlies/appimage.zip
 unzip appimage.zip
 sudo chmod u+x nvim.appimage
@@ -66,7 +66,8 @@ NPM_PACKAGES_NEEDED="\
   vscode-langservers-extracted \
   typescript-language-server \
   write-good \
-  eslint"
+  eslint \
+"
 /usr/local/bin/npm install -g ${NPM_PACKAGES_NEEDED}
 
 /usr/local/bin/nvim -c PackerSync -c 'sleep 5' -c qa --headless
