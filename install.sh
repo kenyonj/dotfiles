@@ -8,26 +8,26 @@ set -x
 rm -f $HOME/.zshrc
 rm -f $HOME/.gitconfig
 
-PACKAGES_NEEDED="\
-  tmux \
-  exuberant-ctags \
-  grc \
-  shellcheck \
-  zsh-autosuggestions \
-  fuse \
-  npm \
-  rubocop \
-  fzf \
-  fasd \
-  ruby-dev \
-  silversearcher-ag \
-  bat \
-  libfuse2 \
-"
+declare -a packages_needed=(
+  "bat"
+  "exuberant-ctags"
+  "fasd"
+  "fuse"
+  "fzf"
+  "grc"
+  "libfuse2"
+  "npm"
+  "rubocop"
+  "ruby-dev"
+  "shellcheck"
+  "silversearcher-ag"
+  "tmux"
+  "zsh-autosuggestions"
+)
 
-if ! dpkg -s ${PACKAGES_NEEDED} > /dev/null 2>&1; then
+if ! dpkg -s ${packages_needed} > /dev/null 2>&1; then
   sudo apt-get update --fix-missing
-  sudo apt-get -y -q install ${PACKAGES_NEEDED} --fix-missing
+  sudo apt-get -y -q install ${packages_needed} --fix-missing
 fi
   
 # install latest stable node
@@ -46,29 +46,35 @@ unzip appimage.zip
 sudo chmod u+x nvim.appimage
 sudo mv nvim.appimage /usr/local/bin/nvim
 
-ln -snf $(pwd)/gitconfig $HOME/.gitconfig
-ln -snf $(pwd)/zprofile $HOME/.zprofile
-ln -snf $(pwd)/tmux.conf $HOME/.tmux.conf
-ln -snf $(pwd)/tmux.overmind.conf $HOME/.tmux.overmind.conf
-ln -snf $(pwd)/aliases.zsh $HOME/.aliases.zsh
-ln -snf $(pwd)/zshrc $HOME/.zshrc
-ln -snf $(pwd)/irbrc $HOME/.irbrc
-ln -snf $(pwd)/config/nvim $HOME/.config/nvim
+declare -a dotfiles=(
+  "aliases.zsh"
+  "config/nvim"
+  "gitconfig"
+  "irbrc"
+  "tmux.conf"
+  "tmux.overmind.conf"
+  "zprofile"
+  "zshrc"
+)
+ 
+for val in ${dotfiles[@]}; do
+  ln -snf $(pwd)/$val $HOME/.$val
+done
 
 sudo gem install neovim solargraph rubocop
 pip3 install --user neovim
 go get -u github.com/arl/gitmux
 
-NPM_PACKAGES_NEEDED="\
-  neovim \
-  bash-language-server \
-  pyright \
-  vscode-langservers-extracted \
-  typescript-language-server \
-  write-good \
-  eslint \
-"
-/usr/local/bin/npm install -g ${NPM_PACKAGES_NEEDED}
+declare -a npm_packages_needed=(
+  "bash-language-server"
+  "eslint"
+  "neovim"
+  "pyright"
+  "typescript-language-server"
+  "vscode-langservers-extracted"
+  "write-good"
+)
+/usr/local/bin/npm install -g ${npm_packages_needed}
 
 /usr/local/bin/nvim -c PackerSync -c 'sleep 5' -c qa --headless
 
