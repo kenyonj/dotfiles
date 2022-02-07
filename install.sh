@@ -27,7 +27,7 @@ packages_needed=(
 
 if ! dpkg -s "${packages_needed[@]}" > /dev/null 2>&1; then
   sudo apt-get update --fix-missing
-  sudo apt-get -y -q install ${packages_needed} --fix-missing
+  sudo apt-get -y -q install "${packages_needed[@]}" --fix-missing
 fi
   
 # install latest stable node
