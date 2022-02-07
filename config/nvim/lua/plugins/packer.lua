@@ -25,6 +25,7 @@ return packer.startup(function()
   use "L3MON4D3/LuaSnip"
   use "christoomey/vim-tmux-navigator"
   use "famiu/feline.nvim"
+  use "github/copilot.vim"
   use "goolord/alpha-nvim"
   use "hrsh7th/cmp-buffer"
   use "hrsh7th/cmp-nvim-lsp"
@@ -50,7 +51,6 @@ return packer.startup(function()
   use { "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } }
   use { "junegunn/fzf", run = "./install --bin" }
   use { "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } }
-  use { "github/copilot.vim", run = ":Copilot setup" }
 
   use {
     "jose-elias-alvarez/null-ls.nvim",
