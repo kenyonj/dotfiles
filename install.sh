@@ -8,24 +8,24 @@ set -x
 rm -f $HOME/.zshrc
 rm -f $HOME/.gitconfig
 
-declare -a packages_needed=(
-  "bat"
-  "exuberant-ctags"
-  "fasd"
-  "fuse"
-  "fzf"
-  "grc"
-  "libfuse2"
-  "npm"
-  "rubocop"
-  "ruby-dev"
-  "shellcheck"
-  "silversearcher-ag"
-  "tmux"
-  "zsh-autosuggestions"
+packages_needed=(
+  bat
+  exuberant-ctags
+  fasd
+  fuse
+  fzf
+  grc
+  libfuse2
+  npm
+  rubocop
+  ruby-dev
+  shellcheck
+  silversearcher-ag
+  tmux
+  zsh-autosuggestions
 )
 
-if ! dpkg -s $packages_needed > /dev/null 2>&1; then
+if ! dpkg -s "${packages_needed[@]}" > /dev/null 2>&1; then
   sudo apt-get update --fix-missing
   sudo apt-get -y -q install ${packages_needed} --fix-missing
 fi
@@ -46,18 +46,18 @@ unzip appimage.zip
 sudo chmod u+x nvim.appimage
 sudo mv nvim.appimage /usr/local/bin/nvim
 
-declare -a dotfiles=(
-  "aliases.zsh"
-  "config/nvim"
-  "gitconfig"
-  "irbrc"
-  "tmux.conf"
-  "tmux.overmind.conf"
-  "zprofile"
-  "zshrc"
+dotfiles=(
+  aliases.zsh
+  config/nvim
+  gitconfig
+  irbrc
+  tmux.conf
+  tmux.overmind.conf
+  zprofile
+  zshrc
 )
  
-for val in $dotfiles[@]; do
+for val in "${dotfiles[@]}"; do
   ln -snf $(pwd)/$val $HOME/.$val
 done
 
@@ -65,16 +65,16 @@ sudo gem install neovim solargraph rubocop
 pip3 install --user neovim
 go get -u github.com/arl/gitmux
 
-declare -a npm_packages_needed=(
-  "bash-language-server"
-  "eslint"
-  "neovim"
-  "pyright"
-  "typescript-language-server"
-  "vscode-langservers-extracted"
-  "write-good"
+npm_packages_needed=(
+  bash-language-server
+  eslint
+  neovim
+  pyright
+  typescript-language-server
+  vscode-langservers-extracted
+  write-good
 )
-/usr/local/bin/npm install -g $npm_packages_needed
+/usr/local/bin/npm install -g "${npm_packages_needed[@]}"
 
 /usr/local/bin/nvim -c PackerSync -c 'sleep 5' -c qa --headless
 
