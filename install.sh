@@ -82,3 +82,10 @@ gh extensions install mislav/gh-branch
 gh extensions install vilmibm/gh-user-status
 
 sudo chsh -s "$(which zsh)" "$(whoami)"
+
+# send pushover notification that dotfiles setup has completed
+curl -s \
+  --form-string "token=$PUSHOVER_API_TOKEN" \
+  --form-string "user=$PUSHOVER_USER_KEY" \
+  --form-string "message=Dotfiles installation complete for codespace: $CODESPACE_NAME!" \
+  https://api.pushover.net/1/messages.json
