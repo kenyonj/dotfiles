@@ -61,7 +61,7 @@ for val in "${dotfiles[@]}"; do
   ln -snf $(pwd)/$val $HOME/.$val
 done
 
-sudo gem install neovim solargraph rubocop
+sudo gem install neovim rubocop
 pip3 install --user neovim
 go get -u github.com/arl/gitmux
 
@@ -76,7 +76,7 @@ npm_packages_needed=(
 )
 /usr/local/bin/npm install -g "${npm_packages_needed[@]}"
 
-/usr/local/bin/nvim -c PackerSync -c 'sleep 5' -c qa --headless
+/usr/local/bin/nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 gh extensions install mislav/gh-branch
 gh extensions install vilmibm/gh-user-status
