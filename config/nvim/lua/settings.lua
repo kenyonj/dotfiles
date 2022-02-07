@@ -144,8 +144,7 @@ end
 
 opt.termguicolors = true
 opt.background = "dark"
-if fn.has("gui_running") then
-  cmd "colorscheme gruvbox"
-  require("feline").setup()
-  require("nvim-web-devicons").get_icons()
-end
+cmd "colorscheme gruvbox"
+
+require("feline").setup()
+require("nvim-web-devicons").get_icons()
