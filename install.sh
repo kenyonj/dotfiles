@@ -76,7 +76,7 @@ npm_packages_needed=(
 )
 /usr/local/bin/npm install -g "${npm_packages_needed[@]}"
 
-/usr/local/bin/nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+# /usr/local/bin/nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 gh extensions install mislav/gh-branch
 gh extensions install vilmibm/gh-user-status
