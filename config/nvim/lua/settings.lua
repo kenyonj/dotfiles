@@ -144,10 +144,8 @@ end
 
 opt.termguicolors = true
 opt.background = "dark"
-cmd [[
-  if has("gui_running")
-    colorscheme gruvbox
-    lua require("feline").setup()
-    lua require("nvim-web-devicons").get_icons()
-  endif
-]]
+if fn.has("gui_running") then
+  cmd "colorscheme gruvbox"
+  require("feline").setup()
+  require("nvim-web-devicons").get_icons()
+end
