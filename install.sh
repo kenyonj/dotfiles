@@ -77,6 +77,7 @@ npm_packages_needed=(
 /usr/local/bin/npm install -g "${npm_packages_needed[@]}"
 
 HEADLESS_NEOVIM=1 /usr/local/bin/nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+tmux new -d '~/.tmux/plugins/tpm/scripts/install_plugins.sh'
 
 gh extensions install mislav/gh-branch
 gh extensions install vilmibm/gh-user-status
