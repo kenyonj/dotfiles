@@ -1,6 +1,6 @@
 require("plugins.packer")
 
-if vim.fn.empty(vim.api.nvim_list_uis()) then
+if not vim.fn.empty(vim.api.nvim_list_uis()) then
   require("settings")
   require("keymaps")
   require("plugins.indent-blankline")
