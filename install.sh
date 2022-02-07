@@ -48,6 +48,7 @@ sudo mv nvim.appimage /usr/local/bin/nvim
 
 dotfiles=(
   aliases.zsh
+  config/github-copilot
   config/nvim
   gitconfig
   irbrc
