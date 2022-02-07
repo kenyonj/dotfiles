@@ -25,7 +25,7 @@ declare -a packages_needed=(
   "zsh-autosuggestions"
 )
 
-if ! dpkg -s ${packages_needed} > /dev/null 2>&1; then
+if ! dpkg -s $packages_needed > /dev/null 2>&1; then
   sudo apt-get update --fix-missing
   sudo apt-get -y -q install ${packages_needed} --fix-missing
 fi
@@ -57,7 +57,7 @@ declare -a dotfiles=(
   "zshrc"
 )
  
-for val in ${dotfiles[@]}; do
+for val in $dotfiles[@]; do
   ln -snf $(pwd)/$val $HOME/.$val
 done
 
@@ -74,7 +74,7 @@ declare -a npm_packages_needed=(
   "vscode-langservers-extracted"
   "write-good"
 )
-/usr/local/bin/npm install -g ${npm_packages_needed}
+/usr/local/bin/npm install -g $npm_packages_needed
 
 /usr/local/bin/nvim -c PackerSync -c 'sleep 5' -c qa --headless
 
