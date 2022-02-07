@@ -61,14 +61,6 @@ exec([[
   augroup end
 ]], false)
 
-opt.termguicolors = true
-opt.background = "dark"
-cmd [[
-  if has("gui_running")
-    colorscheme gruvbox
-  endif
-]]
-
 cmd [[
   au BufWritePre * :%s/\s\+$//e
   autocmd TermOpen * setlocal listchars= nonumber norelativenumber nocursorline
@@ -150,7 +142,12 @@ for _, plugin in pairs(disabled_built_ins) do
   g["loaded_" .. plugin] = 1
 end
 
-if has("gui_running") then
-  require("feline").setup()
-  require("nvim-web-devicons").get_icons()
-end
+opt.termguicolors = true
+opt.background = "dark"
+cmd [[
+  if has("gui_running")
+    colorscheme gruvbox
+    lua require("feline").setup()
+    lua require("nvim-web-devicons").get_icons()
+  endif
+]]
