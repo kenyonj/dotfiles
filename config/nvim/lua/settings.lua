@@ -150,5 +150,7 @@ for _, plugin in pairs(disabled_built_ins) do
   g["loaded_" .. plugin] = 1
 end
 
-require("feline").setup()
-require("nvim-web-devicons").get_icons()
+if has("gui_running") then
+  require("feline").setup()
+  require("nvim-web-devicons").get_icons()
+end
