@@ -83,3 +83,5 @@ then
   alias open="rdm open"
   alias xdg-open="rdm open"
 fi
+
+alias connect-codespaces="TERM=xterm-256color gh cs ssh"
