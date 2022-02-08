@@ -29,7 +29,7 @@ if ! dpkg -s "${packages_needed[@]}" > /dev/null 2>&1; then
   sudo apt-get update --fix-missing
   sudo apt-get -y -q install "${packages_needed[@]}" --fix-missing
 fi
-  
+
 # install latest stable node
 npm cache clean -f
 npm install -g n
@@ -57,7 +57,7 @@ dotfiles=(
   zprofile
   zshrc
 )
- 
+
 for val in "${dotfiles[@]}"; do
   ln -snf $(pwd)/$val $HOME/.$val
 done
@@ -82,6 +82,11 @@ tmux new -d '~/.tmux/plugins/tpm/scripts/install_plugins.sh'
 
 gh extensions install mislav/gh-branch
 gh extensions install vilmibm/gh-user-status
+
+# install Remote Development Manager https://github.com/BlakeWilliams/remote-development-manager
+wget https://github.com/BlakeWilliams/remote-development-manager/releases/latest/download/rdm-linux-amd64
+mv rdm-linux-amd64 /usr/local/bin/rdm
+chmod +x /usr/local/bin/rdm
 
 sudo chsh -s "$(which zsh)" "$(whoami)"
 
