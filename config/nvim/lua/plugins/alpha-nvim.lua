@@ -41,6 +41,7 @@ local codespaces_bloody = {
   " ░ ░          ░ ░     ░       ░  ░      ░                 ░  ░░ ░         ░  ░      ░   ",
   " ░                  ░                                         ░                         ",
   "                                                                                        ",
+  "             You can checkout any time you like, but you can never leave...             ",
 }
 
 local codespaces_electronic = {
