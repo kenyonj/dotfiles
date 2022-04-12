@@ -1,4 +1,4 @@
-# Codespaces Dotfiles
+# Dotfiles
 
 ## Fork
 
