@@ -13,6 +13,7 @@ cask "nordvpn"
 cask "raycast"
 cask "slack"
 cask "whatsapp"
+cask "yt-music"
 
 brew "fasd"
 brew "fzf"

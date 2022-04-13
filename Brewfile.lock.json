@@ -484,6 +484,12 @@
         "options": {
           "full_name": "nordvpn"
         }
+      },
+      "yt-music": {
+        "version": "1.2.0",
+        "options": {
+          "full_name": "yt-music"
+        }
       }
     }
   },
@@ -492,7 +498,7 @@
       "monterey": {
         "HOMEBREW_VERSION": "3.4.6-60-ge1c1157",
         "HOMEBREW_PREFIX": "/opt/homebrew",
-        "Homebrew/homebrew-core": "5e5abb11bf49787d01164c4066119365262c21ed",
+        "Homebrew/homebrew-core": "f478b13888c32de711541d80f1a8a645232814a8",
         "CLT": "13.3.1.0.1.1648687083",
         "Xcode": "13.3",
         "macOS": "12.3.1"
