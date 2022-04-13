@@ -7,37 +7,37 @@ What's in it?
 Here is a sampling. For a complete list of features, please review the source.
 
 ### [git](http://git-scm.com/) configuration:
-`g` : `git`
-`amend` : `git commit --amend`
-`amendne` : `git commit --amend --no-edit`
-`ga` : `git add`
-`gs` : `git status -s`
-`gall` : `git add -A`
-`gap` : `git add -p`
-`gb` : `git branch`
-`gba` : `git branch -a`
-`gbrn` : `git branch -m`
-`gc` : `git commit`
-`gcl` : `git clone`
-`hc` : `hub clone`
-`gcm` : `git commit -m`
-`gco` : `git checkout`
-`gcp` : `git cherry-pick`
-`gd` : `git diff`
-`gf` : `git fetch`
-`gl` : `git log -10 --pretty=colored`
-`gm` : `git merge`
-`gnb` : `git checkout -b`
-`gp` : `git push -u`
-`gpf!` : `git push --force-with-lease`
-`gpr` : `hub pull-request`
-`gr` : `git rebase`
-`gra!` : `git rebase --abort`
-`grc!` : `git rebase --continue`
-`gri` : `git rebase -i`
-`gs` : `git status -s`
-`standup` : `git standup`
-`gcb!` : `git branch -d \`git branch --merged | grep -v "^*" | grep -v "main" | tr -d "\n"\``
+  - `g` : `git`
+  - `amend` : `git commit --amend`
+  - `amendne` : `git commit --amend --no-edit`
+  - `ga` : `git add`
+  - `gs` : `git status -s`
+  - `gall` : `git add -A`
+  - `gap` : `git add -p`
+  - `gb` : `git branch`
+  - `gba` : `git branch -a`
+  - `gbrn` : `git branch -m`
+  - `gc` : `git commit`
+  - `gcl` : `git clone`
+  - `hc` : `hub clone`
+  - `gcm` : `git commit -m`
+  - `gco` : `git checkout`
+  - `gcp` : `git cherry-pick`
+  - `gd` : `git diff`
+  - `gf` : `git fetch`
+  - `gl` : `git log -10 --pretty=colored`
+  - `gm` : `git merge`
+  - `gnb` : `git checkout -b`
+  - `gp` : `git push -u`
+  - `gpf!` : `git push --force-with-lease`
+  - `gpr` : `hub pull-request`
+  - `gr` : `git rebase`
+  - `gra!` : `git rebase --abort`
+  - `grc!` : `git rebase --continue`
+  - `gri` : `git rebase -i`
+  - `gs` : `git status -s`
+  - `standup` : `git standup`
+  - `gcb!` : `git branch -d \`git branch --merged | grep -v "^*" | grep -v "main" | tr -d "\n"\``
 
 ### [zsh](http://zsh.sourceforge.net/FAQ/zshfaq01.html) configuration and aliases:
   * `..`: moves up 1 directory, alias of `cd ..`
