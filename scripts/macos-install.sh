@@ -1,9 +1,21 @@
 #!/bin/bash
 
+brew bundle
+
+xcode-select --install
+
+if ! type rdm > /dev/null
+then
+  wget https://github.com/BlakeWilliams/remote-development-manager/releases/latest/download/rdm-darwin-arm64
+  mv rdm-darwin-arm64 /opt/homebrew/bin/rdm
+  chmod +x /opt/homebrew/bin/rdm
+fi
+
 dotfiles=(
   aliases.zsh
   config
   gitconfig
+  gnupg
   irbrc
   tmux.conf
   tmux.overmind.conf
@@ -24,10 +36,12 @@ npm_packages_needed=(
   vscode-langservers-extracted
   write-good
 )
-/usr/local/bin/npm install -g "${npm_packages_needed[@]}"
+/opt/homebrew/bin/npm install -g "${npm_packages_needed[@]}"
 
-HEADLESS_NEOVIM=1 /usr/local/bin/nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+HEADLESS_NEOVIM=1 /opt/homebrew/bin/nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 tmux new -d '~/.tmux/plugins/tpm/scripts/install_plugins.sh'
 
 gh extensions install mislav/gh-branch
 gh extensions install vilmibm/gh-user-status
+
+$(brew --prefix)/opt/fzf/install --all
