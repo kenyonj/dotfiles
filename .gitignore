@@ -2,6 +2,7 @@
 /gnupg/*.db
 /gnupg/*.gpg
 /gnupg/*.kbx
+/gnupg/*.kbx*
 /ssh/*_rsa*
 /ssh/id_*
 /ssh/id_rsa
