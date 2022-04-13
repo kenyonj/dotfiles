@@ -37,7 +37,7 @@ Here is a sampling. For a complete list of features, please review the source.
   - `gri` : `git rebase -i`
   - `gs` : `git status -s`
   - `standup` : `git standup`
-  - `gcb!` : `git branch -d \`git branch --merged | grep -v "^*" | grep -v "main" | tr -d "\n"\``
+  - `gcb!` : ``git branch -d `git branch --merged | grep -v "^*" | grep -v "main" | tr -d "\n"` ``
 
 ### [zsh](http://zsh.sourceforge.net/FAQ/zshfaq01.html) configuration and aliases:
   * `..`: moves up 1 directory, alias of `cd ..`
