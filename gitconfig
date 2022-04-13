@@ -37,6 +37,9 @@
 [user]
   name = Justin Kenyon
   email = kenyonj@gmail.com
+  signingkey = 2538E93E
+[gpg]
+  program = gpg
 [github]
   user = kenyonj
 [url "https://github.com/"]

@@ -4,14 +4,18 @@ brew bundle
 
 xcode-select --install
 
-wget https://github.com/BlakeWilliams/remote-development-manager/releases/latest/download/rdm-darwin-arm64
-mv rdm-darwin-arm64 /opt/homebrew/bin/rdm
-chmod +x /opt/homebrew/bin/rdm
+if ! type rdm > /dev/null
+then
+  wget https://github.com/BlakeWilliams/remote-development-manager/releases/latest/download/rdm-darwin-arm64
+  mv rdm-darwin-arm64 /opt/homebrew/bin/rdm
+  chmod +x /opt/homebrew/bin/rdm
+fi
 
 dotfiles=(
   aliases.zsh
   config
   gitconfig
+  gnupg
   irbrc
   tmux.conf
   tmux.overmind.conf
