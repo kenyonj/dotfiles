@@ -18,3 +18,4 @@ config/nvim/plugin
 config/raycast/extensions
 rbenv/*/
 secrets
+.DS_Store
