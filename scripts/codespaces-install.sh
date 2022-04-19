@@ -1,6 +1,6 @@
 #!/bin/bash
 
-exec > >(tee -i $HOME/dotfiles_install.log)
+exec > >(tee -i "$HOME/dotfiles_install.log")
 exec 2>&1
 set -x
 
@@ -16,13 +16,13 @@ EOF
 if [[ -n "$HOMEASSISTANT_WEBHOOK_URL" ]]; then
   curl -X POST \
     -H "Content-Type: application/json" \
-    -d "$(generate_post_data('started')" \
+    -d "$(generate_post_data 'started')" \
     "$HOMEASSISTANT_WEBHOOK_URL"
 fi
 
 # remove existing init scripts
-rm -f $HOME/.zshrc
-rm -f $HOME/.gitconfig
+rm -f "$HOME/.zshrc"
+rm -f "$HOME/.gitconfig"
 
 packages_needed=(
   bat
@@ -40,7 +40,6 @@ packages_needed=(
   tmux
   zsh-autosuggestions
 )
-
 if ! dpkg -s "${packages_needed[@]}" > /dev/null 2>&1; then
   sudo apt-get update --fix-missing
   sudo apt-get -y -q install "${packages_needed[@]}" --fix-missing
@@ -49,7 +48,7 @@ fi
 # install latest stable node
 npm cache clean -f
 npm install -g n
-node_version=`node --version`
+node_version=$(node --version)
 sudo ln -s "/workspaces/github/vendor/node/node-$node_version-linux-x64/lib/node_modules/n/bin/n" /usr/local/bin/n
 sudo n stable
 
@@ -72,9 +71,8 @@ dotfiles=(
   zprofile
   zshrc
 )
-
 for val in "${dotfiles[@]}"; do
-  ln -snf $(pwd)/$val $HOME/.$val
+  ln -snf "$(pwd)/$val" "$HOME/.$val"
 done
 
 sudo gem install neovim rubocop
@@ -93,8 +91,9 @@ npm_packages_needed=(
 /usr/local/bin/npm install -g "${npm_packages_needed[@]}"
 
 HEADLESS_NEOVIM=1 /usr/local/bin/nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
+
 tmux new -d # open a detached session to install TPM
-tmux new -d '~/.tmux/plugins/tpm/scripts/install_plugins.sh' # open another detached session and install plugins
+tmux new -d "$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh" # open another detached session and install plugins
 
 gh extensions install mislav/gh-branch
 gh extensions install vilmibm/gh-user-status
@@ -119,6 +118,6 @@ fi
 if [[ -n "$HOMEASSISTANT_WEBHOOK_URL" ]]; then
   curl -X POST \
     -H "Content-Type: application/json" \
-    -d "$(generate_post_data('complete')" \
+    -d "$(generate_post_data 'complete')" \
     "$HOMEASSISTANT_WEBHOOK_URL"
 fi
