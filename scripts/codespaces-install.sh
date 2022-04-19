@@ -4,6 +4,12 @@ exec > >(tee -i $HOME/dotfiles_install.log)
 exec 2>&1
 set -x
 
+if [[ -n "$HOMEASSISTANT_WEBHOOK_URL" ]]
+  curl -X POST -d \
+    '{ "state": "started", "codespace_name": "$CODESPACE_NAME" }' \
+    $HOMEASSISTANT_WEBHOOK_URL
+fi
+
 # remove existing init scripts
 rm -f $HOME/.zshrc
 rm -f $HOME/.gitconfig
@@ -92,8 +98,17 @@ chmod +x /usr/local/bin/rdm
 sudo chsh -s "$(which zsh)" "$(whoami)"
 
 # send pushover notification that dotfiles setup has completed
-curl -s \
-  --form-string "token=$PUSHOVER_API_TOKEN" \
-  --form-string "user=$PUSHOVER_USER_KEY" \
-  --form-string "message=Dotfiles installation complete for codespace: $CODESPACE_NAME!" \
-  https://api.pushover.net/1/messages.json
+if [[ -n "$PUSHOVER_API_TOKEN" && -n "$PUSHOVER_USER_KEY" ]]
+  curl -s \
+    --form-string "token=$PUSHOVER_API_TOKEN" \
+    --form-string "user=$PUSHOVER_USER_KEY" \
+    --form-string "message=Dotfiles installation complete for codespace: $CODESPACE_NAME!" \
+    https://api.pushover.net/1/messages.json
+fi
+  
+# send webhook to personal home assistant instance
+if [[ -n "$HOMEASSISTANT_WEBHOOK_URL" ]]
+  curl -X POST -d \
+    '{ "state": "complete", "codespace_name": "$CODESPACE_NAME" }' \
+    $HOMEASSISTANT_WEBHOOK_URL
+fi
