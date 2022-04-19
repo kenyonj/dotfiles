@@ -26,8 +26,7 @@ export RPROMPT=''
 # more macOS/Bash-like word jumps
 export WORDCHARS=""
 
-if [[ !(-n "$CODESPACES") ]]
-then
+if [[ -z "$CODESPACES" ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
