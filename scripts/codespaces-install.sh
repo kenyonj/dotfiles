@@ -5,12 +5,12 @@ exec 2>&1
 set -x
 
 generate_post_data() {
-  cat <<EOF
-  {
-    "state": "$1",
-    "codespace_name": "$CODESPACE_NAME"
-  }
-  EOF
+cat <<EOF
+{
+  "state": "$1",
+  "codespace_name": "$CODESPACE_NAME"
+}
+EOF
 }
 
 if [[ -n "$HOMEASSISTANT_WEBHOOK_URL" ]]; then
