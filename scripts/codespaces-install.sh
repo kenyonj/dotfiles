@@ -4,10 +4,19 @@ exec > >(tee -i $HOME/dotfiles_install.log)
 exec 2>&1
 set -x
 
+generate_post_data() {
+  cat <<EOF
+  {
+    "state": "$1",
+    "codespace_name": "$CODESPACE_NAME"
+  }
+  EOF
+}
+
 if [[ -n "$HOMEASSISTANT_WEBHOOK_URL" ]]; then
   curl -X POST \
     -H "Content-Type: application/json" \
-    -d '{ "state": "started", "codespace_name": "$CODESPACE_NAME" }' \
+    -d "$(generate_post_data('started')" \
     "$HOMEASSISTANT_WEBHOOK_URL"
 fi
 
@@ -110,6 +119,6 @@ fi
 if [[ -n "$HOMEASSISTANT_WEBHOOK_URL" ]]; then
   curl -X POST \
     -H "Content-Type: application/json" \
-    -d '{ "state": "complete", "codespace_name": "$CODESPACE_NAME" }' \
+    -d "$(generate_post_data('complete')" \
     "$HOMEASSISTANT_WEBHOOK_URL"
 fi
