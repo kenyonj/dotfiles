@@ -6,6 +6,7 @@ set -x
 
 if [[ -n "$HOMEASSISTANT_WEBHOOK_URL" ]]
   curl -X POST -d \
+    -H "Content-Type: application/json" 
     '{ "state": "started", "codespace_name": "$CODESPACE_NAME" }' \
     $HOMEASSISTANT_WEBHOOK_URL
 fi
@@ -108,6 +109,7 @@ fi
 # send webhook to personal home assistant instance
 if [[ -n "$HOMEASSISTANT_WEBHOOK_URL" ]]
   curl -X POST -d \
+    -H "Content-Type: application/json" 
     '{ "state": "complete", "codespace_name": "$CODESPACE_NAME" }' \
     $HOMEASSISTANT_WEBHOOK_URL
 fi
