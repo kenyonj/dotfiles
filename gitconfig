@@ -39,7 +39,7 @@
   email = kenyonj@gmail.com
   signingkey = 2538E93E
 [gpg]
-  program = gpg
+  program = "if [[ -n $CODESPACES ]]; then GPRG='/.codespaces/bin/gh-gpgsign'; else ED='gpg'; fi; $GPRG"
 [github]
   user = kenyonj
 [url "https://github.com/"]
