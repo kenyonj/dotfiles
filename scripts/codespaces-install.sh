@@ -47,8 +47,7 @@ sudo n stable
 sudo modprobe fuse
 sudo groupadd fuse
 sudo usermod -a -G fuse "$(whoami)"
-wget https://github.com/github/copilot.vim/releases/download/neovim-nightlies/appimage.zip
-unzip appimage.zip
+wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
 sudo chmod u+x nvim.appimage
 sudo mv nvim.appimage /usr/local/bin/nvim
 
