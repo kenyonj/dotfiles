@@ -100,8 +100,8 @@ gh extensions install vilmibm/gh-user-status
 
 # install Remote Development Manager https://github.com/BlakeWilliams/remote-development-manager
 wget https://github.com/BlakeWilliams/remote-development-manager/releases/latest/download/rdm-linux-amd64
-mv rdm-linux-amd64 /usr/local/bin/rdm
-chmod +x /usr/local/bin/rdm
+sudo mv rdm-linux-amd64 /usr/local/bin/rdm
+sudo chmod +x /usr/local/bin/rdm
 
 sudo chsh -s "$(which zsh)" "$(whoami)"
 
