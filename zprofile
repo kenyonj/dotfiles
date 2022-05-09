@@ -26,8 +26,11 @@ export RPROMPT=''
 # more macOS/Bash-like word jumps
 export WORDCHARS=""
 
-if [[ -z "$CODESPACES" ]]; then
+if [[ -z "$CODESPACES" ]]
+then
   eval "$(/opt/homebrew/bin/brew shellenv)"
+  git config --global gpg.program "gpg"
+else
   git config --global gpg.program "/.codespaces/bin/gh-gpgsign"
 fi
 
