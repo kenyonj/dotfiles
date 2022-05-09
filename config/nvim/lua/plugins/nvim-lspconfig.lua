@@ -49,7 +49,7 @@ end
 local servers = { "bashls", "pyright", "clangd", "html", "tsserver" }
 
 local ts_settings = function(client)
-  client.resolved_capabilities.document_formatting = false
+  client.server_capabilities.documentFormatting = false
   ts_settings(client)
 end
 
