@@ -77,18 +77,19 @@ done
 
 sudo gem install neovim rubocop
 pip3 install --user neovim
-go get -u github.com/arl/gitmux
+go install github.com/arl/gitmux@latest
 
 npm_packages_needed=(
   bash-language-server
   eslint
   neovim
+  prettier
   pyright
   typescript-language-server
   vscode-langservers-extracted
   write-good
 )
-/usr/local/bin/npm install -g "${npm_packages_needed[@]}"
+sudo /usr/local/bin/npm install -g "${npm_packages_needed[@]}"
 
 HEADLESS_NEOVIM=1 /usr/local/bin/nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
