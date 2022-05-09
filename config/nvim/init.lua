@@ -12,4 +12,5 @@ if not vim.env.HEADLESS_NEOVIM then
   require("plugins.obsession")
   require("plugins.rails")
   require("plugins.null-ls")
+  require("plugins.fzf-lua")
 end
