@@ -31,7 +31,7 @@ return packer.startup(function()
   use "hrsh7th/cmp-nvim-lsp"
   use "hrsh7th/cmp-path"
   use "hrsh7th/nvim-cmp"
-  use "ibhagwan/fzf-lua"
+  use "junegunn/fzf.vim"
   use "janko-m/vim-test"
   use "jose-elias-alvarez/nvim-lsp-ts-utils"
   use "kyazdani42/nvim-web-devicons"
