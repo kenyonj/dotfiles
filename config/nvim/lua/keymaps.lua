@@ -17,8 +17,8 @@ map("n", "<C-k>", ":TmuxNavigateUp<CR>", default_opts)
 map("n", "<C-l>", ":TmuxNavigateRight<CR>", default_opts)
 map("n", "<C-\\>", ":TmuxNavigatePrevious<CR>", default_opts)
 
-map("n", "<c-P>", "<cmd>lua require('fzf-lua').files()<CR>", default_opts)
-map("n", "<leader>a", "<cmd>lua require('fzf-lua').grep_project()<CR>", default_opts)
+map("n", "<c-P>", ":Files<CR>", default_opts)
+map("n", "<leader>a", ":Ag<CR>", default_opts)
 
 map("n", "<leader>eh", ":Vexplore<CR>", default_opts)
 map("n", "<leader>ej", ":Hexplore<CR>", default_opts)
