@@ -47,16 +47,12 @@ return packer.startup(function()
   use "tpope/vim-rhubarb"
   use "tpope/vim-vinegar"
   use "wbthomason/packer.nvim"
+  use "nvim-telescope/telescope.nvim"
+  use "nvim-lua/plenary.nvim"
+  use "lewis6991/gitsigns.nvim"
+  use "jose-elias-alvarez/null-ls.nvim"
+  use "rktjmp/lush.nvim"
+  use "ellisonleao/gruvbox.nvim"
 
-  use { "ellisonleao/gruvbox.nvim", requires = { "rktjmp/lush.nvim" } }
   use { "junegunn/fzf", run = "./install --bin" }
-  use { "lewis6991/gitsigns.nvim", requires = { "nvim-lua/plenary.nvim" } }
-
-  use {
-    "jose-elias-alvarez/null-ls.nvim",
-    requires = {
-      "nvim-lua/plenary.nvim",
-      "neovim/nvim-lspconfig",
-    }
-  }
 end)
