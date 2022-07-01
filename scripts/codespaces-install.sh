@@ -56,7 +56,7 @@ sudo n stable
 sudo modprobe fuse
 sudo groupadd fuse
 sudo usermod -a -G fuse "$(whoami)"
-wget https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+wget "https://github.com/neovim/neovim/releases/download/$NVIM_VERSION/nvim.appimage"
 sudo chmod u+x nvim.appimage
 sudo mv nvim.appimage /usr/local/bin/nvim
 
