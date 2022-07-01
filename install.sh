@@ -2,7 +2,7 @@
 
 if [[ -n "$CODESPACES" ]]
 then
-  scripts/codespaces-install.sh
+  NVIM_VERSION=v0.7.2 scripts/codespaces-install.sh
 else
   scripts/macos-install.sh
 fi
