@@ -77,7 +77,7 @@ done
 
 sudo gem install neovim rubocop
 pip3 install --user neovim
-go install github.com/arl/gitmux@latest
+# go install github.com/arl/gitmux@latest
 
 npm_packages_needed=(
   bash-language-server
@@ -93,11 +93,11 @@ sudo /usr/local/bin/npm install -g "${npm_packages_needed[@]}"
 
 HEADLESS_NEOVIM=1 /usr/local/bin/nvim --headless -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
-tmux new -d # open a detached session to install TPM
-tmux new -d "$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh" # open another detached session and install plugins
+# tmux new -d # open a detached session to install TPM
+# tmux new -d "$HOME/.tmux/plugins/tpm/scripts/install_plugins.sh" # open another detached session and install plugins
 
-gh extensions install mislav/gh-branch
-gh extensions install vilmibm/gh-user-status
+# gh extensions install mislav/gh-branch
+# gh extensions install vilmibm/gh-user-status
 
 # install Remote Development Manager https://github.com/BlakeWilliams/remote-development-manager
 wget https://github.com/BlakeWilliams/remote-development-manager/releases/latest/download/rdm-linux-amd64
