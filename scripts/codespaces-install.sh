@@ -119,6 +119,6 @@ fi
 if [[ -n "$HOMEASSISTANT_WEBHOOK_URL" ]]; then
   curl -X POST \
     -H "Content-Type: application/json" \
-    -d "$(generate_post_data 'complete')" \
+    -d "$(generate_post_data 'completed')" \
     "$HOMEASSISTANT_WEBHOOK_URL"
 fi
