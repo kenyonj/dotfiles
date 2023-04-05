@@ -30,6 +30,7 @@ map("n", "<leader>rc", ":TestFile<CR>", default_opts)
 map("n", "<leader>ra", ":TestSuite<CR>", default_opts)
 map("n", "<leader>rl", ":TestLast<CR>", default_opts)
 map("n", "<leader>rv", ":TestVisit<CR>", default_opts)
+cmd "let test#ruby#rspec#executable = 'script/test'"
 
 map("n", "<leader>d", ":call pry#insert()<cr>", default_opts)
 
