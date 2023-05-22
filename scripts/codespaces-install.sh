@@ -33,7 +33,6 @@ packages_needed=(
   grc
   kmod
   libfuse2
-  npm
   pip
   rubocop
   ruby-dev
@@ -47,6 +46,7 @@ if ! dpkg -s "${packages_needed[@]}" > /dev/null 2>&1; then
   sudo apt-get -y -q install "${packages_needed[@]}" --fix-missing
 fi
 
+# install node and n node version manager
 curl -L https://bit.ly/n-install | bash
 
 # install latest neovim
@@ -72,7 +72,6 @@ done
 
 sudo gem install neovim rubocop
 pip3 install --user neovim
-# go install github.com/arl/gitmux@latest
 
 npm_packages_needed=(
   bash-language-server
