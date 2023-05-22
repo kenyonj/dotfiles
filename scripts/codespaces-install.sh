@@ -47,12 +47,17 @@ if ! dpkg -s "${packages_needed[@]}" > /dev/null 2>&1; then
   sudo apt-get -y -q install "${packages_needed[@]}" --fix-missing
 fi
 
-# install latest stable node
-sudo npm cache clean -f
-sudo npm install -g n
-node_version=$(node --version)
-sudo ln -s "/workspaces/github/vendor/node/node-$node_version-linux-x64/lib/node_modules/n/bin/n" /usr/local/bin/n
-sudo /usr/local/bin/n stable
+# make cache folder (if missing) and take ownership
+sudo mkdir -p /usr/local/n
+sudo chown -R $(whoami) /usr/local/n
+# make sure the required folders exist (safe to execute even if they already exist)
+sudo mkdir -p /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
+# take ownership of Node.js install destination folders
+sudo chown -R $(whoami) /usr/local/bin /usr/local/lib /usr/local/include /usr/local/share
+curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n | bash -s lts
+# If you want n installed, you can use npm now.
+npm install -g n
+n stable
 
 # install latest neovim
 sudo modprobe fuse
