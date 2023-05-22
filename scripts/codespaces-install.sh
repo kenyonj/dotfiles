@@ -65,6 +65,7 @@ dotfiles=(
   config/github-copilot
   config/nvim
   gitconfig
+  gitconfig.codespaces
   irbrc
   tmux.conf
   tmux.overmind.conf
@@ -114,7 +115,7 @@ if [[ -n "$PUSHOVER_API_TOKEN" && -n "$PUSHOVER_USER_KEY" ]]; then
     --form-string "message=Dotfiles installation complete for codespace: $CODESPACE_NAME!" \
     https://api.pushover.net/1/messages.json
 fi
-  
+
 # send webhook to personal home assistant instance
 if [[ -n "$HOMEASSISTANT_WEBHOOK_URL" ]]; then
   curl -X POST \

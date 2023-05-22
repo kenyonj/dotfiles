@@ -16,6 +16,10 @@ config/nvim/autoload
 config/nvim/bundle
 config/nvim/plugin
 config/raycast/extensions
+config/containers
+config/github-copilot/hosts.json
+config/nyaovim
+config/wireshark
 rbenv/*/
 secrets
 .DS_Store

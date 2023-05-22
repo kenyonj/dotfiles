@@ -25,7 +25,6 @@ return packer.startup(function()
   use "L3MON4D3/LuaSnip"
   use "christoomey/vim-tmux-navigator"
   use "eddyekofo94/gruvbox-flat.nvim"
-  use "famiu/feline.nvim"
   use "github/copilot.vim"
   use "goolord/alpha-nvim"
   use "hrsh7th/cmp-buffer"

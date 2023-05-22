@@ -44,3 +44,10 @@ export PATH="/usr/local/bin:$PATH"
 export FZF_DEFAULT_COMMAND='ag -l --path-to-ignore ~/.ignore --nocolor --hidden -g ""'
 export FZF_DEFAULT_OPTS='--color=16'
 export OVERMIND_TMUX_CONFIG="$HOME/.tmux.overmind.conf"
+
+if [[ -z "$CODESPACES" ]]
+then
+  source $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh
+  source $HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh
+  export PATH="$HOMEBREW_PREFIX/opt/libpq/bin:$PATH"
+fi

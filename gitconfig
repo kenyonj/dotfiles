@@ -44,3 +44,7 @@
   insteadOf = git@github.com:
 [credential]
   helper = cache
+[gpg]
+  program = gpg
+[includeIf "gitdir:~/workspace/"]
+  path = ~/.gitconfig.codespaces

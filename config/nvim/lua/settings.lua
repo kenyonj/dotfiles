@@ -146,5 +146,4 @@ opt.termguicolors = true
 opt.background = "dark"
 cmd "colorscheme gruvbox-flat"
 
-require("feline").setup()
 require("nvim-web-devicons").get_icons()
