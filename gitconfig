@@ -45,6 +45,6 @@
 [credential]
   helper = cache
 [gpg]
-  program = gpg
+	program = gpg
 [includeIf "gitdir:~/workspace/"]
   path = ~/.gitconfig.codespaces
