@@ -47,6 +47,8 @@ if ! dpkg -s "${packages_needed[@]}" > /dev/null 2>&1; then
 fi
 
 # install node and n node version manager
+rm -rf /usr/local/.nodenv/shims/node
+rm -rf /usr/local/.nodenv/shims/npm
 curl -L https://bit.ly/n-install | bash -s -- -y
 
 # install latest neovim
