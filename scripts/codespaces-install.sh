@@ -46,9 +46,6 @@ if ! dpkg -s "${packages_needed[@]}" > /dev/null 2>&1; then
   sudo apt-get -y -q install "${packages_needed[@]}" --fix-missing
 fi
 
-# install node and n node version manager
-curl -L https://bit.ly/n-install | bash -s -- -y
-
 # install latest neovim
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 sudo chmod u+x nvim.appimage
@@ -69,6 +66,9 @@ dotfiles=(
 for val in "${dotfiles[@]}"; do
   ln -snf "$(pwd)/$val" "$HOME/.$val"
 done
+
+# install node and n node version manager
+curl -L https://bit.ly/n-install | bash -s -- -y
 
 sudo gem install neovim rubocop
 pip3 install --user neovim
