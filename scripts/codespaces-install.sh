@@ -52,7 +52,7 @@ sudo npm cache clean -f
 sudo npm install -g n
 node_version=$(node --version)
 sudo ln -s "/workspaces/github/vendor/node/node-$node_version-linux-x64/lib/node_modules/n/bin/n" /usr/local/bin/n
-sudo n stable
+sudo /usr/local/bin/n stable
 
 # install latest neovim
 sudo modprobe fuse
