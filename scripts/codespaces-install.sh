@@ -47,7 +47,7 @@ if ! dpkg -s "${packages_needed[@]}" > /dev/null 2>&1; then
 fi
 
 # install node and n node version manager
-curl -L https://bit.ly/n-install | bash
+N_INSTALL_TEST_OVERRIDE_SKIP_EXISTING_INSTALLATION_TEST=1 curl -L https://bit.ly/n-install | bash
 
 # install latest neovim
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
