@@ -31,8 +31,10 @@ packages_needed=(
   fuse
   fzf
   grc
+  kmod
   libfuse2
   npm
+  pip
   rubocop
   ruby-dev
   shellcheck
@@ -46,8 +48,8 @@ if ! dpkg -s "${packages_needed[@]}" > /dev/null 2>&1; then
 fi
 
 # install latest stable node
-npm cache clean -f
-npm install -g n
+sudo npm cache clean -f
+sudo npm install -g n
 node_version=$(node --version)
 sudo ln -s "/workspaces/github/vendor/node/node-$node_version-linux-x64/lib/node_modules/n/bin/n" /usr/local/bin/n
 sudo n stable
