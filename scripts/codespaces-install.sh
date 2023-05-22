@@ -50,10 +50,7 @@ fi
 curl -L https://bit.ly/n-install | bash
 
 # install latest neovim
-sudo modprobe fuse
-sudo groupadd fuse
-sudo usermod -a -G fuse "$(whoami)"
-wget "https://github.com/neovim/neovim/releases/download/$NVIM_VERSION/nvim.appimage"
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
 sudo chmod u+x nvim.appimage
 sudo mv nvim.appimage /usr/local/bin/nvim
 
