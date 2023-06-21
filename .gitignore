@@ -24,3 +24,5 @@ rbenv/*/
 secrets
 .DS_Store
 nohup.out
+config/flipperdevices.com/
+config/simple-update-notifier/

@@ -1,7 +1,7 @@
 [color]
   ui = auto
 [pretty]
-  colored = format:%C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an, %cr]%Creset
+  colored = format:%C(yellow)%h%Creset %<(40)%C(blue)%s %C(magenta)[%cr, %C(bold magenta)%an]%Creset%C(green)%d%Creset
 [gist]
   browse = true
 [push]
