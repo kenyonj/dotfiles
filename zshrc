@@ -47,9 +47,10 @@ export OVERMIND_TMUX_CONFIG="$HOME/.tmux.overmind.conf"
 
 if [[ -z "$CODESPACES" ]]
 then
-  source $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh
-  source $HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh
   export PATH="$HOMEBREW_PREFIX/opt/libpq/bin:$PATH"
 else
   export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"
 fi
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
