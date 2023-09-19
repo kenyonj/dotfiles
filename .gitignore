@@ -3,6 +3,7 @@
 /gnupg/*.gpg
 /gnupg/*.kbx
 /gnupg/*.kbx*
+gnupg/*.Justins-M1-Max.*
 /ssh/*_rsa*
 /ssh/id_*
 /ssh/id_rsa
@@ -26,3 +27,5 @@ secrets
 nohup.out
 config/flipperdevices.com/
 config/simple-update-notifier/
+config/Autodesk
+config/github-copilot/versions.json
