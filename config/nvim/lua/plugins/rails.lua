@@ -12,6 +12,9 @@ vim.cmd [[
   \    ],
   \    "type": "controller",
   \    "alternate": "test/integration/{}_controller_test.rb"
+  \ },
+  \ "spec/requests/*_spec.rb": {
+  \    "alternate": "app/controllers/{}_controller.rb"
   \ }
   \}
 

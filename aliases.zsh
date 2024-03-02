@@ -70,6 +70,7 @@ alias gri="git rebase -i"
 alias gs="git status -s"
 alias standup="git standup"
 alias gcb!='git branch -d `git branch --merged | grep -v "^*" | grep -v "main" | tr -d "\n"`'
+alias mrwr='gh pr edit --add-label "Mark Ready When Ready"'
 
 # tmux
 alias tmux="tmux new-session -A -s main"

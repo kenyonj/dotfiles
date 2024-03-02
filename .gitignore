@@ -17,6 +17,7 @@ config/nvim/autoload
 config/nvim/bundle
 config/nvim/plugin
 config/raycast/extensions
+config/raycast/config.json
 config/containers
 config/github-copilot/hosts.json
 config/nyaovim
