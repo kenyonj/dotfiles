@@ -52,7 +52,7 @@ rm -rf /usr/local/.nodenv/shims/npm
 curl -L https://bit.ly/n-install | bash -s -- -y
 
 # install latest neovim
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage
+curl -LO https://github.com/neovim/neovim/releases/download/v0.9.5/nvim.appimage
 sudo chmod u+x nvim.appimage
 sudo mv nvim.appimage /usr/local/bin/nvim
 
