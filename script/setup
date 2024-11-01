@@ -1,0 +1,155 @@
+#!/usr/bin/env bash
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+# Ensure we're working from the root directory
+cd $SCRIPT_DIR && cd ..
+
+# Clean up codespaces environment
+if [[ -n "$CODESPACES" ]]; then
+  sudo chsh -s $(which zsh) $(whoami)
+
+  rm ~/.zshrc
+  mv ~/.gitconfig ~/.gitconfig.old
+  rm ~/.gitconfig
+  mkdir ~/.cache
+fi
+
+function copy_file() {
+  local source="$(pwd)/$1"
+  local target=$2
+
+  mkdir -p $(dirname "$target")
+
+  if [[ -f $target ]]; then
+    if [[ ! -L $target ]]; then
+      echo "$target already exists but is not a symlink!"
+    else
+      echo "$target already exists"
+    fi
+  else
+    ln -svf "$source" "$target"
+  fi
+}
+
+# Standard dotfiles
+copy_file excludes ~/.excludes
+copy_file gitconfig ~/.gitconfig
+copy_file gitmessage ~/.gitmessage
+copy_file gvimrc ~/.gvimrc
+copy_file hushlogin ~/.hushlogin
+copy_file ignore ~/.ignore
+copy_file inputrc ~/.inputrc
+copy_file irbrc ~/.irbrc
+copy_file ripgreprc ~/.ripgreprc
+copy_file tmux.conf ~/.tmux.conf
+copy_file tmux.overmind.conf ~/.tmux.overmind.conf
+copy_file vimrc ~/.vimrc
+copy_file zlogin ~/.zlogin
+copy_file zshrc ~/.zshrc
+copy_file zprofile ~/.zprofile
+copy_file gnupg ~/.gnupg
+
+# Bat
+copy_file config/bat/config ~/.config/bat/config
+
+# Lazygit
+copy_file config/lazygit/config.yml ~/.config/lazygit/config.yml
+
+# Kitty
+copy_file config/kitty/kitty.conf ~/.config/kitty/kitty.conf
+
+# Neovim
+copy_file config/nvim/autocommands.vim ~/.config/nvim/autocommands.vim
+copy_file config/nvim/colors.vim ~/.config/nvim/colors.vim
+copy_file config/nvim/config.vim ~/.config/nvim/config.vim
+copy_file config/nvim/init.lua ~/.config/nvim/init.lua
+copy_file config/nvim/lua/lazy-setup.lua ~/.config/nvim/lua/lazy-setup.lua
+
+copy_file config/nvim/lua/plugins/welcome.lua ~/.config/nvim/lua/plugins/welcome.lua
+copy_file config/nvim/lua/plugins/whichkey.lua ~/.config/nvim/lua/plugins/whichkey.lua
+copy_file config/nvim/lua/plugins/legacy.lua ~/.config/nvim/lua/plugins/legacy.lua
+copy_file config/nvim/lua/plugins/cmp.lua ~/.config/nvim/lua/plugins/cmp.lua
+copy_file config/nvim/lua/plugins/lsp.lua ~/.config/nvim/lua/plugins/lsp.lua
+copy_file config/nvim/lua/plugins/treesitter.lua ~/.config/nvim/lua/plugins/treesitter.lua
+copy_file config/nvim/lua/plugins/formatter.lua ~/.config/nvim/lua/plugins/formatter.lua
+copy_file config/nvim/lua/plugins/status.lua ~/.config/nvim/lua/plugins/status.lua
+copy_file config/nvim/lua/plugins/gitsigns.lua ~/.config/nvim/lua/plugins/gitsigns.lua
+copy_file config/nvim/lua/plugins/test.lua ~/.config/nvim/lua/plugins/test.lua
+copy_file config/nvim/lua/plugins/fugitive.lua ~/.config/nvim/lua/plugins/fugitive.lua
+copy_file config/nvim/lua/plugins/telescope.lua ~/.config/nvim/lua/plugins/telescope.lua
+copy_file config/nvim/lua/plugins/tbro.lua ~/.config/nvim/lua/plugins/tbro.lua
+copy_file config/nvim/lua/plugins/pry.lua ~/.config/nvim/lua/plugins/pry.lua
+copy_file config/nvim/lua/plugins/copilot.lua ~/.config/nvim/lua/plugins/copilot.lua
+copy_file config/nvim/lua/plugins/noice.lua ~/.config/nvim/lua/plugins/noice.lua
+copy_file config/nvim/lua/plugins/trouble.lua ~/.config/nvim/lua/plugins/trouble.lua
+copy_file config/nvim/lua/plugins/mini.lua ~/.config/nvim/lua/plugins/mini.lua
+copy_file config/nvim/lua/plugins/grug.lua ~/.config/nvim/lua/plugins/grug.lua
+copy_file config/nvim/lua/plugins/snippets.lua ~/.config/nvim/lua/plugins/snippets.lua
+
+copy_file config/nvim/lua/plugins/langs/go.lua ~/.config/nvim/lua/plugins/langs/go.lua
+copy_file config/nvim/lua/plugins/langs/ruby.lua ~/.config/nvim/lua/plugins/langs/ruby.lua
+copy_file config/nvim/lua/plugins/langs/typescript.lua ~/.config/nvim/lua/plugins/langs/typescript.lua
+
+# Git template
+copy_file git_template/hooks/ctags ~/.git_template/hooks/ctags
+copy_file git_template/hooks/post-checkout ~/.git_template/hooks/post-checkout
+copy_file git_template/hooks/post-commit ~/.git_template/hooks/post-commit
+copy_file git_template/hooks/post-merge ~/.git_template/hooks/post-merge
+copy_file git_template/hooks/post-rewrite ~/.git_template/hooks/post-rewrite
+
+# Zsh
+copy_file zsh/aliases.zsh ~/.zsh/aliases.zsh
+copy_file zsh/fzf.zsh ~/.zsh/fzf.zsh
+copy_file zsh/g.zsh ~/.zsh/g.zsh
+copy_file zsh/prompt.zsh ~/.zsh/prompt.zsh
+
+# Setup RDM
+if [[ -n "$CODESPACES" ]]; then
+  # Use RDM for copy/paste and open support
+  wget https://github.com/BlakeWilliams/remote-development-manager/releases/download/v0.0.3/rdm-linux-amd64
+  sudo mv rdm-linux-amd64 /usr/bin/local/rdm
+  chmod +x /usr/bin/local/rdm
+
+  if [[ "$TERM_PROGRAM" != 'vscode' ]]; then
+    gh config set browser "rdm open"
+    echo 'alias open="rdm open"' >> ~/.zshenv
+    echo 'alias xdg-open="rdm open"' >> ~/.zshenv
+  fi
+fi
+
+# Codespaces nvim install
+if [[ -n "$CODESPACES" ]]; then
+  sudo apt-get install -y ripgrep shellcheck fuse ruby-dev tmux fuse jq
+  sudo apt-get install -y bat fd-find noti tokei vale
+  echo "export SKIP_GH_PRE_PUSH_HOOKS" >> ~/.zshrc
+
+
+  # Install the latest neovim
+  wget https://github.com/neovim/neovim/releases/download/v0.10.0/nvim.appimage
+  chmod u+x nvim.appimage
+  sudo mv nvim.appimage /usr/local/bin/nvim
+
+  if ! [ -x "$(command -v npm)" ]; then
+    echo 'Could not install node neovim plugin' >&2
+  else
+    npm install -g neovim
+  fi
+
+  if ! [ -x "$(command -v pip3)" ]; then
+    echo 'Could not install python neovim plugin' >&2
+  else
+    pip3 install neovim
+  fi
+
+  # Install neovim plugins
+  nvim --headless "+Lazy! update" +qall
+
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  yes | ~/.fzf/install --no-bash --no-fish --key-bindings --completion --update-rc
+fi
+
+# Local brew bundle install
+if [[ -z "$CODESPACES" ]]; then
+  brew bundle
+fi

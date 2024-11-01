@@ -13,9 +13,9 @@ config/.mono
 config/coc
 config/configstore
 config/gh
-config/nvim/autoload
-config/nvim/bundle
-config/nvim/plugin
+# config/nvim/autoload
+# config/nvim/bundle
+# config/nvim/plugin
 config/raycast/extensions
 config/raycast/config.json
 config/containers
@@ -30,3 +30,5 @@ config/flipperdevices.com/
 config/simple-update-notifier/
 config/Autodesk
 config/github-copilot/versions.json
+Brewfile.lock.json
+config/lazygit/config.yml

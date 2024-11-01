@@ -1,50 +1,54 @@
-[color]
-  ui = auto
-[pretty]
-  colored = format:%C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an, %cr]%Creset
-[gist]
-  browse = true
-[push]
-  default = current
-[pull]
-  rebase = true
-[fetch]
-  prune = 1
-[rerere]
-  enabled = 1
-[core]
-  mergeoptions = --no-edit
-  commitGraph = true
-[help]
-  autocorrect = 1
-[diff]
-  algorithm = patience
-  compactionheuristic = true
-[diff "xml"]
-  textconv = xmllint --format --recover
-[mergetool]
-  prompt = false
-  keepBackup = false
-  keepTemporaries = false
-[apply]
-  whitespace = fix
-[rebase]
-  autoStash = true
-  autoSquash = true
-[commit]
-  verbose = true
-  gpgsign = true
 [user]
   name = Justin Kenyon
   email = kenyonj@gmail.com
-  signingkey = 2538E93E
 [github]
   user = kenyonj
-[url "https://github.com/"]
-  insteadOf = git@github.com:
+[init]
+  templatedir = ~/.git_template
+  defaultBranch = main
+[color]
+  ui = true
+[format]
+  pretty = oneline
+[core]
+  excludesfile = ~/.excludes
+  whitespace = trailing-space,space-before-tab
+[advice]
+  pushNonFastForward = false
+  statusHints = false
+[commit]
+  template = ~/.gitmessage
+  gpgsign = false
+  verbose = true
+[fetch]
+  prune = true
+[push]
+  default = current
+  autoSetupRemote = true
+[pull]
+  rebase = true
+[merge]
+  ff = only
+[status]
+  branch = 1
+  short = 1
+[diff]
+  colorMoved = zebra
 [credential]
-  helper = cache
-[gpg]
-	program = gpg
-[includeIf "gitdir:~/workspace/"]
-  path = ~/.gitconfig.codespaces
+  helper = store
+[log]
+  decorate = short
+  abbrevCommit = true
+[filter "lfs"]
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+[color "diff"]
+  meta = yellow
+[credential "https://github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/opt/homebrew/bin/gh auth git-credential
