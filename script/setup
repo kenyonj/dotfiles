@@ -1,21 +1,5 @@
 #!/usr/bin/env bash
 
-generate_post_data() {
-cat <<EOF
-{
-  "state": "$1",
-  "codespace_name": "$CODESPACE_NAME"
-}
-EOF
-}
-
-if [[ -n "$HOMEASSISTANT_WEBHOOK_URL" ]]; then
-  curl -X POST \
-    -H "Content-Type: application/json" \
-    -d "{ 'state': 'started', 'codespace_name': '$CODESPACE_NAME' }" \
-    "$HOMEASSISTANT_WEBHOOK_URL"
-fi
-
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 # Ensure we're working from the root directory
@@ -23,6 +7,13 @@ cd $SCRIPT_DIR && cd ..
 
 # Clean up codespaces environment
 if [[ -n "$CODESPACES" ]]; then
+  if [[ -n "$HOMEASSISTANT_WEBHOOK_URL" ]]; then
+    curl -X POST \
+      -H "Content-Type: application/json" \
+      -d "{ 'state': 'started', 'codespace_name': '$CODESPACE_NAME' }" \
+      "$HOMEASSISTANT_WEBHOOK_URL"
+  fi
+
   sudo chsh -s $(which zsh) $(whoami)
 
   rm ~/.zshrc
@@ -139,7 +130,6 @@ if [[ -n "$CODESPACES" ]]; then
   sudo apt-get install -y ripgrep shellcheck fuse ruby-dev tmux fuse jq
   sudo apt-get install -y bat fd-find noti tokei vale
   echo "export SKIP_GH_PRE_PUSH_HOOKS" >> ~/.zshrc
-
 
   # Install the latest neovim
   wget https://github.com/neovim/neovim/releases/download/v0.10.0/nvim.appimage
