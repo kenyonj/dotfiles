@@ -1,5 +1,21 @@
 #!/usr/bin/env bash
 
+generate_post_data() {
+cat <<EOF
+{
+  "state": "$1",
+  "codespace_name": "$CODESPACE_NAME"
+}
+EOF
+}
+
+if [[ -n "$HOMEASSISTANT_WEBHOOK_URL" ]]; then
+  curl -X POST \
+    -H "Content-Type: application/json" \
+    -d "{ 'state': 'started', 'codespace_name': '$CODESPACE_NAME' }" \
+    "$HOMEASSISTANT_WEBHOOK_URL"
+fi
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 # Ensure we're working from the root directory
@@ -118,7 +134,7 @@ if [[ -n "$CODESPACES" ]]; then
   fi
 fi
 
-# Codespaces nvim install
+# Codespaces installs
 if [[ -n "$CODESPACES" ]]; then
   sudo apt-get install -y ripgrep shellcheck fuse ruby-dev tmux fuse jq
   sudo apt-get install -y bat fd-find noti tokei vale
@@ -147,9 +163,14 @@ if [[ -n "$CODESPACES" ]]; then
 
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   yes | ~/.fzf/install --no-bash --no-fish --key-bindings --completion --update-rc
-fi
 
-# Local brew bundle install
-if [[ -z "$CODESPACES" ]]; then
+  if [[ -n "$HOMEASSISTANT_WEBHOOK_URL" ]]; then
+    curl -X POST \
+      -H "Content-Type: application/json" \
+      -d "{ 'state': 'completed', 'codespace_name': '$CODESPACE_NAME' }" \
+      "$HOMEASSISTANT_WEBHOOK_URL"
+  fi
+else
+  # Local brew bundle install
   brew bundle
 fi
