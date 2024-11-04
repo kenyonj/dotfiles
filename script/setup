@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+exec > >(tee -i "$HOME/dotfiles_install.log")
+exec 2>&1
+set -x
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 # Ensure we're working from the root directory
