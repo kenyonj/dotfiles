@@ -22,7 +22,7 @@ if [[ -n "$CODESPACES" ]]; then
   if [[ -n "$HOMEASSISTANT_WEBHOOK_URL" ]]; then
     curl -X POST \
       -H "Content-Type: application/json" \
-      --data '{ "state": "started", "codespace_name": "$CODESPACE_NAME" }' \
+      --data '{ "state": "started", "codespace_name": "'"$CODESPACE_NAME"'" }' \
       "$HOMEASSISTANT_WEBHOOK_URL"
   fi
 
@@ -172,7 +172,7 @@ if [[ -n "$CODESPACES" ]]; then
   if [[ -n "$HOMEASSISTANT_WEBHOOK_URL" ]]; then
     curl -X POST \
       -H "Content-Type: application/json" \
-      --data '{ "state": "completed", "codespace_name": "$CODESPACE_NAME" }' \
+      --data '{ "state": "completed", "codespace_name": "'"$CODESPACE_NAME"'" }' \
       "$HOMEASSISTANT_WEBHOOK_URL"
   fi
 else
