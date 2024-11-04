@@ -28,7 +28,6 @@ set noshowcmd                   " Don't show command in the last line of the scr
 set noswapfile                  " No swap
 "set noautoread                  " Don't automatically read files when they are changed
 set nowrap                      " Don't wrap lines
-set relativenumber              " Show relative line numbers
 set ruler                       " Show the ruler
 set scrolloff=10                " Always keep current line in center
 set completeopt+=menuone        " Always show menu

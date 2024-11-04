@@ -50,7 +50,7 @@ vim.g.vim_json_syntax_conceal = 0 -- todo extract into json or lang file
 
 vim.cmd [[
   " vinegar hide dotfiles
-  let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro nonumber'
+  let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro'
   let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
   let g:netrw_retmap = 1
   let g:netrw_fastbrowse = 0
