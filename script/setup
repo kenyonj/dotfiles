@@ -32,16 +32,12 @@ if [[ -n "$CODESPACES" ]]; then
 
   sudo chsh -s $(which zsh) $(whoami)
 
-  remove_if_exists "~/.zshrc"
-  move_if_exists "~/.gitconfig" "~/.gitconfig.old"
-  remove_if_exists "~/.gitconfig"
-
   if [[ ! -d "~/.cache" ]]; then
     mkdir ~/.cache
   fi
 fi
 
-function copy_file() {
+function create_sym_link() {
   local source="$(pwd)/$1"
   local target=$2
 
@@ -59,76 +55,78 @@ function copy_file() {
 }
 
 # Standard dotfiles
-copy_file excludes ~/.excludes
-copy_file gitconfig ~/.gitconfig
-copy_file gitmessage ~/.gitmessage
-copy_file gvimrc ~/.gvimrc
-copy_file hushlogin ~/.hushlogin
-copy_file ignore ~/.ignore
-copy_file inputrc ~/.inputrc
-copy_file irbrc ~/.irbrc
-copy_file ripgreprc ~/.ripgreprc
-copy_file tmux.conf ~/.tmux.conf
-copy_file tmux.overmind.conf ~/.tmux.overmind.conf
-copy_file vimrc ~/.vimrc
-copy_file zlogin ~/.zlogin
-copy_file zshrc ~/.zshrc
-copy_file zprofile ~/.zprofile
-copy_file gnupg ~/.gnupg
+create_sym_link excludes ~/.excludes
+move_if_exists ~/.gitconfig ~/.gitconfig.old
+create_sym_link gitconfig ~/.gitconfig
+create_sym_link gitmessage ~/.gitmessage
+create_sym_link gvimrc ~/.gvimrc
+create_sym_link hushlogin ~/.hushlogin
+create_sym_link ignore ~/.ignore
+create_sym_link inputrc ~/.inputrc
+create_sym_link irbrc ~/.irbrc
+create_sym_link ripgreprc ~/.ripgreprc
+create_sym_link tmux.conf ~/.tmux.conf
+create_sym_link tmux.overmind.conf ~/.tmux.overmind.conf
+create_sym_link vimrc ~/.vimrc
+create_sym_link zlogin ~/.zlogin
+remove_if_exists ~/.zshrc
+create_sym_link zshrc ~/.zshrc
+create_sym_link zprofile ~/.zprofile
+create_sym_link gnupg ~/.gnupg
 
 # Bat
-copy_file config/bat/config ~/.config/bat/config
+create_sym_link config/bat/config ~/.config/bat/config
 
 # Lazygit
-copy_file config/lazygit/config.yml ~/.config/lazygit/config.yml
+create_sym_link config/lazygit/config.yml ~/.config/lazygit/config.yml
 
 # Kitty
-copy_file config/kitty/kitty.conf ~/.config/kitty/kitty.conf
+create_sym_link config/kitty/kitty.conf ~/.config/kitty/kitty.conf
 
 # Neovim
-copy_file config/nvim/autocommands.vim ~/.config/nvim/autocommands.vim
-copy_file config/nvim/colors.vim ~/.config/nvim/colors.vim
-copy_file config/nvim/config.vim ~/.config/nvim/config.vim
-copy_file config/nvim/init.lua ~/.config/nvim/init.lua
-copy_file config/nvim/lua/lazy-setup.lua ~/.config/nvim/lua/lazy-setup.lua
+create_sym_link config/nvim/autocommands.vim ~/.config/nvim/autocommands.vim
+create_sym_link config/nvim/colors.vim ~/.config/nvim/colors.vim
+create_sym_link config/nvim/config.vim ~/.config/nvim/config.vim
+create_sym_link config/nvim/init.lua ~/.config/nvim/init.lua
+create_sym_link config/nvim/lua/lazy-setup.lua ~/.config/nvim/lua/lazy-setup.lua
 
-copy_file config/nvim/lua/plugins/welcome.lua ~/.config/nvim/lua/plugins/welcome.lua
-copy_file config/nvim/lua/plugins/whichkey.lua ~/.config/nvim/lua/plugins/whichkey.lua
-copy_file config/nvim/lua/plugins/legacy.lua ~/.config/nvim/lua/plugins/legacy.lua
-copy_file config/nvim/lua/plugins/cmp.lua ~/.config/nvim/lua/plugins/cmp.lua
-copy_file config/nvim/lua/plugins/lsp.lua ~/.config/nvim/lua/plugins/lsp.lua
-copy_file config/nvim/lua/plugins/treesitter.lua ~/.config/nvim/lua/plugins/treesitter.lua
-copy_file config/nvim/lua/plugins/formatter.lua ~/.config/nvim/lua/plugins/formatter.lua
-copy_file config/nvim/lua/plugins/status.lua ~/.config/nvim/lua/plugins/status.lua
-copy_file config/nvim/lua/plugins/gitsigns.lua ~/.config/nvim/lua/plugins/gitsigns.lua
-copy_file config/nvim/lua/plugins/test.lua ~/.config/nvim/lua/plugins/test.lua
-copy_file config/nvim/lua/plugins/fugitive.lua ~/.config/nvim/lua/plugins/fugitive.lua
-copy_file config/nvim/lua/plugins/telescope.lua ~/.config/nvim/lua/plugins/telescope.lua
-copy_file config/nvim/lua/plugins/tbro.lua ~/.config/nvim/lua/plugins/tbro.lua
-copy_file config/nvim/lua/plugins/pry.lua ~/.config/nvim/lua/plugins/pry.lua
-copy_file config/nvim/lua/plugins/copilot.lua ~/.config/nvim/lua/plugins/copilot.lua
-copy_file config/nvim/lua/plugins/noice.lua ~/.config/nvim/lua/plugins/noice.lua
-copy_file config/nvim/lua/plugins/trouble.lua ~/.config/nvim/lua/plugins/trouble.lua
-copy_file config/nvim/lua/plugins/mini.lua ~/.config/nvim/lua/plugins/mini.lua
-copy_file config/nvim/lua/plugins/grug.lua ~/.config/nvim/lua/plugins/grug.lua
-copy_file config/nvim/lua/plugins/snippets.lua ~/.config/nvim/lua/plugins/snippets.lua
+create_sym_link config/nvim/lua/plugins/welcome.lua ~/.config/nvim/lua/plugins/welcome.lua
+create_sym_link config/nvim/lua/plugins/whichkey.lua ~/.config/nvim/lua/plugins/whichkey.lua
+create_sym_link config/nvim/lua/plugins/legacy.lua ~/.config/nvim/lua/plugins/legacy.lua
+create_sym_link config/nvim/lua/plugins/cmp.lua ~/.config/nvim/lua/plugins/cmp.lua
+create_sym_link config/nvim/lua/plugins/lsp.lua ~/.config/nvim/lua/plugins/lsp.lua
+create_sym_link config/nvim/lua/plugins/treesitter.lua ~/.config/nvim/lua/plugins/treesitter.lua
+create_sym_link config/nvim/lua/plugins/formatter.lua ~/.config/nvim/lua/plugins/formatter.lua
+create_sym_link config/nvim/lua/plugins/status.lua ~/.config/nvim/lua/plugins/status.lua
+create_sym_link config/nvim/lua/plugins/gitsigns.lua ~/.config/nvim/lua/plugins/gitsigns.lua
+create_sym_link config/nvim/lua/plugins/test.lua ~/.config/nvim/lua/plugins/test.lua
+create_sym_link config/nvim/lua/plugins/fugitive.lua ~/.config/nvim/lua/plugins/fugitive.lua
+create_sym_link config/nvim/lua/plugins/telescope.lua ~/.config/nvim/lua/plugins/telescope.lua
+create_sym_link config/nvim/lua/plugins/tbro.lua ~/.config/nvim/lua/plugins/tbro.lua
+create_sym_link config/nvim/lua/plugins/pry.lua ~/.config/nvim/lua/plugins/pry.lua
+create_sym_link config/nvim/lua/plugins/copilot.lua ~/.config/nvim/lua/plugins/copilot.lua
+create_sym_link config/nvim/lua/plugins/noice.lua ~/.config/nvim/lua/plugins/noice.lua
+create_sym_link config/nvim/lua/plugins/trouble.lua ~/.config/nvim/lua/plugins/trouble.lua
+create_sym_link config/nvim/lua/plugins/mini.lua ~/.config/nvim/lua/plugins/mini.lua
+create_sym_link config/nvim/lua/plugins/grug.lua ~/.config/nvim/lua/plugins/grug.lua
+create_sym_link config/nvim/lua/plugins/snippets.lua ~/.config/nvim/lua/plugins/snippets.lua
 
-copy_file config/nvim/lua/plugins/langs/go.lua ~/.config/nvim/lua/plugins/langs/go.lua
-copy_file config/nvim/lua/plugins/langs/ruby.lua ~/.config/nvim/lua/plugins/langs/ruby.lua
-copy_file config/nvim/lua/plugins/langs/typescript.lua ~/.config/nvim/lua/plugins/langs/typescript.lua
+create_sym_link config/nvim/lua/plugins/langs/go.lua ~/.config/nvim/lua/plugins/langs/go.lua
+create_sym_link config/nvim/lua/plugins/langs/ruby.lua ~/.config/nvim/lua/plugins/langs/ruby.lua
+create_sym_link config/nvim/lua/plugins/langs/typescript.lua ~/.config/nvim/lua/plugins/langs/typescript.lua
 
 # Git template
-copy_file git_template/hooks/ctags ~/.git_template/hooks/ctags
-copy_file git_template/hooks/post-checkout ~/.git_template/hooks/post-checkout
-copy_file git_template/hooks/post-commit ~/.git_template/hooks/post-commit
-copy_file git_template/hooks/post-merge ~/.git_template/hooks/post-merge
-copy_file git_template/hooks/post-rewrite ~/.git_template/hooks/post-rewrite
+create_sym_link git_template/hooks/ctags ~/.git_template/hooks/ctags
+create_sym_link git_template/hooks/post-checkout ~/.git_template/hooks/post-checkout
+create_sym_link git_template/hooks/post-commit ~/.git_template/hooks/post-commit
+create_sym_link git_template/hooks/post-merge ~/.git_template/hooks/post-merge
+create_sym_link git_template/hooks/post-rewrite ~/.git_template/hooks/post-rewrite
 
 # Zsh
-copy_file zsh/aliases.zsh ~/.zsh/aliases.zsh
-copy_file zsh/fzf.zsh ~/.zsh/fzf.zsh
-copy_file zsh/g.zsh ~/.zsh/g.zsh
-copy_file zsh/prompt.zsh ~/.zsh/prompt.zsh
+create_sym_link zsh/aliases.zsh ~/.zsh/aliases.zsh
+create_sym_link zsh/fzf.zsh ~/.zsh/fzf.zsh
+create_sym_link zsh/g.zsh ~/.zsh/g.zsh
+create_sym_link zsh/prompt.zsh ~/.zsh/prompt.zsh
 
 # Setup RDM
 if [[ -n "$CODESPACES" ]]; then
