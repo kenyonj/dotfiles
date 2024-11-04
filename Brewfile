@@ -18,3 +18,5 @@ brew "nethack"
 brew "slashem"
 brew "tokei"
 brew "vale"
+brew "autojump"
+
