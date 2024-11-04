@@ -1,5 +1,5 @@
-      vim.g.test_custom_strategies = { tbro = function() return require('tbro').send() end }
-      vim.g.test_strategy = 'tbro'
+vim.g.test_custom_strategies = { tbro = function() return require('tbro').send() end }
+vim.g.test_strategy = 'tbro'
 
 return {
   {

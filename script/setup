@@ -110,6 +110,7 @@ create_sym_link config/nvim/lua/plugins/trouble.lua ~/.config/nvim/lua/plugins/t
 create_sym_link config/nvim/lua/plugins/mini.lua ~/.config/nvim/lua/plugins/mini.lua
 create_sym_link config/nvim/lua/plugins/grug.lua ~/.config/nvim/lua/plugins/grug.lua
 create_sym_link config/nvim/lua/plugins/snippets.lua ~/.config/nvim/lua/plugins/snippets.lua
+create_sym_link config/nvim/lua/plugins/tmuxnavigator.lua ~/.config/nvim/lua/plugins/tmuxnavigator.lua
 
 create_sym_link config/nvim/lua/plugins/langs/go.lua ~/.config/nvim/lua/plugins/langs/go.lua
 create_sym_link config/nvim/lua/plugins/langs/ruby.lua ~/.config/nvim/lua/plugins/langs/ruby.lua
