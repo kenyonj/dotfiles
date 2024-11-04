@@ -117,6 +117,9 @@ bindkey "^a" beginning-of-line
 bindkey "^e" end-of-line
 bindkey "^k" kill-line
 
+# use a quick `jj` keystroke to get into vim mode on the command line
+bindkey "jj" vi-cmd-mode
+
 # Reset pane names in tmux to "" instead of "hostname"
 if [[ -n "$TMUX" ]]; then
   echo -ne "\033]2;\033\\"
