@@ -11,7 +11,7 @@ cd $SCRIPT_DIR && cd ..
 
 function remove_if_exists() {
   if [[ -a "$1" ]]; then
-    rm "$2"
+    rm "$1"
   fi
 }
 
@@ -145,7 +145,7 @@ fi
 # Codespaces installs
 if [[ -n "$CODESPACES" ]]; then
   sudo apt-get install -y ripgrep shellcheck fuse ruby-dev tmux fuse jq
-  sudo apt-get install -y bat fd-find noti tokei vale
+  sudo apt-get install -y bat fd-find noti tokei vale autojump
   echo "export SKIP_GH_PRE_PUSH_HOOKS" >> ~/.zshrc
 
   # Install the latest neovim
