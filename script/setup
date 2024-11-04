@@ -147,11 +147,6 @@ if [[ -n "$CODESPACES" ]]; then
   sudo apt-get install -y ripgrep shellcheck fuse ruby-dev tmux fuse jq
   sudo apt-get install -y bat fd-find autojump
 
-  # install noti
-  wget https://github.com/variadico/noti/releases/download/3.7.0/noti3.7.0.linux-amd64.tar.gz
-  tar -xvzf noti3.7.0.linux-amd64.tar.gz
-  sudo mv noti /usr/bin/noti
-
   # install vale
   wget https://github.com/errata-ai/vale/releases/download/v2.28.0/vale_2.28.0_Linux_64-bit.tar.gz
   tar -xvzf vale_2.28.0_Linux_64-bit.tar.gz
