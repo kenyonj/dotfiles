@@ -157,6 +157,8 @@ if os.getenv("CODESPACES") ~= nil and os.getenv("CODESPACES") ~= "" then
     copy = { ["+"] = { "rdm", "copy" }, ["*"] = { "rdm", "copy" } },
     paste = { ["+"] = { "rdm", "paste" }, ["*"] = { "rdm", "paste" } }
   }
+else
+  vim.opt.clipboard = "unnamedplus"
 end
 
 vim.cmd('source $HOME/.config/nvim/colors.vim')
