@@ -5,13 +5,13 @@ export PATH=".git/safe/../../bin:$PATH"
 # macOS so we need to set it manually
 export XDG_CONFIG_HOME="$HOME/.config"
 
+autoload -Uz compinit compdef
 
 # Load completions for brew and brew installed packages that provide completions
 if type brew &>/dev/null
 then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
-  autoload -Uz compinit
   compinit
 fi
 
