@@ -1,1 +1,3 @@
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [[ -z "$CODESPACES" ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
