@@ -13,6 +13,7 @@
 [core]
   excludesfile = ~/.excludes
   whitespace = trailing-space,space-before-tab
+	pager = less -F -X
 [advice]
   pushNonFastForward = false
   statusHints = false
