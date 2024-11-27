@@ -153,7 +153,8 @@ if [[ -z "$CODESPACES" ]]; then
   [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh"
   [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && . "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"
   [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
-  eval "$(~/.local/bin/mise activate zsh)"
+  [ -f /opt/homebrew/bin/mise ] && eval "$(/opt/homebrew/bin/mise activate zsh)"
+  [ -f ~/.local/bin/mise ] && eval "$(~/.local/bin/mise activate zsh)"
 else
   [ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
 fi

@@ -77,7 +77,10 @@ then
   alias xdg-open="rdm open"
 fi
 
-alias connect-codespaces="TERM=xterm-256color gh cs ssh -- -R 127.0.0.1:7391:$(rdm socket)"
+if [[ -f /usr/bin/rdm ]]
+then
+  alias connect-codespaces="TERM=xterm-256color gh cs ssh -- -R 127.0.0.1:7391:$(rdm socket)"
+fi
 
 gocoverstats() {
     local t=$(mktemp -t cover)
