@@ -27,5 +27,6 @@ cask "spotify"
 cask "home-assistant"
 cask "whatsapp"
 cask "1password"
+cask "lunasea"
 
 mas "1Password for Safari", id: 1569813296
