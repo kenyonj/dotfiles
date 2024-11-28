@@ -19,7 +19,6 @@ brew "vale"
 brew "autojump"
 brew "mise"
 brew "mas"
-brew "gh"
 brew "ollama"
 
 cask "kitty"
@@ -28,3 +27,5 @@ cask "spotify"
 cask "home-assistant"
 cask "whatsapp"
 cask "1password"
+
+mas "1Password for Safari", id: 1569813296
