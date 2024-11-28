@@ -149,9 +149,6 @@ if [[ "$TERM_PROGRAM" == "vscode" ]]; then
 fi
 
 if [[ -z "$CODESPACES" ]]; then
-  export NVM_DIR="$HOME/.nvm"
-  [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && . "$(brew --prefix)/opt/nvm/nvm.sh"
-  [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && . "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm"
   [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
   [ -f /opt/homebrew/bin/mise ] && eval "$(/opt/homebrew/bin/mise activate zsh)"
   [ -f ~/.local/bin/mise ] && eval "$(~/.local/bin/mise activate zsh)"
