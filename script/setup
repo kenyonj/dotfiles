@@ -129,6 +129,9 @@ create_sym_link zsh/fzf.zsh ~/.zsh/fzf.zsh
 create_sym_link zsh/g.zsh ~/.zsh/g.zsh
 create_sym_link zsh/prompt.zsh ~/.zsh/prompt.zsh
 
+# Mise
+create_sym_link mise/config.toml ~/.mise/config.toml
+
 # Setup RDM
 if [[ -n "$CODESPACES" ]]; then
   # Use RDM for copy/paste and open support
@@ -193,4 +196,10 @@ if [[ -n "$CODESPACES" ]]; then
 else
   # Local brew bundle install
   brew bundle
+
+  # trust the new dotfile config for mise
+  mise trust
+
+  # install tool versions with mise
+  mise install
 fi
