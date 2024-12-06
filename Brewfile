@@ -20,6 +20,7 @@ brew "autojump"
 brew "mise"
 brew "mas"
 brew "ollama"
+brew "tailscale"
 
 cask "kitty"
 cask "raycast"
@@ -29,5 +30,10 @@ cask "whatsapp"
 cask "1password"
 cask "lunasea"
 cask "font-hack-nerd-font"
+cask "zoom"
+cask "betterdisplay"
+cask "microsoft-office"
+cask "qutebrowser"
 
 mas "1Password for Safari", id: 1569813296
+mas "Tailscale", id: 1475387142

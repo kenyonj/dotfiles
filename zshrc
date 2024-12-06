@@ -91,10 +91,6 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.history
 
-# Disable history expansion
-# This allows usage of ! without escaping, eg: `git commit -m "yes!"`
-unsetopt BANG_HIST
-
 # Vim like history search
 autoload -U up-line-or-beginning-search
 autoload -U down-line-or-beginning-search
@@ -119,6 +115,9 @@ bindkey "^k" kill-line
 
 # use a quick `jj` keystroke to get into vim mode on the command line
 bindkey "jj" vi-cmd-mode
+
+# search history with control-r
+bindkey "^R" history-incremental-search-backward
 
 # Reset pane names in tmux to "" instead of "hostname"
 if [[ -n "$TMUX" ]]; then
