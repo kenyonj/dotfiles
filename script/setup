@@ -199,7 +199,11 @@ else
   fi
 
   # Local brew bundle install
-  brew bundle
+  if [[ -z "$SKIP_BREW_BUNDLE" ]]; then
+    brew bundle
+  else
+    echo "skipping brew bundle"
+  fi
 
   # trust the new dotfile config for mise
   mise trust
