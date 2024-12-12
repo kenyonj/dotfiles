@@ -82,6 +82,8 @@ then
   alias connect-codespaces="TERM=xterm-256color gh cs ssh -- -R 127.0.0.1:7391:$(rdm socket)"
 fi
 
+alias ssh="TERM=xterm-256color ssh"
+
 alias gh-web-port-forward="gh cs ports forward 80:80"
 
 gocoverstats() {
