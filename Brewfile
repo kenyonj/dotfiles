@@ -35,6 +35,12 @@ cask "betterdisplay"
 cask "microsoft-office"
 cask "qutebrowser"
 cask "obsidian"
+cask "chatgpt"
+cask "firefox@developer-edition"
+cask "google-chrome"
+cask "balenaetcher"
+cask "arc"
 
 mas "1Password for Safari", id: 1569813296
 mas "Tailscale", id: 1475387142
+mas "Parcel - Delivery Tracking", id: 639968404
