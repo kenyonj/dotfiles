@@ -40,6 +40,7 @@ cask "firefox@developer-edition"
 cask "google-chrome"
 cask "balenaetcher"
 cask "arc"
+cask "slack"
 
 mas "1Password for Safari", id: 1569813296
 mas "Tailscale", id: 1475387142
