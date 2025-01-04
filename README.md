@@ -1,6 +1,15 @@
 Justin Kenyon's dotfiles
 ===============
 
+How to install them?
+--------------------
+
+1. Run this command in your terminal:
+```bash
+curl -fsSL https://raw.githubusercontent.com/kenyonj/dotfiles/main/script/remote_install | bash
+```
+
+
 
 What's in it?
 -------------

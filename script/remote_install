@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Exit immediately if a command exits with a non-zero status
+set -e
+
+# Function to install Homebrew if not already installed
+install_homebrew() {
+  if ! command -v brew &>/dev/null; then
+    echo "Homebrew not found. Installing..."
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    echo "Homebrew installed."
+  else
+    echo "Homebrew already installed."
+  fi
+}
+
+# Clone dotfiles repository
+clone_dotfiles() {
+  DOTFILES_DIR="$HOME/dotfiles"
+  if [ ! -d "$DOTFILES_DIR" ]; then
+    echo "Cloning dotfiles repository..."
+    git clone https://github.com/kenyonj/dotfiles.git "$DOTFILES_DIR"
+    echo "dotfiles cloned to $DOTFILES_DIR."
+  else
+    echo "dotfiles repository already exists at $DOTFILES_DIR."
+  fi
+}
+
+# Run setup script from dotfiles
+run_setup() {
+  cd "$HOME/dotfiles"
+  if [ -x "./script/setup" ]; then
+    echo "Running dotfiles setup script..."
+    ./script/setup
+    echo "dotfiles setup completed."
+  else
+    echo "Error: setup script not found or not executable in $HOME/dotfiles/script/setup."
+    exit 1
+  fi
+}
+
+# Main function to orchestrate the setup
+main() {
+  install_homebrew
+  clone_dotfiles
+  run_setup
+}
+
+# Execute the main function
+main

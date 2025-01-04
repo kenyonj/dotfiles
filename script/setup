@@ -21,6 +21,13 @@ function move_if_exists() {
   fi
 }
 
+# Set up Homebrew
+if [[ -z "$CODESPACES" ]]; then
+  if ! [ -x "$(command -v brew)" ]; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
+fi
+
 # Clean up codespaces environment
 if [[ -n "$CODESPACES" ]]; then
   if [[ -n "$HOMEASSISTANT_WEBHOOK_URL" ]]; then
@@ -194,10 +201,6 @@ if [[ -n "$CODESPACES" ]]; then
       "$HOMEASSISTANT_WEBHOOK_URL"
   fi
 else
-  if ! [ -x "$(command -v brew)" ]; then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  fi
-
   # Local brew bundle install
   if [[ -z "$SKIP_BREW_BUNDLE" ]]; then
     brew bundle

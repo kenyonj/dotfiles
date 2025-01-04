@@ -22,8 +22,10 @@ done
 
 compinit -C
 
-# Load completion functions
-fpath=(/usr/local/share/zsh/site-functions $fpath)
+if [[ -f /usr/local/share/zsh/site-functions ]]; then
+  # Load completion functions
+  fpath=(/usr/local/share/zsh/site-functions $fpath)
+fi
 
 # Case insensitive
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -148,8 +150,18 @@ if [[ "$TERM_PROGRAM" == "vscode" ]]; then
 fi
 
 if [[ -z "$CODESPACES" ]]; then
-  [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
-  [ -f /opt/homebrew/bin/mise ] && eval "$(/opt/homebrew/bin/mise activate zsh)"
+  if [[ -f /opt/homebrew/etc/profile.d/autojump.sh ]]; then
+    . /opt/homebrew/etc/profile.d/autojump.sh
+  elif [[ -f /usr/local/etc/profile.d/autojump.sh ]]; then 
+    . /usr/local/etc/profile.d/autojump.sh
+  fi
+
+  if [[ -f /opt/homebrew/bin/mise ]]; then
+    eval "$(/opt/homebrew/bin/mise activate zsh)"
+  elif [[ -f /usr/local/bin/mise ]]; then
+    eval "$(/usr/local/bin/mise activate zsh)"
+  fi
+
   [ -f ~/.local/bin/mise ] && eval "$(~/.local/bin/mise activate zsh)"
 else
   [ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
