@@ -1,0 +1,4 @@
+#!/bin/bash
+
+/usr/libexec/PlistBuddy -c "Delete :AppleSymbolicHotKeys:64:enabled" ~/Library/Preferences/com.apple.symbolichotkeys.plist
+killall Dock

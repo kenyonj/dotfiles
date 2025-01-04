@@ -27,7 +27,7 @@ if [[ -z "$CODESPACES" ]]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
 
-  for dir in script/launch_agents/*; do
+  for dir in script/system_customizations/*; do
     if [ -d "$dir" ]; then
       if [ -f "$dir/command" ]; then
         bash "$dir/command"
@@ -36,7 +36,7 @@ if [[ -z "$CODESPACES" ]]; then
       if [ -f "$dir/plist" ]; then
         base_dir=$(basename $dir)
         new_plist="$HOME/Library/LaunchAgents/com.user.$base_dir.plist"
-        move_if_exists "$dir/plist" "$new_plist"
+        cp "$dir/plist" "$new_plist"
         launchctl load "$new_plist"
       fi
     fi
