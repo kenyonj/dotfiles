@@ -21,11 +21,26 @@ function move_if_exists() {
   fi
 }
 
-# Set up Homebrew
+# Set up Homebrew and launch agents
 if [[ -z "$CODESPACES" ]]; then
   if ! [ -x "$(command -v brew)" ]; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
+
+  for dir in script/launch_agents/*; do
+    if [ -d "$dir" ]; then
+      if [ -f "$dir/command" ]; then
+        bash "$dir/command"
+      fi
+
+      if [ -f "$dir/plist" ]; then
+        base_dir=$(basename $dir)
+        new_plist="$HOME/Library/LaunchAgents/com.user.$base_dir.plist"
+        move_if_exists "$dir/plist" "$new_plist"
+        launchctl load "$new_plist"
+      fi
+    fi
+  done
 fi
 
 # Clean up codespaces environment
