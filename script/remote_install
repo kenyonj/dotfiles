@@ -39,10 +39,25 @@ run_setup() {
   fi
 }
 
+# Enter zsh shell
+enter_zsh() {
+  if [ "$SHELL" != "/bin/zsh" ]; then
+    echo "Changing shell to zsh..."
+    chsh -s /bin/zsh
+    echo "Shell changed to zsh."
+  else
+    echo "Shell is already set to zsh."
+  fi
+
+  echo "Starting zsh..."
+  /bin/zsh
+}
+
 # Main function to orchestrate the setup
 main() {
   install_homebrew
   clone_dotfiles
+  enter_zsh
   run_setup
 }
 
