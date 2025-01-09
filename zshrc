@@ -163,9 +163,12 @@ if [[ -z "$CODESPACES" ]]; then
   fi
 
   [ -f ~/.local/bin/mise ] && eval "$(~/.local/bin/mise activate zsh)"
+
+  # Trust mise versions, if there are any untrusted files
+  if mise status | grep -q "untrusted"; then
+    mise trust
+  fi
 else
   [ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
 fi
 
-# Trust mise versions
-mise trust
