@@ -68,6 +68,12 @@ vim.cmd [[
   let g:grepper.tools = ['rg', 'git']
 ]]
 
+-- Easily open another pane with another file, showing the explorer
+vim.api.nvim_set_keymap("n", "<leader>eh", ":Vexplore<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>ej", ":Hexplore<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>ek", ":Hexplore!<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>el", ":Vexplore!<CR>", { noremap = true, silent = true })
+
 -- General config
 vim.opt.autoindent = true -- Copy indent from previous line
 vim.opt.backupcopy = 'yes' -- Keeps original creator code
@@ -87,6 +93,7 @@ else
   vim.opt.laststatus = 2 -- Always show statusline
 end
 
+vim.opt.clipboard = "unnamedplus"               -- Always use this clipboard
 vim.opt.lazyredraw = false                      -- Boosts performance at times, but disabled for notify
 vim.opt.list = true                             -- Don't show listchars
 vim.opt.listchars = { tab = '»·', trail = '·' } -- Show trailing spaces as dots
@@ -157,8 +164,6 @@ if os.getenv("CODESPACES") ~= nil and os.getenv("CODESPACES") ~= "" then
     copy = { ["+"] = { "rdm", "copy" }, ["*"] = { "rdm", "copy" } },
     paste = { ["+"] = { "rdm", "paste" }, ["*"] = { "rdm", "paste" } }
   }
-else
-  vim.opt.clipboard = "unnamedplus"
 end
 
 vim.cmd('source $HOME/.config/nvim/colors.vim')
