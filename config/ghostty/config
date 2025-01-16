@@ -3,7 +3,7 @@ theme = "light:GruvboxLight,dark:GruvboxDark"
 font-size = 16
 font-family = Hack Nerd Font Mono Regular
 
-macos-titlebar-style = hidden
+macos-titlebar-style = tabs
 mouse-hide-while-typing = true
 
 window-padding-x = 10
@@ -11,4 +11,4 @@ window-padding-y = 10
 window-padding-balance = true
 window-colorspace = display-p3
 
-keybind = cmd+s>r=reload_config
+keybind = cmd+s>cmd+r=reload_config
