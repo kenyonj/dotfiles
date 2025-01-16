@@ -34,7 +34,6 @@ cask "font-hack-nerd-font"
 cask "betterdisplay"
 cask "microsoft-office"
 cask "qutebrowser"
-<<<<<<< HEAD
 cask "obsidian"
 cask "chatgpt"
 cask "firefox@developer-edition"
