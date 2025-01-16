@@ -4,11 +4,20 @@ font-size = 16
 font-family = Hack Nerd Font Mono Regular
 
 macos-titlebar-style = tabs
-mouse-hide-while-typing = true
+macos-icon = custom-style
+macos-icon-ghost-color = 333300
+macos-icon-screen-color = 222222
 
 window-padding-x = 10
 window-padding-y = 10
 window-padding-balance = true
 window-colorspace = display-p3
+
+clipboard-read = allow
+clipboard-write = allow
+mouse-shift-capture = true
+mouse-hide-while-typing = true
+shell-integration = zsh
+shell-integration-features = no-cursor
 
 keybind = cmd+s>cmd+r=reload_config
