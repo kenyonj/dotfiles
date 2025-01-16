@@ -30,10 +30,11 @@ cask "whatsapp"
 cask "1password"
 cask "lunasea"
 cask "font-hack-nerd-font"
-cask "zoom"
+# cask "zoom"
 cask "betterdisplay"
 cask "microsoft-office"
 cask "qutebrowser"
+<<<<<<< HEAD
 cask "obsidian"
 cask "chatgpt"
 cask "firefox@developer-edition"
@@ -42,6 +43,7 @@ cask "balenaetcher"
 cask "arc"
 cask "slack"
 cask "insomnia"
+cask "ghostty"
 
 mas "1Password for Safari", id: 1569813296
 mas "Tailscale", id: 1475387142

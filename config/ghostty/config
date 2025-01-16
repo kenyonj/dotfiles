@@ -1,0 +1,11 @@
+theme = "light:GruvboxLight,dark:Everforest Dark - Hard"
+font-size = 16
+font-family = Hack Nerd Font Mono Regular
+macos-titlebar-style = hidden
+window-padding-x = 10
+window-padding-y = 10
+window-padding-balance = true
+mouse-hide-while-typing = true
+
+keybind = cmd+s>r=reload_config
+

@@ -105,6 +105,9 @@ create_sym_link config/lazygit/config.yml ~/.config/lazygit/config.yml
 # Kitty
 create_sym_link config/kitty/kitty.conf ~/.config/kitty/kitty.conf
 
+# Ghostty
+create_sym_link config/ghostty/config ~/.config/ghostty/config
+
 # Neovim
 create_sym_link config/nvim/autocommands.vim ~/.config/nvim/autocommands.vim
 create_sym_link config/nvim/colors.vim ~/.config/nvim/colors.vim
