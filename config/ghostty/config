@@ -15,7 +15,6 @@ window-colorspace = display-p3
 
 clipboard-read = allow
 clipboard-write = allow
-mouse-shift-capture = true
 mouse-hide-while-typing = true
 shell-integration = zsh
 shell-integration-features = no-cursor
