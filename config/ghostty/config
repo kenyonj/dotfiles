@@ -18,5 +18,3 @@ clipboard-write = allow
 mouse-hide-while-typing = true
 shell-integration = zsh
 shell-integration-features = no-cursor
-
-keybind = cmd+s>cmd+r=reload_config
