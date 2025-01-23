@@ -169,6 +169,37 @@ end
 vim.cmd('source $HOME/.config/nvim/colors.vim')
 vim.cmd('source $HOME/.config/nvim/autocommands.vim')
 
-if os.getenv('theme') == 'light' then
-  vim.o.background = 'light'
+local function get_home_directory()
+  local handle = io.popen("whoami")
+  if handle then
+    local username = handle:read("*l")
+    handle:close()
+    return "/home/" .. username
+  end
+end
+
+local function get_dark_mode_status()
+  local home_directory = get_home_directory()
+  local status_file = home_directory .. "/dark_mode_status.txt"
+  local file = io.open(status_file, "r")
+  if file then
+    local status = file:read("*l"):match("^%s*(.-)%s*$") -- Trim whitespace
+    file:close()
+    return status
+  end
+  return nil
+end
+
+local dark_mode = get_dark_mode_status()
+
+if dark_mode == "on" then
+  vim.o.background = "dark"
+elseif dark_mode == "off" then
+  vim.o.background = "light"
+else
+  if os.getenv('theme') == 'light' then
+    vim.o.background = 'light'
+  else
+    vim.o.background = "dark"
+  end
 end
