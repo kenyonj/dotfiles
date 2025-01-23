@@ -9,7 +9,7 @@ end
 
 local function get_dark_mode_status()
   local home_directory = get_home_directory()
-  local status_file = home_directory .. "/dark_mode_status.txt"
+  local status_file = home_directory .. "/.dark_mode_status.txt"
   local file = io.open(status_file, "r")
   if file then
     local status = file:read("*l"):match("^%s*(.-)%s*$")
