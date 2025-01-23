@@ -168,7 +168,3 @@ end
 
 vim.cmd('source $HOME/.config/nvim/colors.vim')
 vim.cmd('source $HOME/.config/nvim/autocommands.vim')
-
-if os.getenv('theme') == 'light' then
-  vim.o.background = 'light'
-end
