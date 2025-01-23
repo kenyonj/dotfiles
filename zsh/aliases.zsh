@@ -79,7 +79,8 @@ fi
 
 if [[ -f /usr/local/bin/rdm ]]
 then
-  alias connect-codespaces="TERM=xterm-256color gh cs ssh -- -R 127.0.0.1:7391:$(rdm socket)"
+  DARK_MODE="$(defaults read -g AppleInterfaceStyle 2>/dev/null && echo 'on' || echo 'off')"
+  alias connect-codespaces='TERM=xterm-256color gh cs ssh -- -R 127.0.0.1:7391:$(rdm socket) -t "echo \"$DARK_MODE\" > ~/.dark_mode_status.txt; exec \$SHELL -l"'
 fi
 
 alias ssh="TERM=xterm-256color ssh"
