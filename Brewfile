@@ -21,6 +21,7 @@ brew "mise"
 brew "mas"
 brew "ollama"
 brew "tailscale"
+brew "lazygit"
 
 cask "kitty"
 cask "raycast"
