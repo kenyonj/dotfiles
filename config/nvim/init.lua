@@ -183,7 +183,7 @@ local function get_dark_mode_status()
   local status_file = home_directory .. "/.dark_mode_status.txt"
   local file = io.open(status_file, "r")
   if file then
-    local status = file:read("*l"):match("^%s*(.-)%s*$") -- Trim whitespace
+    local status = file:read("*l"):match("^%s*(.-)%s*$")
     file:close()
     return status
   end
