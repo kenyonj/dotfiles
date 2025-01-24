@@ -22,6 +22,7 @@ brew "mas"
 brew "ollama"
 brew "tailscale"
 brew "lazygit"
+brew "magic-wormhole"
 
 cask "kitty"
 cask "raycast"
