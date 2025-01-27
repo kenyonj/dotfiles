@@ -23,6 +23,7 @@ brew "ollama"
 brew "tailscale"
 brew "lazygit"
 brew "magic-wormhole"
+brew "pipx"
 
 cask "kitty"
 cask "raycast"
