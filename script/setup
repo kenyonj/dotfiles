@@ -155,7 +155,7 @@ create_sym_link zsh/g.zsh ~/.zsh/g.zsh
 create_sym_link zsh/prompt.zsh ~/.zsh/prompt.zsh
 
 # Mise
-create_sym_link mise/config.toml ~/.mise/config.toml
+create_sym_link config/mise/config.toml ~/.config/mise/config.toml
 
 # Setup RDM
 if [[ -n "$CODESPACES" ]]; then
