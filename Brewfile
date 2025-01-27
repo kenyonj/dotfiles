@@ -27,6 +27,7 @@ brew "pipx"
 brew "lua"
 brew "luarocks"
 brew "prettierd"
+brew "fd"
 
 cask "kitty"
 cask "raycast"

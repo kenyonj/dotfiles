@@ -10,4 +10,5 @@ lua = ["5.1", "latest"]
 "gem:rubocop" = "latest"
 "gem:neovim" = "latest"
 "npm:prettier" = "latest"
+"npm:neovim" = "latest"
 "asdf:mise-plugins/mise-lua" = "latest"
