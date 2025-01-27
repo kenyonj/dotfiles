@@ -174,8 +174,17 @@ fi
 # Codespaces installs
 if [[ -n "$CODESPACES" ]]; then
   sudo apt-get update -y
-  sudo apt-get install -y ripgrep shellcheck fuse ruby-dev tmux fuse jq
-  sudo apt-get install -y bat fd-find autojump
+  sudo apt-get install -y \
+    ripgrep \
+    shellcheck \
+    fuse \
+    ruby-dev \
+    tmux \
+    jq \
+    bat \
+    fd-find \
+    autojump \
+    luarocks
 
   # install vale
   wget https://github.com/errata-ai/vale/releases/download/v2.28.0/vale_2.28.0_Linux_64-bit.tar.gz
@@ -208,6 +217,8 @@ if [[ -n "$CODESPACES" ]]; then
 
   # Install neovim plugins
   nvim --headless "+Lazy! update" +qall
+
+  sudo gem install neovim
 
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   yes | ~/.fzf/install --no-bash --no-fish --key-bindings --completion --update-rc
