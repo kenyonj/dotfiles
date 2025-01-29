@@ -88,7 +88,7 @@ return {
     'goolord/alpha-nvim',
     lazy = vim.fn.argc(-1) ~= 0,
     priority = 1000,
-    config = {
+    opts = {
       layout = {
         { type = "padding", val = 2 },
         header,
