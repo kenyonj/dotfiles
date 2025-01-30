@@ -27,5 +27,6 @@ return {
       history = false,
       delete_check_events = "TextChanged",
     },
+    run = "make install_jsregexp",
   }
 }
