@@ -4,7 +4,7 @@ experimental = true
 [tools]
 ruby = "3.4.1"
 go = "1.23.5"
-node = "23.6.1"
+node = "23.7.0"
 python = "3.13.1"
 lua = "5.1"
 "gem:rubocop" = "latest"
