@@ -60,12 +60,13 @@ alias standup="git standup"
 alias gcb!='git branch -d `git branch --merged | grep -v "^*" | grep -v "main" | tr -d "\n"`'
 alias mrwr='gh pr edit --add-label "Mark Ready When Ready"'
 
-# tmux
-alias tmux="tmux new-session -A -s main"
-
 if [[ -n "$TMUX" ]] then
+  alias tmux &>/dev/null && unalias tmux
   alias clear="clear && tmux clear-history"
+else
+  alias tmux="tmux new-session -A -s main"
 fi
+
 
 alias taf!="TEST_ALL_FEATURES=1 fc -e : -1"
 
