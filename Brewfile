@@ -28,6 +28,7 @@ brew "lua"
 brew "luarocks"
 brew "prettierd"
 brew "fd"
+brew "bitwarden-cli"
 
 cask "kitty"
 cask "raycast"
@@ -50,7 +51,8 @@ cask "arc"
 cask "slack"
 cask "insomnia"
 cask "ghostty"
-cask "tailscale"
+# cask "tailscale"
+cask "bitwarden"
 
 mas "Parcel - Delivery Tracking", id: 639968404
 mas "Xcode", id: 497799835
