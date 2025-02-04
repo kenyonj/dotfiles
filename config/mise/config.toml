@@ -3,9 +3,9 @@ experimental = true
 
 [tools]
 ruby = "3.4.1"
-go = "1.23.5"
-node = "23.7.0"
-python = "3.13.1"
+go = "latest"
+node = "latest"
+python = "latest"
 lua = "5.1"
 "gem:rubocop" = "latest"
 "gem:neovim" = "latest"
