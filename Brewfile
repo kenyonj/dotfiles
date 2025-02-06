@@ -29,6 +29,7 @@ brew "luarocks"
 brew "prettierd"
 brew "fd"
 brew "bitwarden-cli"
+brew "pandoc"
 
 cask "kitty"
 cask "raycast"
