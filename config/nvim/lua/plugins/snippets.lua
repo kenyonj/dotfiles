@@ -22,11 +22,22 @@ return {
           table.insert(opts.sources, { name = "luasnip" })
         end,
       },
+      {
+        "kmarius/jsregexp",
+        build = "make install_jsregexp",
+      }
     },
+    config = function()
+      require("luasnip").config.set_config({
+        enable_autosnippets = true,
+        history = true,
+        update_events = "TextChanged,TextChangedI",
+      })
+      vim.g.luasnip_use_jsregexp = true
+    end,
     opts = {
       history = false,
       delete_check_events = "TextChanged",
     },
-    run = "make install_jsregexp",
   }
 }

@@ -30,6 +30,7 @@ brew "prettierd"
 brew "fd"
 brew "bitwarden-cli"
 brew "pandoc"
+brew "cmake"
 brew "orbstack"
 
 cask "kitty"
