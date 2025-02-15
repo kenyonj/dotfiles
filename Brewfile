@@ -31,7 +31,6 @@ brew "fd"
 brew "bitwarden-cli"
 brew "pandoc"
 brew "cmake"
-brew "orbstack"
 
 cask "kitty"
 cask "raycast"
@@ -56,6 +55,7 @@ cask "insomnia"
 cask "ghostty"
 # cask "tailscale"
 cask "bitwarden"
+cask "orbstack"
 
 mas "Parcel - Delivery Tracking", id: 639968404
 mas "Xcode", id: 497799835
