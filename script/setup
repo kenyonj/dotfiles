@@ -375,7 +375,7 @@ else
       run_command brew bundle
     fi
 
-    run_command brew cu -a -f
+    run_command brew cu -a -f -y
   fi
 
   if $SKIP_MISE; then
