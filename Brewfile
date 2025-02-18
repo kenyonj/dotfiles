@@ -1,3 +1,6 @@
+tap "homebrew/cask"
+tap "buo/cask-upgrade"
+
 brew "bat"
 brew "fzf"
 brew "gh"
@@ -56,6 +59,7 @@ cask "ghostty"
 # cask "tailscale"
 cask "bitwarden"
 cask "orbstack"
+cask "plex-htpc"
 
 mas "Parcel - Delivery Tracking", id: 639968404
 mas "Xcode", id: 497799835

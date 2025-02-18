@@ -1,78 +1,206 @@
 #!/usr/bin/env bash
 
-exec > >(tee -i "$HOME/dotfiles_install.log")
+set -euo pipefail
+
+exec 3>&1
+exec 4>&2
+
+# Logging function
+log() {
+  local level="${1:-}"
+  local message="${2:-}"
+  
+  # Convert log levels to numbers using case statement
+  local msg_val=1
+  case "$level" in
+    "DEBUG") msg_val=0 ;;
+    "INFO")  msg_val=1 ;;
+    "WARN")  msg_val=2 ;;
+    "ERROR") msg_val=3 ;;
+  esac
+  
+  local curr_val=1
+  case "$LOG_LEVEL" in
+    "DEBUG") curr_val=0 ;;
+    "INFO")  curr_val=1 ;;
+    "WARN")  curr_val=2 ;;
+    "ERROR") curr_val=3 ;;
+  esac
+  
+  if [ "$msg_val" -ge "$curr_val" ]; then
+    # Write to our saved original stdout (fd 3)
+    echo "[$level] $message" >&3
+  fi
+}
+
+# Default values
+SKIP_BREW=false
+SKIP_MISE=false
+LOG_FILE="$HOME/dotfiles_install.log"
+SKIP_LOG=false
+WEBHOOK_URL="${HOMEASSISTANT_WEBHOOK_URL:-}"
+EXCLUDE_CUSTOMIZATIONS=false
+LOG_LEVEL="INFO" # DEBUG, INFO, WARN, ERROR
+
+usage() {
+  cat <<EOF
+Usage: $0 [options]
+
+Options:
+  -e            Exclude customizations
+  -l logfile    Specify log file (default: $HOME/dotfiles_install.log)
+  -b            Skip the Homebrew bundle step
+  -S            Skip writing to the log file
+  -m            Skip the Mise step
+  -w url        Webhook URL to send Codespaces completion message to (defaults to \$HOMEASSISTANT_WEBHOOK_URL)
+  -L level      Set log level (DEBUG, INFO, WARN, ERROR) (default: INFO)
+  -h            Show this help message and exit
+EOF
+}
+
+# Parse options with getopts
+while getopts "el:bmSw:L:h" opt; do
+  case "$opt" in
+    e)
+      EXCLUDE_CUSTOMIZATIONS=true
+      ;;
+    l)
+      LOG_FILE="$OPTARG"
+      ;;
+    b)
+      SKIP_BREW=true
+      ;;
+    m)
+      SKIP_MISE=true
+      ;;
+    S)
+      SKIP_LOG=true
+      ;;
+    w)
+      WEBHOOK_URL="$OPTARG"
+      ;;
+    L)
+      # Convert to uppercase for consistency
+      LOG_LEVEL=$(echo "$OPTARG" | tr '[:lower:]' '[:upper:]')
+      ;;
+    h)
+      usage
+      exit 0
+      ;;
+    \?)
+      echo "Invalid option: -${OPTARG:-}" >&2
+      usage
+      exit 1
+      ;;
+    :)
+      echo "Option -${OPTARG:-} requires an argument." >&2
+      usage
+      exit 1
+      ;;
+  esac
+done
+
+shift $((OPTIND - 1))
+
+# If SKIP_LOG is true, log to /dev/null
+if $SKIP_LOG; then
+  LOG_FILE=/dev/null
+fi
+
+exec > >(tee -i "$LOG_FILE")
 exec 2>&1
-set -x
+
+exec 1> >(while read -r line; do log "INFO" "$line"; done)
+exec 2> >(while read -r line; do log "WARN" "$line"; done)
+
+log "DEBUG" "Exclude customizations: $EXCLUDE_CUSTOMIZATIONS"
+log "DEBUG" "Log file: $LOG_FILE"
+log "DEBUG" "Skip brew: $SKIP_BREW"
+log "DEBUG" "Skip mise: $SKIP_MISE"
+log "DEBUG" "Webhook URL: $WEBHOOK_URL"
+log "DEBUG" "Log level: $LOG_LEVEL"
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
 # Ensure we're working from the root directory
-cd $SCRIPT_DIR && cd ..
+cd "$SCRIPT_DIR" && cd ..
+
+run_command() {
+  "$@"
+  if [[ $? -ne 0 ]]; then
+    log "ERROR" "Error running command: $*" >&2
+    exit 1
+  fi
+}
 
 function remove_if_exists() {
-  if [[ -a "$1" ]]; then
-    rm "$1"
+  if [[ -e "$1" ]]; then
+    run_command rm "$1"
   fi
 }
 
 function move_if_exists() {
-  if [[ -a "$1" ]]; then
-    mv "$1" "$2"
+  if [[ -e "$1" ]]; then
+    run_command mv "$1" "$2"
   fi
 }
 
 # Set up Homebrew and launch agents
-if [[ -z "$CODESPACES" ]]; then
+if [[ -z "${CODESPACES:-}" ]]; then
   if ! [ -x "$(command -v brew)" ]; then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    run_command /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   fi
 
-  for dir in script/system_customizations/*; do
-    if [ -d "$dir" ]; then
-      if [ -f "$dir/command" ]; then
-        bash "$dir/command"
-      fi
+  if $EXCLUDE_CUSTOMIZATIONS; then
+    log "INFO" "Skipping customizations"
+  else
+    for dir in script/system_customizations/*; do
+      if [ -d "$dir" ]; then
+        if [ -f "$dir/command" ]; then
+          run_command bash "$dir/command"
+        fi
 
-      if [ -f "$dir/plist" ]; then
-        base_dir=$(basename $dir)
-        new_plist="$HOME/Library/LaunchAgents/com.user.$base_dir.plist"
-        cp "$dir/plist" "$new_plist"
-        launchctl load "$new_plist"
+        if [ -f "$dir/plist" ]; then
+          base_dir=$(basename "$dir")
+          new_plist="$HOME/Library/LaunchAgents/com.user.$base_dir.plist"
+          run_command cp "$dir/plist" "$new_plist"
+          run_command launchctl load "$new_plist"
+        fi
       fi
-    fi
-  done
+    done
+  fi
 fi
 
 # Clean up codespaces environment
-if [[ -n "$CODESPACES" ]]; then
-  if [[ -n "$HOMEASSISTANT_WEBHOOK_URL" ]]; then
-    curl -X POST \
+if [[ -n "${CODESPACES:-}" ]]; then
+  if [[ -n "$WEBHOOK_URL" ]]; then
+    run_command curl -X POST \
       -H "Content-Type: application/json" \
       --data '{ "state": "started", "codespace_name": "'"$CODESPACE_NAME"'" }' \
-      "$HOMEASSISTANT_WEBHOOK_URL"
+      "$WEBHOOK_URL"
   fi
 
-  sudo chsh -s $(which zsh) $(whoami)
+  run_command sudo chsh -s "$(which zsh)" "$(whoami)"
 
-  if [[ ! -d "~/.cache" ]]; then
-    mkdir ~/.cache
+  if [[ ! -d "$HOME/.cache" ]]; then
+    run_command mkdir -p "$HOME/.cache"
   fi
 fi
 
 function create_sym_link() {
   local source="$(pwd)/$1"
-  local target=$2
+  local target="$2"
 
-  mkdir -p $(dirname "$target")
+  run_command mkdir -p "$(dirname "$target")"
 
   if [[ -f $target ]]; then
     if [[ ! -L $target ]]; then
-      echo "$target already exists but is not a symlink!"
+      log "WARN" "$target already exists but is not a symlink!"
     else
-      echo "$target already exists"
+      log "WARN" "$target already exists"
     fi
   else
-    ln -svf "$source" "$target"
+    run_command ln -svf "$source" "$target"
   fi
 }
 
@@ -158,23 +286,23 @@ create_sym_link zsh/prompt.zsh ~/.zsh/prompt.zsh
 create_sym_link config/mise/config.toml ~/.config/mise/config.toml
 
 # Setup RDM
-if [[ -n "$CODESPACES" ]]; then
+if [[ -n "${CODESPACES:-}" ]]; then
   # Use RDM for copy/paste and open support
-  wget https://github.com/BlakeWilliams/remote-development-manager/releases/download/v0.0.3/rdm-linux-amd64
-  sudo mv rdm-linux-amd64 /usr/bin/rdm
-  chmod +x /usr/bin/rdm
+  run_command wget https://github.com/BlakeWilliams/remote-development-manager/releases/download/v0.0.3/rdm-linux-amd64
+  run_command sudo mv rdm-linux-amd64 /usr/bin/rdm
+  run_command chmod +x /usr/bin/rdm
 
   if [[ "$TERM_PROGRAM" != 'vscode' ]]; then
-    gh config set browser "rdm open"
+    run_command gh config set browser "rdm open"
     echo 'alias open="rdm open"' >> ~/.zshenv
     echo 'alias xdg-open="rdm open"' >> ~/.zshenv
   fi
 fi
 
 # Codespaces installs
-if [[ -n "$CODESPACES" ]]; then
-  sudo apt-get update -y
-  sudo apt-get install -y \
+if [[ -n "${CODESPACES:-}" ]]; then
+  run_command sudo apt-get update -y
+  run_command sudo apt-get install -y \
     ripgrep \
     shellcheck \
     fuse \
@@ -187,59 +315,64 @@ if [[ -n "$CODESPACES" ]]; then
     luarocks
 
   # install vale
-  wget https://github.com/errata-ai/vale/releases/download/v2.28.0/vale_2.28.0_Linux_64-bit.tar.gz
-  tar -xvzf vale_2.28.0_Linux_64-bit.tar.gz
-  sudo mv vale /usr/bin/vale
+  run_command wget https://github.com/errata-ai/vale/releases/download/v2.28.0/vale_2.28.0_Linux_64-bit.tar.gz
+  run_command tar -xvzf vale_2.28.0_Linux_64-bit.tar.gz
+  run_command sudo mv vale /usr/bin/vale
 
   # install tokei
-  wget https://github.com/XAMPPRocky/tokei/releases/download/v12.1.2/tokei-x86_64-unknown-linux-gnu.tar.gz
-  tar -xvzf tokei-x86_64-unknown-linux-gnu.tar.gz
-  sudo mv tokei /usr/bin/tokei
+  run_command wget https://github.com/XAMPPRocky/tokei/releases/download/v12.1.2/tokei-x86_64-unknown-linux-gnu.tar.gz
+  run_command tar -xvzf tokei-x86_64-unknown-linux-gnu.tar.gz
+  run_command sudo mv tokei /usr/bin/tokei
 
   echo "export SKIP_GH_PRE_PUSH_HOOKS" >> ~/.zshrc
 
   # Install the latest neovim
-  wget https://github.com/neovim/neovim/releases/download/v0.10.0/nvim.appimage
-  chmod u+x nvim.appimage
-  sudo mv nvim.appimage /usr/local/bin/nvim
+  run_command wget https://github.com/neovim/neovim/releases/download/v0.10.0/nvim.appimage
+  run_command chmod u+x nvim.appimage
+  run_command sudo mv nvim.appimage /usr/local/bin/nvim
 
   if ! [ -x "$(command -v npm)" ]; then
-    echo 'Could not install node neovim plugin' >&2
+    log "WARN" 'Could not install node neovim plugin' >&2
   else
-    npm install -g neovim
+    run_command npm install -g neovim
   fi
 
   if ! [ -x "$(command -v pip3)" ]; then
-    echo 'Could not install python neovim plugin' >&2
+    log "WARN" 'Could not install python neovim plugin' >&2
   else
-    pip3 install neovim
+    run_command pip3 install neovim
   fi
 
   # Install neovim plugins
-  nvim --headless "+Lazy! update" +qall
+  run_command nvim --headless "+Lazy! update" +qall
 
-  sudo gem install neovim
+  run_command sudo gem install neovim
 
-  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-  yes | ~/.fzf/install --no-bash --no-fish --key-bindings --completion --update-rc
+  run_command git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  run_command yes | ~/.fzf/install --no-bash --no-fish --key-bindings --completion --update-rc
 
-  if [[ -n "$HOMEASSISTANT_WEBHOOK_URL" ]]; then
-    curl -X POST \
+  if [[ -n "$WEBHOOK_URL" ]]; then
+    run_command curl -X POST \
       -H "Content-Type: application/json" \
       --data '{ "state": "completed", "codespace_name": "'"$CODESPACE_NAME"'" }' \
-      "$HOMEASSISTANT_WEBHOOK_URL"
+      "$WEBHOOK_URL"
   fi
 else
   # Local brew bundle install
-  if [[ -z "$SKIP_BREW_BUNDLE" ]]; then
-    brew bundle
+  if $SKIP_BREW; then
+    log "INFO" "skipping brew bundle"
   else
-    echo "skipping brew bundle"
+    run_command brew bundle
+    run_command brew cu -a -f
   fi
 
-  # trust the new dotfile config for mise
-  mise trust
+  if $SKIP_MISE; then
+    log "INFO" "skipping mise"
+  else
+    # trust the new dotfile config for mise
+    run_command mise trust
 
-  # install tool versions with mise
-  mise install
+    # install tool versions with mise
+    run_command mise install
+  fi
 fi
