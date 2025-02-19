@@ -41,6 +41,7 @@ SKIP_LOG=false
 WEBHOOK_URL="${HOMEASSISTANT_WEBHOOK_URL:-}"
 EXCLUDE_CUSTOMIZATIONS=false
 LOG_LEVEL="INFO" # DEBUG, INFO, WARN, ERROR
+BREWFILE="Brewfile"
 
 usage() {
   cat <<EOF
@@ -49,6 +50,7 @@ Usage: $0 [options]
 Options:
   -e            Exclude customizations
   -l logfile    Specify log file (default: $HOME/dotfiles_install.log)
+  -f file       Specify Brewfile (default: Brewfile)
   -b            Skip the Homebrew bundle step
   -S            Skip writing to the log file
   -m            Skip the Mise step
@@ -59,13 +61,16 @@ EOF
 }
 
 # Parse options with getopts
-while getopts "el:bmSw:L:h" opt; do
+while getopts "el:f:bmSw:L:h" opt; do
   case "$opt" in
     e)
       EXCLUDE_CUSTOMIZATIONS=true
       ;;
     l)
       LOG_FILE="$OPTARG"
+      ;;
+    f)
+      BREWFILE="$OPTARG"
       ;;
     b)
       SKIP_BREW=true
@@ -362,19 +367,7 @@ else
   if $SKIP_BREW; then
     log "INFO" "skipping brew bundle"
   else
-    # Determine the hostname
-    HOSTNAME=$(hostname)
-    BASE64_HOSTNAME=$(echo -n "$HOSTNAME" | base64)
-    CUSTOM_BREWFILE="Brewfile.${BASE64_HOSTNAME}"
-
-    if [ -f "$CUSTOM_BREWFILE" ]; then
-      log "INFO" "Found custom Brewfile for hostname '$HOSTNAME': $CUSTOM_BREWFILE"
-      run_command brew bundle --file="$CUSTOM_BREWFILE"
-    else
-      log "INFO" "No custom Brewfile found for hostname '$HOSTNAME', using default Brewfile"
-      run_command brew bundle
-    fi
-
+    run_command brew bundle --file="$BREWFILE"
     run_command brew cu -a -f -y
   fi
 
