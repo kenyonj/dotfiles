@@ -297,7 +297,7 @@ if [[ -n "${CODESPACES:-}" ]]; then
   run_command sudo mv rdm-linux-amd64 /usr/bin/rdm
   run_command chmod +x /usr/bin/rdm
 
-  if [[ "$TERM_PROGRAM" != 'vscode' ]]; then
+  if [[ "${TERM_PROGRAM:-}" != 'vscode' ]]; then
     run_command gh config set browser "rdm open"
     echo 'alias open="rdm open"' >> ~/.zshenv
     echo 'alias xdg-open="rdm open"' >> ~/.zshenv
