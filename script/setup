@@ -381,3 +381,11 @@ else
     run_command mise install
   fi
 fi
+
+if command -v tmux >/dev/null 2>&1 && [ -d "$HOME/.tmux/plugins/tpm" ]; then
+  echo "Updating tmux plugins..."
+  "$HOME/.tmux/plugins/tpm/bin/update_plugins" all
+  echo "tmux plugins updated!"
+else
+  echo "tmux or TPM not found—please install tmux and TPM."
+fi
