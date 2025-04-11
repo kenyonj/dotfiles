@@ -242,37 +242,7 @@ create_sym_link config/kitty/kitty.conf ~/.config/kitty/kitty.conf
 create_sym_link config/ghostty/config ~/.config/ghostty/config
 
 # Neovim
-create_sym_link config/nvim/autocommands.vim ~/.config/nvim/autocommands.vim
-create_sym_link config/nvim/colors.vim ~/.config/nvim/colors.vim
-create_sym_link config/nvim/config.vim ~/.config/nvim/config.vim
-create_sym_link config/nvim/init.lua ~/.config/nvim/init.lua
-create_sym_link config/nvim/lua/lazy-setup.lua ~/.config/nvim/lua/lazy-setup.lua
-
-create_sym_link config/nvim/lua/plugins/welcome.lua ~/.config/nvim/lua/plugins/welcome.lua
-create_sym_link config/nvim/lua/plugins/whichkey.lua ~/.config/nvim/lua/plugins/whichkey.lua
-create_sym_link config/nvim/lua/plugins/legacy.lua ~/.config/nvim/lua/plugins/legacy.lua
-create_sym_link config/nvim/lua/plugins/cmp.lua ~/.config/nvim/lua/plugins/cmp.lua
-create_sym_link config/nvim/lua/plugins/lsp.lua ~/.config/nvim/lua/plugins/lsp.lua
-create_sym_link config/nvim/lua/plugins/treesitter.lua ~/.config/nvim/lua/plugins/treesitter.lua
-create_sym_link config/nvim/lua/plugins/formatter.lua ~/.config/nvim/lua/plugins/formatter.lua
-create_sym_link config/nvim/lua/plugins/status.lua ~/.config/nvim/lua/plugins/status.lua
-create_sym_link config/nvim/lua/plugins/gitsigns.lua ~/.config/nvim/lua/plugins/gitsigns.lua
-create_sym_link config/nvim/lua/plugins/test.lua ~/.config/nvim/lua/plugins/test.lua
-create_sym_link config/nvim/lua/plugins/fugitive.lua ~/.config/nvim/lua/plugins/fugitive.lua
-create_sym_link config/nvim/lua/plugins/telescope.lua ~/.config/nvim/lua/plugins/telescope.lua
-create_sym_link config/nvim/lua/plugins/tbro.lua ~/.config/nvim/lua/plugins/tbro.lua
-create_sym_link config/nvim/lua/plugins/pry.lua ~/.config/nvim/lua/plugins/pry.lua
-create_sym_link config/nvim/lua/plugins/copilot.lua ~/.config/nvim/lua/plugins/copilot.lua
-create_sym_link config/nvim/lua/plugins/noice.lua ~/.config/nvim/lua/plugins/noice.lua
-create_sym_link config/nvim/lua/plugins/trouble.lua ~/.config/nvim/lua/plugins/trouble.lua
-create_sym_link config/nvim/lua/plugins/mini.lua ~/.config/nvim/lua/plugins/mini.lua
-create_sym_link config/nvim/lua/plugins/grug.lua ~/.config/nvim/lua/plugins/grug.lua
-create_sym_link config/nvim/lua/plugins/snippets.lua ~/.config/nvim/lua/plugins/snippets.lua
-create_sym_link config/nvim/lua/plugins/tmuxnavigator.lua ~/.config/nvim/lua/plugins/tmuxnavigator.lua
-
-create_sym_link config/nvim/lua/plugins/langs/go.lua ~/.config/nvim/lua/plugins/langs/go.lua
-create_sym_link config/nvim/lua/plugins/langs/ruby.lua ~/.config/nvim/lua/plugins/langs/ruby.lua
-create_sym_link config/nvim/lua/plugins/langs/typescript.lua ~/.config/nvim/lua/plugins/langs/typescript.lua
+create_sym_link config/nvim ~/.config
 
 # Git template
 create_sym_link git_template/hooks/ctags ~/.git_template/hooks/ctags
