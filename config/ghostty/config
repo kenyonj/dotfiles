@@ -1,4 +1,4 @@
-theme = "light:GruvboxLight,dark:GruvboxDark"
+theme = "light:GruvboxDark,dark:GruvboxDark"
 
 font-size = 16
 font-family = Hack Nerd Font Mono Regular
