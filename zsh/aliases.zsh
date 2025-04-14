@@ -73,7 +73,6 @@ alias taf!="TEST_ALL_FEATURES=1 fc -e : -1"
 # aliases for codespaces
 if [[ -n "$CODESPACES" ]]
 then
-  alias pbcopy="rdm copy"
   alias open="rdm open"
   alias xdg-open="rdm open"
 fi
@@ -81,7 +80,7 @@ fi
 if [[ -f /usr/local/bin/rdm ]]
 then
   DARK_MODE="$(defaults read -g AppleInterfaceStyle 2>/dev/null && echo 'on' || echo 'off')"
-  alias connect-codespaces='TERM=xterm-256color gh cs ssh -- -R 127.0.0.1:7391:$(rdm socket) -t "echo \"$DARK_MODE\" > ~/.dark_mode_status.txt; exec \$SHELL -l"'
+  alias connect-codespaces='TERM=xterm-256color gh cs ssh -- -t "echo \"$DARK_MODE\" > ~/.dark_mode_status.txt; exec \$SHELL -l"'
 fi
 
 alias ssh="TERM=xterm-256color ssh"
