@@ -169,6 +169,7 @@ if [[ -z "$CODESPACES" ]]; then
     mise trust
   fi
 else
+  export PATH="/workspaces/github/vendor/node:$PATH"
   [ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
 fi
 
