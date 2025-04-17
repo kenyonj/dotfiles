@@ -5,7 +5,6 @@ return {
     require("fzf-lua").setup({})
   end,
   keys = {
-    -- Optionally set up your keymap here as well!
     {
       "<C-p>",
       function()

@@ -12,3 +12,11 @@ vim.keymap.set("i", "<A-k>", "<esc>gk", { desc = "Move up" })
 vim.keymap.set("i", "<A-j>", "<esc>gj", { desc = "Move down" })
 vim.keymap.set("v", "<A-k>", "<esc>gk", { desc = "Move up" })
 vim.keymap.set("v", "<A-j>", "<esc>gj", { desc = "Move down" })
+
+vim.keymap.set("n", "<leader>dd", function()
+  require("refactoring").debug.printf({})
+end, { desc = "Insert debug statement" })
+
+vim.keymap.set("n", "<leader>dc", function()
+  require("refactoring").debug.cleanup({})
+end, { desc = "Cleanup debug statements" })

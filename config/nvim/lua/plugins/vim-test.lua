@@ -18,6 +18,6 @@ return {
   },
   {
     "jgdavey/tslime.vim",
-    lazy = false, -- Ensure it loads immediately
+    lazy = false,
   },
 }
