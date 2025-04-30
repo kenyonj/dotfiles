@@ -173,3 +173,4 @@ else
   [ -f /usr/share/autojump/autojump.sh ] && . /usr/share/autojump/autojump.sh
 fi
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
