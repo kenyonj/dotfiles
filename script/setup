@@ -299,8 +299,6 @@ if [[ -n "${CODESPACES:-}" ]]; then
   run_command tar -xvzf /tmp/tokei-x86_64-unknown-linux-gnu.tar.gz -C /tmp
   run_command sudo mv /tmp/tokei /usr/bin/tokei
 
-  grep -qxF 'export SKIP_GH_PRE_PUSH_HOOKS' ~/.zshrc || echo "export SKIP_GH_PRE_PUSH_HOOKS" >>~/.zshrc
-
   # Install the latest neovim
   run_command wget https://github.com/neovim/neovim/releases/download/v0.10.0/nvim.appimage
   run_command chmod u+x nvim.appimage

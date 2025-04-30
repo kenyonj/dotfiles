@@ -174,3 +174,5 @@ else
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export SKIP_GH_PRE_PUSH_HOOKS
