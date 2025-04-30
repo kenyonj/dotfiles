@@ -323,7 +323,7 @@ if [[ -n "${CODESPACES:-}" ]]; then
 
   run_command sudo gem install neovim
 
-  run_command git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  [ -d ~/.fzf ] || run_command git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   run_command yes | ~/.fzf/install --no-bash --no-fish --key-bindings --completion --update-rc
 
   if [[ -n "$WEBHOOK_URL" ]]; then
