@@ -9,24 +9,24 @@ exec 4>&2
 log() {
   local level="${1:-}"
   local message="${2:-}"
-  
+
   # Convert log levels to numbers using case statement
   local msg_val=1
   case "$level" in
-    "DEBUG") msg_val=0 ;;
-    "INFO")  msg_val=1 ;;
-    "WARN")  msg_val=2 ;;
-    "ERROR") msg_val=3 ;;
+  "DEBUG") msg_val=0 ;;
+  "INFO") msg_val=1 ;;
+  "WARN") msg_val=2 ;;
+  "ERROR") msg_val=3 ;;
   esac
-  
+
   local curr_val=1
   case "$LOG_LEVEL" in
-    "DEBUG") curr_val=0 ;;
-    "INFO")  curr_val=1 ;;
-    "WARN")  curr_val=2 ;;
-    "ERROR") curr_val=3 ;;
+  "DEBUG") curr_val=0 ;;
+  "INFO") curr_val=1 ;;
+  "WARN") curr_val=2 ;;
+  "ERROR") curr_val=3 ;;
   esac
-  
+
   if [ "$msg_val" -ge "$curr_val" ]; then
     # Write to our saved original stdout (fd 3)
     echo "[$level] $message" >&3
@@ -63,45 +63,45 @@ EOF
 # Parse options with getopts
 while getopts "el:f:bmSw:L:h" opt; do
   case "$opt" in
-    e)
-      EXCLUDE_CUSTOMIZATIONS=true
-      ;;
-    l)
-      LOG_FILE="$OPTARG"
-      ;;
-    f)
-      BREWFILE="$OPTARG"
-      ;;
-    b)
-      SKIP_BREW=true
-      ;;
-    m)
-      SKIP_MISE=true
-      ;;
-    S)
-      SKIP_LOG=true
-      ;;
-    w)
-      WEBHOOK_URL="$OPTARG"
-      ;;
-    L)
-      # Convert to uppercase for consistency
-      LOG_LEVEL=$(echo "$OPTARG" | tr '[:lower:]' '[:upper:]')
-      ;;
-    h)
-      usage
-      exit 0
-      ;;
-    \?)
-      echo "Invalid option: -${OPTARG:-}" >&2
-      usage
-      exit 1
-      ;;
-    :)
-      echo "Option -${OPTARG:-} requires an argument." >&2
-      usage
-      exit 1
-      ;;
+  e)
+    EXCLUDE_CUSTOMIZATIONS=true
+    ;;
+  l)
+    LOG_FILE="$OPTARG"
+    ;;
+  f)
+    BREWFILE="$OPTARG"
+    ;;
+  b)
+    SKIP_BREW=true
+    ;;
+  m)
+    SKIP_MISE=true
+    ;;
+  S)
+    SKIP_LOG=true
+    ;;
+  w)
+    WEBHOOK_URL="$OPTARG"
+    ;;
+  L)
+    # Convert to uppercase for consistency
+    LOG_LEVEL=$(echo "$OPTARG" | tr '[:lower:]' '[:upper:]')
+    ;;
+  h)
+    usage
+    exit 0
+    ;;
+  \?)
+    echo "Invalid option: -${OPTARG:-}" >&2
+    usage
+    exit 1
+    ;;
+  :)
+    echo "Option -${OPTARG:-} requires an argument." >&2
+    usage
+    exit 1
+    ;;
   esac
 done
 
@@ -125,7 +125,7 @@ log "DEBUG" "Skip mise: $SKIP_MISE"
 log "DEBUG" "Webhook URL: $WEBHOOK_URL"
 log "DEBUG" "Log level: $LOG_LEVEL"
 
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
 
 # Ensure we're working from the root directory
 cd "$SCRIPT_DIR" && cd ..
@@ -269,8 +269,8 @@ if [[ -n "${CODESPACES:-}" ]]; then
 
   if [[ "${TERM_PROGRAM:-}" != 'vscode' ]]; then
     run_command gh config set browser "rdm open"
-    echo 'alias open="rdm open"' >> ~/.zshenv
-    echo 'alias xdg-open="rdm open"' >> ~/.zshenv
+    echo 'alias open="rdm open"' >>~/.zshenv
+    echo 'alias xdg-open="rdm open"' >>~/.zshenv
   fi
 fi
 
@@ -290,16 +290,16 @@ if [[ -n "${CODESPACES:-}" ]]; then
     luarocks
 
   # install vale
-  run_command wget https://github.com/errata-ai/vale/releases/download/v2.28.0/vale_2.28.0_Linux_64-bit.tar.gz
-  run_command tar -xvzf vale_2.28.0_Linux_64-bit.tar.gz
-  run_command sudo mv vale /usr/bin/vale
+  run_command wget https://github.com/errata-ai/vale/releases/download/v2.28.0/vale_2.28.0_Linux_64-bit.tar.gz -P /tmp
+  run_command tar -xvzf vale_2.28.0_Linux_64-bit.tar.gz -C /tmp
+  run_command sudo mv /tmp/vale /usr/bin/vale
 
   # install tokei
-  run_command wget https://github.com/XAMPPRocky/tokei/releases/download/v12.1.2/tokei-x86_64-unknown-linux-gnu.tar.gz
-  run_command tar -xvzf tokei-x86_64-unknown-linux-gnu.tar.gz
-  run_command sudo mv tokei /usr/bin/tokei
+  run_command wget https://github.com/XAMPPRocky/tokei/releases/download/v12.1.2/tokei-x86_64-unknown-linux-gnu.tar.gz -P /tmp
+  run_command tar -xvzf tokei-x86_64-unknown-linux-gnu.tar.gz -C /tmp
+  run_command sudo mv /tmp/tokei /usr/bin/tokei
 
-  echo "export SKIP_GH_PRE_PUSH_HOOKS" >> ~/.zshrc
+  echo "export SKIP_GH_PRE_PUSH_HOOKS" >>~/.zshrc
 
   # Install the latest neovim
   run_command wget https://github.com/neovim/neovim/releases/download/v0.10.0/nvim.appimage
