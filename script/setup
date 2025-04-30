@@ -291,12 +291,12 @@ if [[ -n "${CODESPACES:-}" ]]; then
 
   # install vale
   run_command wget https://github.com/errata-ai/vale/releases/download/v2.28.0/vale_2.28.0_Linux_64-bit.tar.gz -P /tmp
-  run_command tar -xvzf vale_2.28.0_Linux_64-bit.tar.gz -C /tmp
+  run_command tar -xvzf /tmp/vale_2.28.0_Linux_64-bit.tar.gz -C /tmp
   run_command sudo mv /tmp/vale /usr/bin/vale
 
   # install tokei
   run_command wget https://github.com/XAMPPRocky/tokei/releases/download/v12.1.2/tokei-x86_64-unknown-linux-gnu.tar.gz -P /tmp
-  run_command tar -xvzf tokei-x86_64-unknown-linux-gnu.tar.gz -C /tmp
+  run_command tar -xvzf /tmp/tokei-x86_64-unknown-linux-gnu.tar.gz -C /tmp
   run_command sudo mv /tmp/tokei /usr/bin/tokei
 
   echo "export SKIP_GH_PRE_PUSH_HOOKS" >>~/.zshrc
