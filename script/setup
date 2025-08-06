@@ -279,6 +279,7 @@ if [[ -n "${CODESPACES:-}" ]]; then
   run_command sudo apt-get update -y
   run_command sudo apt-get install -y \
     ripgrep \
+    python3-venv \
     shellcheck \
     fuse \
     ruby-dev \
