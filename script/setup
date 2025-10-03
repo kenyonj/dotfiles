@@ -290,6 +290,9 @@ if [[ -n "${CODESPACES:-}" ]]; then
     autojump \
     luarocks
 
+  # install tree-sitter
+  cargo install --locked tree-sitter-cli
+
   # install vale
   run_command wget https://github.com/errata-ai/vale/releases/download/v2.28.0/vale_2.28.0_Linux_64-bit.tar.gz -P /tmp
   run_command tar -xvzf /tmp/vale_2.28.0_Linux_64-bit.tar.gz -C /tmp
