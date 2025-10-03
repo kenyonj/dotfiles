@@ -32,3 +32,5 @@ config/Autodesk
 config/github-copilot/versions.json
 Brewfile.lock.json
 config/lazygit/config.yml
+config/nvim/lazy-lock.json
+config/nvim/lazyvim.json
