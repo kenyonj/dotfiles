@@ -1,0 +1,103 @@
+{
+  "mcpServers": {
+    "paperless": {
+      "tools": [
+        "*"
+      ],
+      "command": "npx",
+      "args": [
+        "-y",
+        "@baruchiro/paperless-mcp@latest"
+      ],
+      "env": {
+        "PAPERLESS_URL": "${PAPERLESS_URL}",
+        "PAPERLESS_API_KEY": "${PAPERLESS_API_TOKEN}",
+        "PAPERLESS_PUBLIC_URL": "${PAPERLESS_URL}"
+      }
+    },
+    "azure-mcp-serve": {
+      "tools": [
+        "*"
+      ],
+      "type": "local",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@azure/mcp@latest",
+        "server",
+        "start"
+      ]
+    },
+    "datadog": {
+      "tools": [
+        "*"
+      ],
+      "type": "http",
+      "url": "https://mcp.datadoghq.com/api/unstable/mcp-server/mcp?",
+      "headers": {}
+    },
+    "pagerduty": {
+      "url": "https://mcp.pagerduty.com/mcp",
+      "type": "http",
+      "headers": {
+        "Authorization": "Token token=${PAGERDUTY_API_TOKEN}"
+      }
+    },
+    "splunk": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "SPLUNK_HOST",
+        "-e",
+        "SPLUNK_PORT",
+        "-e",
+        "SPLUNK_BEARER_TOKEN",
+        "-e",
+        "SPLUNK_SCHEME",
+        "-e",
+        "VERIFY_SSL",
+        "-e",
+        "FASTMCP_LOG_LEVEL",
+        "${SPLUNK_DOCKER_IMAGE_URL}"
+      ],
+      "env": {
+        "SPLUNK_HOST": "${SPLUNK_HOST}",
+        "SPLUNK_PORT": "443",
+        "SPLUNK_BEARER_TOKEN": "${SPLUNK_BEARER_TOKEN}",
+        "SPLUNK_SCHEME": "https",
+        "VERIFY_SSL": "true",
+        "FASTMCP_LOG_LEVEL": "DEBUG"
+      }
+    },
+    "Sentry": {
+      "tools": [
+        "*"
+      ],
+      "type": "http",
+      "url": "https://mcp.sentry.dev/mcp"
+    },
+    "homeassistant": {
+      "command": "mcp-proxy",
+      "args": [
+        "--transport=streamablehttp",
+        "--stateless",
+        "${HA_MCP_URL}"
+      ],
+      "env": {
+        "API_ACCESS_TOKEN": "${HA_ACCESS_TOKEN}"
+      }
+    },
+    "google-calendar": {
+      "command": "npx",
+      "args": [
+        "@cocal/google-calendar-mcp"
+      ],
+      "env": {
+        "GOOGLE_OAUTH_CREDENTIALS": "${GOOGLE_OAUTH_CREDENTIALS}"
+      }
+    }
+  }
+}

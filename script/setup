@@ -257,6 +257,9 @@ create_sym_link zsh/fzf.zsh ~/.zsh/fzf.zsh
 create_sym_link zsh/g.zsh ~/.zsh/g.zsh
 create_sym_link zsh/prompt.zsh ~/.zsh/prompt.zsh
 
+# Copilot
+create_sym_link config/copilot/mcp-config.json ~/.config/.copilot/mcp-config.json
+
 # Mise
 create_sym_link config/mise/config.toml ~/.config/mise/config.toml
 
