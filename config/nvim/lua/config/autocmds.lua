@@ -14,3 +14,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.b.autoformat = false
   end,
 })
+
+-- Disable autoformat and linting for markdown files
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "markdown" },
+  callback = function()
+    vim.b.autoformat = false
+    vim.diagnostic.enable(false, { bufnr = 0 })
+  end,
+})
