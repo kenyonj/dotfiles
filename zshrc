@@ -181,3 +181,7 @@ export SKIP_GH_PRE_PUSH_HOOKS
 if command -v op &> /dev/null; then
   source <(op inject --in-file ~/.env-secrets 2>/dev/null)
 fi
+
+# Added by Windsurf
+export PATH="/Users/kenyonj/.codeium/windsurf/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"

@@ -30,6 +30,7 @@ brew "fd"
 brew "bitwarden-cli"
 brew "pandoc"
 brew "cmake"
+brew "vlc"
 
 cask "kitty"
 cask "raycast"
@@ -49,6 +50,8 @@ cask "ghostty"
 cask "tailscale"
 cask "bitwarden"
 cask "orbstack"
+cask "insta360-studio"
+cask "beeper"
 
 mas "Parcel - Delivery Tracking", id: 639968404
 mas "Xcode", id: 497799835
