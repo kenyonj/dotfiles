@@ -177,9 +177,10 @@ fi
 
 export SKIP_GH_PRE_PUSH_HOOKS
 
-# Load 1Password-managed secrets into environment
+# Load 1Password-managed secrets (cached for 8 hours)
+export OP_ACCOUNT=my.1password.com
 if command -v op &> /dev/null; then
-  source <(op inject --in-file ~/.env-secrets 2>/dev/null)
+  source ~/.local/bin/load-op-secrets
 fi
 
 # Added by Windsurf

@@ -263,6 +263,9 @@ create_sym_link config/copilot/mcp-config.json ~/.config/.copilot/mcp-config.jso
 # Mise
 create_sym_link config/mise/config.toml ~/.config/mise/config.toml
 
+# local secrets config
+create_sym_link local/bin/load-op-secrets ~/.local/bin/load-op-secrets
+
 # Setup RDM
 if [[ -n "${CODESPACES:-}" ]]; then
   # Use RDM for copy/paste and open support
