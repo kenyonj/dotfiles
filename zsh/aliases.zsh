@@ -77,13 +77,30 @@ then
   alias xdg-open="rdm open"
 fi
 
-if [[ -f /usr/local/bin/rdm ]]
-then
-  DARK_MODE="$(defaults read -g AppleInterfaceStyle 2>/dev/null && echo 'on' || echo 'off')"
-  alias connect-codespaces='TERM=xterm-256color gh cs ssh -- -t "echo \"$DARK_MODE\" > ~/.dark_mode_status.txt; exec \$SHELL -l"'
-fi
+connect-codespace() {
+  gh cs ssh --config > ~/.ssh/codespaces
+  local hosts=($(awk '/^Host cs\./ {print $2}' ~/.ssh/codespaces))
 
-alias ssh="TERM=xterm-256color ssh"
+  if [[ ${#hosts[@]} -eq 0 ]]; then
+    echo "No codespaces found"
+    return 1
+  fi
+
+  echo "Select a codespace:"
+  local i=1
+  for host in "${hosts[@]}"; do
+    echo "  $i) $host"
+    ((i++))
+  done
+
+  read "choice?> "
+  if [[ "$choice" -ge 1 && "$choice" -le ${#hosts[@]} ]] 2>/dev/null; then
+    ssh "${hosts[$choice]}"
+  else
+    echo "Invalid selection"
+    return 1
+  fi
+}
 
 alias gh-web-port-forward="gh cs ports forward 80:80"
 

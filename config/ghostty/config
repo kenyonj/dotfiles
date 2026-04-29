@@ -17,4 +17,4 @@ clipboard-read = allow
 clipboard-write = allow
 mouse-hide-while-typing = true
 shell-integration = zsh
-shell-integration-features = no-cursor
+shell-integration-features = no-cursor,ssh-terminfo,ssh-env
