@@ -121,3 +121,9 @@ gocover() {
 if command -v eza > /dev/null 2>&1; then
   alias ls="eza"
 fi
+
+# gh slack: pull xoxc token + cookie from local Slack desktop client and export
+# into the current shell. Required once per shell before running gh slack
+# send/api/read. The MCP Slack server (mcp.slack.com) is read-only; this is
+# the write path.
+alias slack-auth='eval "$(gh slack auth -t github)"'
