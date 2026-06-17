@@ -210,6 +210,7 @@ function create_sym_link() {
 }
 
 # Standard dotfiles
+create_sym_link env-secrets ~/.env-secrets
 create_sym_link excludes ~/.excludes
 move_if_exists ~/.gitconfig ~/.gitconfig.old
 create_sym_link gitconfig ~/.gitconfig

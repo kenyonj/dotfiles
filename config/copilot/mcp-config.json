@@ -1,106 +1,79 @@
 {
-    "mcpServers": {
-        "paperless": {
-            "tools": [
-                "*"
-            ],
-            "command": "npx",
-            "args": [
-                "-y",
-                "@baruchiro/paperless-mcp@latest"
-            ],
-            "env": {
-                "PAPERLESS_URL": "${PAPERLESS_URL}",
-                "PAPERLESS_API_KEY": "${PAPERLESS_API_TOKEN}",
-                "PAPERLESS_PUBLIC_URL": "${PAPERLESS_URL}"
-            }
-        },
-        "azure-mcp-serve": {
-            "tools": [
-                "*"
-            ],
-            "type": "local",
-            "command": "npx",
-            "args": [
-                "-y",
-                "@azure/mcp@latest",
-                "server",
-                "start"
-            ]
-        },
-        "datadog": {
-            "tools": [
-                "*"
-            ],
-            "type": "http",
-            "url": "https://mcp.datadoghq.com/api/unstable/mcp-server/mcp?",
-            "headers": {}
-        },
-        "pagerduty": {
-            "url": "https://mcp.pagerduty.com/mcp",
-            "type": "http",
-            "headers": {
-                "Authorization": "Token token=${PAGERDUTY_API_TOKEN}"
-            }
-        },
-        "splunk": {
-            "command": "docker",
-            "args": [
-                "run",
-                "-i",
-                "--rm",
-                "-e",
-                "SPLUNK_HOST",
-                "-e",
-                "SPLUNK_PORT",
-                "-e",
-                "SPLUNK_BEARER_TOKEN",
-                "-e",
-                "SPLUNK_SCHEME",
-                "-e",
-                "VERIFY_SSL",
-                "-e",
-                "FASTMCP_LOG_LEVEL",
-                "${SPLUNK_DOCKER_IMAGE_URL}"
-            ],
-            "env": {
-                "SPLUNK_HOST": "${SPLUNK_HOST}",
-                "SPLUNK_PORT": "443",
-                "SPLUNK_BEARER_TOKEN": "${SPLUNK_BEARER_TOKEN}",
-                "SPLUNK_SCHEME": "https",
-                "VERIFY_SSL": "true",
-                "FASTMCP_LOG_LEVEL": "DEBUG"
-            }
-        },
-        "Sentry": {
-            "tools": [
-                "*"
-            ],
-            "type": "http",
-            "url": "https://mcp.sentry.dev/mcp"
-        },
-        "homeassistant": {
-            "command": "mcp-proxy",
-            "args": [
-                "--transport=streamablehttp",
-                "--stateless",
-                "-H",
-                "Authorization",
-                "Bearer ${HA_ACCESS_TOKEN}",
-                "${HA_MCP_URL}"
-            ],
-            "tools": [
-                "*"
-            ]
-        },
-        "google-calendar": {
-            "command": "npx",
-            "args": [
-                "@cocal/google-calendar-mcp"
-            ],
-            "env": {
-                "GOOGLE_OAUTH_CREDENTIALS": "${GOOGLE_OAUTH_CREDENTIALS}"
-            }
-        }
+  "mcpServers": {
+    "paperless": {
+      "tools": [
+        "*"
+      ],
+      "command": "npx",
+      "args": [
+        "-y",
+        "@baruchiro/paperless-mcp@latest"
+      ],
+      "env": {
+        "PAPERLESS_URL": "${PAPERLESS_URL}",
+        "PAPERLESS_API_KEY": "${PAPERLESS_API_TOKEN}",
+        "PAPERLESS_PUBLIC_URL": "${PAPERLESS_URL}"
+      }
+    },
+    "homeassistant": {
+      "tools": [
+        "*"
+      ],
+      "command": "sh",
+      "args": [
+        "-c",
+        "exec mcp-proxy --transport=streamablehttp --stateless --headers Authorization \"Bearer $HA_ACCESS_TOKEN\" \"$HA_MCP_URL\""
+      ],
+      "env": {
+        "HA_ACCESS_TOKEN": "${HA_ACCESS_TOKEN}",
+        "HA_MCP_URL": "${HA_MCP_URL}"
+      }
+    },
+    "google-calendar": {
+      "tools": [
+        "*"
+      ],
+      "command": "npx",
+      "args": [
+        "@cocal/google-calendar-mcp"
+      ],
+      "env": {
+        "GOOGLE_OAUTH_CREDENTIALS": "${GOOGLE_OAUTH_CREDENTIALS}"
+      }
+    },
+    "arr": {
+      "tools": [
+        "*"
+      ],
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-arr-server"
+      ],
+      "env": {
+        "SONARR_URL": "https://sonarr.thejpk.com",
+        "SONARR_API_KEY": "${SONARR_API_KEY}",
+        "RADARR_URL": "https://radarr.thejpk.com",
+        "RADARR_API_KEY": "${RADARR_API_KEY}",
+        "LIDARR_URL": "https://lidarr.thejpk.com",
+        "LIDARR_API_KEY": "${LIDARR_API_KEY}",
+        "PROWLARR_URL": "https://prowlarr.thejpk.com",
+        "PROWLARR_API_KEY": "${PROWLARR_API_KEY}"
+      }
+    },
+    "grampsweb": {
+      "command": "npx",
+      "tools": [
+        "*"
+      ],
+      "args": [
+        "mcp-grampsweb"
+      ],
+      "env": {
+        "GRAMPS_API_URL": "http://192.168.1.140:5000",
+        "GRAMPS_USERNAME": "${GRAMPS_USERNAME}",
+        "GRAMPS_PASSWORD": "${GRAMPS_PASSWORD}"
+      }
     }
+  }
 }
