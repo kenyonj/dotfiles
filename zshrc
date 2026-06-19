@@ -186,3 +186,10 @@ fi
 # Added by Windsurf
 export PATH="/Users/kenyonj/.codeium/windsurf/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+
+# bun completions
+[ -s "/Users/kenyonj/.bun/_bun" ] && source "/Users/kenyonj/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
