@@ -51,6 +51,52 @@ enqueue(queue:, priority:)
 enqueue(queue: queue, priority: priority)
 ```
 
+### View components
+
+In ViewComponent classes, keep only the constructor (`def initialize`) public. Everything else goes under `private`: `attr_reader`s, `delegate`s, predicate methods like `render?`, memoized helpers, and any other methods. Constants stay public, above the constructor.
+
+The template still reaches private methods (ViewComponent calls them via implicit `self`), and `render?` works fine when private.
+
+```ruby
+# correct
+class WorkstreamComponent < ApplicationComponent
+  MAX_ITEMS = 50
+
+  def initialize(repository:, stream:)
+    @repository = repository
+    @stream = stream
+  end
+
+  private
+
+  attr_reader :repository, :stream
+
+  delegate :items, to: :stream
+
+  def render?
+    items.any?
+  end
+
+  memoize def issues
+    items.select(&:issue?)
+  end
+end
+
+# wrong - readers and helpers left in the public scope
+class WorkstreamComponent < ApplicationComponent
+  attr_reader :repository, :stream
+
+  def initialize(repository:, stream:)
+    @repository = repository
+    @stream = stream
+  end
+
+  def render?
+    stream.items.any?
+  end
+end
+```
+
 ---
 
 ## Go
