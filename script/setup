@@ -260,6 +260,7 @@ create_sym_link zsh/prompt.zsh ~/.zsh/prompt.zsh
 
 # Copilot
 create_sym_link config/copilot/mcp-config.json ~/.config/.copilot/mcp-config.json
+create_sym_link config/copilot/copilot-instructions.md ~/.copilot/copilot-instructions.md
 
 # Mise
 create_sym_link config/mise/config.toml ~/.config/mise/config.toml
