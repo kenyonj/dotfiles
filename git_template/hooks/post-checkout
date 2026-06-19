@@ -1,2 +1,37 @@
 #!/bin/sh
+# Gas Town branch protection
+# Auto-reverts to main if a non-main branch is checked out in the town root.
+# The town root must stay on main to avoid breaking gt commands.
+# NOTE: Git does NOT support pre-checkout hooks, so we auto-revert after.
+
+# Only check branch checkouts (not file checkouts)
+# $3 is 1 for branch checkout, 0 for file checkout
+if [ "$3" = "1" ]; then
+    # Get current branch after checkout
+    CURRENT_BRANCH=$(git branch --show-current 2>/dev/null)
+
+    # If on main or master, all good
+    if [ "$CURRENT_BRANCH" = "main" ] || [ "$CURRENT_BRANCH" = "master" ]; then
+        : # OK, continue with rest of hook
+    elif [ -n "$CURRENT_BRANCH" ]; then
+        # Non-main branch detected - auto-revert!
+        echo "" >&2
+        echo "⚠️  AUTO-REVERTING: Town root must stay on main branch" >&2
+        echo "" >&2
+        echo "   Detected checkout to '$CURRENT_BRANCH' in the Gas Town HQ directory." >&2
+        echo "   The town root should always be on main. Switching back..." >&2
+        echo "" >&2
+
+        # Revert to main
+        if git checkout main >/dev/null 2>&1; then
+            echo "   ✓ Reverted to main branch" >&2
+        elif git checkout master >/dev/null 2>&1; then
+            echo "   ✓ Reverted to master branch" >&2
+        else
+            echo "   ✗ Failed to revert - please run: git checkout main" >&2
+        fi
+        echo "" >&2
+    fi
+fi
+
 .git/hooks/ctags >/dev/null 2>&1 &
