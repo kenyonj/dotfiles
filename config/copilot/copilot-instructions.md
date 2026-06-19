@@ -39,6 +39,26 @@ create_subscription(
 )
 ```
 
+### Multi-line arrays and hashes
+
+Same rules as multi-line calls: one element per line, trailing comma on the last element, closing bracket on its own line. The trailing comma keeps diffs clean when elements are added or reordered.
+
+```ruby
+# correct
+post path, params: {
+  owner: owner.login,
+  repo: repo.name,
+  issue_number: issue.number,
+}
+
+# wrong - no trailing comma on the last element
+post path, params: {
+  owner: owner.login,
+  repo: repo.name,
+  issue_number: issue.number
+}
+```
+
 ### Keyword-argument value omission (Ruby 3.1+)
 
 When a keyword argument name matches the variable name, omit the value.
