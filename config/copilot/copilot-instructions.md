@@ -77,6 +77,12 @@ The approach was solid on three fronts—framing, decomposition, testing.
 
 ---
 
+## Commits
+
+- Don't add a `Co-authored-by: Copilot` trailer (or any AI/agent co-author attribution) to commit messages. Author commits as me, with no agent bumper line.
+
+---
+
 ## General
 
 *(Cross-language preferences will be added here as they come up.)*
