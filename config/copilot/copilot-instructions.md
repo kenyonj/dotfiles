@@ -149,6 +149,14 @@ The approach was solid on three fronts—framing, decomposition, testing.
 
 ---
 
+## Pull requests
+
+- When opening a pull request, fill out the repository's PR template if one exists (commonly `.github/PULL_REQUEST_TEMPLATE.md`, or a file under `.github/PULL_REQUEST_TEMPLATE/`). Follow its sections rather than writing a freeform body.
+- Keep the template's option markers intact: delete the bullets that don't apply, but preserve the exact `<!-- (`label`) -->` comment on the ones that do, and never modify version lines like `pull_request_template_version=N`. Repos often parse these to auto-apply labels (e.g. `risk:low`, `environment:production-dotcom`).
+- If the repo has no template, write a clear, structured body anyway: what/why, risk, and how it was validated.
+
+---
+
 ## General
 
 *(Cross-language preferences will be added here as they come up.)*
