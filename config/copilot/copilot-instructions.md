@@ -71,6 +71,25 @@ enqueue(queue:, priority:)
 enqueue(queue: queue, priority: priority)
 ```
 
+### Endless (one-line) method definitions
+
+For a method whose body is a single expression, use the endless definition form
+(`def name = expression`) instead of the multi-line `def`/`end`. Reserve it for
+genuinely short one-liners; anything needing multiple statements, a multi-line
+literal, or line wrapping stays a regular `def`/`end`.
+
+```ruby
+# correct
+def title = project.display_title
+def number = project.number
+def page_title = "#{workstream.title} · Workstreams"
+
+# wrong - multi-line def/end for a single-expression body
+def title
+  project.display_title
+end
+```
+
 ### View components
 
 In ViewComponent classes, keep only the constructor (`def initialize`) public. Everything else goes under `private`: `attr_reader`s, `delegate`s, predicate methods like `render?`, memoized helpers, and any other methods. Constants stay public, above the constructor.
@@ -117,6 +136,22 @@ class WorkstreamComponent < ApplicationComponent
 end
 ```
 
+### Rails routes
+
+**Always** use `resources`/`resource` in route files; **never** hand-write `get`/`post`/`put`/`patch`/`delete` for anything that maps to a REST resource. Map endpoints to the standard REST actions and scope down with `only:`/`except:`. For non-CRUD endpoints, nest a `member`/`collection` block inside the `resources` block rather than adding a standalone verb route. Reach for a bare `get`/`post` only for the rare endpoint that genuinely has no resource to hang off of (e.g. a health check or a redirect), and even then scope it inside the relevant `resources` block where possible.
+
+```ruby
+# correct
+resources :workstreams, only: [:index, :show], param: :slug do
+  post :assign_copilot, on: :collection
+end
+
+# wrong - standalone verb routes for what is a REST resource
+get  "workstreams",       to: "workstreams#index"
+get  "workstreams/:slug", to: "workstreams#show"
+post "workstreams/assign_copilot", to: "workstreams#assign_copilot"
+```
+
 ---
 
 ## Go
@@ -146,11 +181,13 @@ The approach was solid on three fronts—framing, decomposition, testing.
 ## Commits
 
 - Don't add a `Co-authored-by: Copilot` trailer (or any AI/agent co-author attribution) to commit messages. Author commits as me, with no agent bumper line.
+- Don't use Conventional Commits. Write commit subjects in the same short, present-tense headline style as PR titles (e.g. "Adds…", "Fixes…"), with no `type(scope):` prefix.
 
 ---
 
 ## Pull requests
 
+- **Title**: a short, headline-style summary of what the PR introduces. Start with a present-tense verb ("Adds", "Enables", "Fixes", "Removes", "Refactors"), use no Conventional Commit `type(scope):` prefix, omit a trailing period, and keep it to ~70 characters. Example: `Adds project-backed workstreams behind a feature flag`.
 - When opening a pull request, fill out the repository's PR template if one exists (commonly `.github/PULL_REQUEST_TEMPLATE.md`, or a file under `.github/PULL_REQUEST_TEMPLATE/`). Follow its sections rather than writing a freeform body.
 - Keep the template's option markers intact: delete the bullets that don't apply, but preserve the exact `<!-- (`label`) -->` comment on the ones that do, and never modify version lines like `pull_request_template_version=N`. Repos often parse these to auto-apply labels (e.g. `risk:low`, `environment:production-dotcom`).
 - If the repo has no template, write a clear, structured body anyway: what/why, risk, and how it was validated.
