@@ -96,6 +96,31 @@ In ViewComponent classes, keep only the constructor (`def initialize`) public. E
 
 The template still reaches private methods (ViewComponent calls them via implicit `self`), and `render?` works fine when private.
 
+Prefer rendering ViewComponents directly from the controller (`render(MyComponent.new(...))`) over ERB views. In a packaged Rails app, an ERB view lives under `app/views` outside the package and breaks the package's consistency story; a ViewComponent keeps the markup in the package. When a component's body is trivial (e.g. it just renders a `render_react_partial`), define a public `call` method that returns the markup and skip the `.html.erb` sidecar entirely.
+
+```ruby
+# correct - a packaged controller renders a component directly
+def show
+  render(Workstreams::ProjectViewerComponent.new(workstream:))
+end
+
+# correct - trivial component uses `call`, no .html.erb sidecar
+class ProjectViewerComponent < ApplicationComponent
+  def initialize(workstream:)
+    @workstream = workstream
+  end
+
+  def call
+    render_react_partial(name: "workstreams-viewer", props: workstream.react_props)
+  end
+
+  private
+
+  attr_reader :workstream
+end
+```
+
+
 ```ruby
 # correct
 class WorkstreamComponent < ApplicationComponent
