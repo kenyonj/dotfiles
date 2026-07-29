@@ -1,0 +1,60 @@
+# Herdr config — keybindings mirror ~/.tmux.conf where herdr has an equivalent.
+# Managed in dotfiles: config/herdr/config.toml -> ~/.config/herdr/config.toml
+
+# Skip first-run onboarding (existing preference).
+onboarding = false
+
+[theme]
+name = "gruvbox"
+
+[terminal]
+# tmux opens new windows/panes with -c '#{pane_current_path}'.
+new_cwd = "follow"
+
+[keys]
+# tmux: set -g prefix C-a
+prefix = "ctrl+a"
+
+# tmux: bind r source-file (reload). Herdr's default r is resize_mode, so swap the two.
+reload_config = "prefix+r"
+resize_mode = "prefix+shift+r"
+
+# tmux: bind c new-window
+new_tab = "prefix+c"
+
+# tmux: bind '-' split-window (stacked); '|'/'%' side-by-side (herdr keeps v for that).
+split_horizontal = "prefix+minus"
+split_vertical = "prefix+v"
+
+# tmux: default prefix-x kill-pane
+close_pane = "prefix+x"
+
+# tmux: bind h/j/k/l select-pane (vim navigation)
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+
+# tmux: bind a set-option status (toggle UI chrome)
+toggle_sidebar = "prefix+a"
+
+# tmux: bind g display-popup lazygit
+[[keys.command]]
+key = "prefix+g"
+type = "pane"
+command = "lazygit"
+
+# tmux: bind t display-popup $SHELL
+[[keys.command]]
+key = "prefix+t"
+type = "pane"
+command = "$SHELL"
+
+[ui]
+agent_panel_scope = "all"
+show_agent_labels_on_pane_borders = true
+# tmux: set -g mouse on
+mouse_capture = true
+
+[ui.toast]
+delivery = "herdr"

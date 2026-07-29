@@ -242,6 +242,10 @@ create_sym_link config/kitty/kitty.conf ~/.config/kitty/kitty.conf
 # Ghostty
 create_sym_link config/ghostty/config ~/.config/ghostty/config
 
+# Herdr
+move_if_exists ~/.config/herdr/config.toml ~/.config/herdr/config.toml.old
+create_sym_link config/herdr/config.toml ~/.config/herdr/config.toml
+
 # Neovim
 create_sym_link config/nvim ~/.config
 
