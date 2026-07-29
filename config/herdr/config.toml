@@ -38,6 +38,11 @@ focus_pane_right = "ctrl+l"
 # tmux: bind a set-option status (toggle UI chrome)
 toggle_sidebar = "prefix+a"
 
+# Prefix-less space switching, mirroring ctrl+h/j/k/l pane focus
+# (spaces are a vertical list: j = down/next, k = up/previous).
+next_workspace = "ctrl+shift+j"
+previous_workspace = "ctrl+shift+k"
+
 # Session navigator on prefix+p (its default prefix+g is taken by lazygit below).
 # Displaces previous_tab, which we unset to avoid a duplicate binding.
 goto = "prefix+p"
