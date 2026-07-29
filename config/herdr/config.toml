@@ -83,8 +83,8 @@ type = "shell"
 command = 'herdr pane resize --direction down --amount 0.05 --pane "$HERDR_ACTIVE_PANE_ID"'
 
 [ui]
-# NOTE: agent_panel_scope ("all") is a newer-herdr key, unknown to 0.7.3 and
-# ignored (its default is already "all"). Re-add it after upgrading to >=0.7.5.
+# NOTE: dropped agent_panel_scope ("all") — not a real mainline-herdr key
+# (still rejected on 0.7.5). Mainline uses agent_panel_sort ("spaces"/"priority").
 show_agent_labels_on_pane_borders = true
 # tmux: set -g mouse on
 mouse_capture = true
