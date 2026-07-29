@@ -29,14 +29,19 @@ split_vertical = "prefix+v"
 # tmux: default prefix-x kill-pane
 close_pane = "prefix+x"
 
-# tmux: bind h/j/k/l select-pane (vim navigation)
-focus_pane_left = "prefix+h"
-focus_pane_down = "prefix+j"
-focus_pane_up = "prefix+k"
-focus_pane_right = "prefix+l"
+# tmux: bind h/j/k/l select-pane; ctrl+h/j/k/l for prefix-less directional nav
+focus_pane_left = "ctrl+h"
+focus_pane_down = "ctrl+j"
+focus_pane_up = "ctrl+k"
+focus_pane_right = "ctrl+l"
 
 # tmux: bind a set-option status (toggle UI chrome)
 toggle_sidebar = "prefix+a"
+
+# Session navigator on prefix+p (its default prefix+g is taken by lazygit below).
+# Displaces previous_tab, which we unset to avoid a duplicate binding.
+goto = "prefix+p"
+previous_tab = ""
 
 # tmux: bind g display-popup lazygit
 [[keys.command]]
@@ -49,6 +54,28 @@ command = "lazygit"
 key = "prefix+t"
 type = "pane"
 command = "$SHELL"
+
+# tmux: bind Left/Right/Up/Down resize-pane. Herdr has no direct resize binding,
+# so drive `herdr pane resize` (amount is a fraction of the tab) via shell commands.
+[[keys.command]]
+key = "prefix+left"
+type = "shell"
+command = 'herdr pane resize --direction left --amount 0.05 --pane "$HERDR_ACTIVE_PANE_ID"'
+
+[[keys.command]]
+key = "prefix+right"
+type = "shell"
+command = 'herdr pane resize --direction right --amount 0.05 --pane "$HERDR_ACTIVE_PANE_ID"'
+
+[[keys.command]]
+key = "prefix+up"
+type = "shell"
+command = 'herdr pane resize --direction up --amount 0.05 --pane "$HERDR_ACTIVE_PANE_ID"'
+
+[[keys.command]]
+key = "prefix+down"
+type = "shell"
+command = 'herdr pane resize --direction down --amount 0.05 --pane "$HERDR_ACTIVE_PANE_ID"'
 
 [ui]
 agent_panel_scope = "all"
