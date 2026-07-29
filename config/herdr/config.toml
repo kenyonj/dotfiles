@@ -43,6 +43,11 @@ toggle_sidebar = "prefix+a"
 goto = "prefix+p"
 previous_tab = ""
 
+# Vim keys to move between spaces in the prefix+w picker / navigate mode
+# (spaces are a vertical list, so only j/k; arrows still work as aliases).
+navigate_workspace_up = "k"
+navigate_workspace_down = "j"
+
 # tmux: bind g display-popup lazygit
 [[keys.command]]
 key = "prefix+g"
@@ -78,7 +83,8 @@ type = "shell"
 command = 'herdr pane resize --direction down --amount 0.05 --pane "$HERDR_ACTIVE_PANE_ID"'
 
 [ui]
-agent_panel_scope = "all"
+# NOTE: agent_panel_scope ("all") is a newer-herdr key, unknown to 0.7.3 and
+# ignored (its default is already "all"). Re-add it after upgrading to >=0.7.5.
 show_agent_labels_on_pane_borders = true
 # tmux: set -g mouse on
 mouse_capture = true
